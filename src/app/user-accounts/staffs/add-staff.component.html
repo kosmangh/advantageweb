@@ -1,0 +1,249 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{headerMsg | titlecase}}</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="addStaffBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <app-required-fields-notice />
+
+    <form novalidate [formGroup]="staffFormGroup">
+
+        <div class="row gy-4 mt-1">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'firstName'" [labelName]="'First Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': ( staffForm.firstName ?.touched ||  staffForm.firstName ?.dirty || submitted) && ! staffForm.firstName ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.firstName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'lastName'" [labelName]="'Last Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': ( staffForm.lastName ?.touched ||  staffForm.lastName ?.dirty || submitted) && ! staffForm.lastName ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.lastName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label class="form-check-label" [labelForName]="'gender'" [labelName]="'Gender'" />
+                    <div class="form-control-wrap">
+                        <ul class="custom-control-group" *ngIf="false">
+                            <li *ngFor="let item of listOfGenders let i = index">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input form-check-input"
+                                        formControlName="gender" name="gender" [id]="item.dataValue"
+                                        value="{{item.dataValue}}" [ngClass]="{ 'is-invalid': ( staffForm.gender ?.touched ||  staffForm.gender ?.dirty || submitted)
+                                                     && staffForm.gender ?.errors  }">
+                                    <label class="custom-control-label form-check-label"
+                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="custom-control-group">
+                            <li *ngFor="let item of listOfGenders let i = index">
+                                <div class="custom-control custom-radio custom-control-pro no-control">
+                                    <input formControlName="gender" name="gender" [id]="item.dataValue" type="radio"
+                                        class="custom-control-input form-check-input" value="{{item.dataValue}}"
+                                         [ngClass]="{ 'is-invalid': ( staffForm.gender ?.touched ||  staffForm.gender ?.dirty || submitted)
+                                                                             && staffForm.gender ?.errors  }">
+                                    <label class="custom-control-label form-check-label"
+                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="text-danger mt-1" *ngIf="submitted && staffForm.gender.errors?.required">
+                            <app-required-field />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'mobileNo'" [labelName]="'Contact Number'" />
+                    <div class="form-control-wrap">
+                        <input type="tel" formControlName="mobileNo" class="form-control" id="mobileNo"
+                            autocomplete="off" [ngClass]="{'is-valid':staffForm.lastName?.valid }"
+                            [ngClass]="{ 'is-invalid': (  staffForm.mobileNo ?.touched ||  staffForm.mobileNo ?.dirty || submitted) && ! staffForm.mobileNo ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.mobileNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div
+                                *ngIf=" staffForm.mobileNo ?.errors?.minlength || staffForm.mobileNo ?.errors?.maxlength">
+                                * Invalid mobile number (must be between 10 and 12 digits)
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'email'" [labelName]="'Email'" />
+                    <div class="form-control-wrap">
+                        <input type="email" formControlName="email" class="form-control" id="email" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  staffForm.email ?.touched ||  staffForm.email ?.dirty || submitted) && ! staffForm.email ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.email ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" staffForm.email ?.errors?.email">
+                                Invalid email
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" >
+                <div class="form-group" *ngIf="false">
+                    <app-form-label [labelForName]="'dob'" [labelName]="'Date Of Birth'" />
+                    <div class="form-control-wrap">
+                        <input type="date" formControlName="dob" class="form-control" id="dob" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  staffForm.dob ?.touched ||  staffForm.dob ?.dirty || submitted) && ! staffForm.dob ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.dob ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <app-form-label [labelForName]="'dob'" [labelName]="'Date Of Birth'" />
+                    <p-calendar styleClass="w-100" formControlName="dob" id="dob" dateFormat="dd-mm-yy" [showIcon]="true"
+                        [ngClass]="{ 'is-invalid': (  staffForm.dob ?.touched ||  staffForm.dob ?.dirty || submitted)  && ! staffForm.dob ?.valid  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="staffForm.dob?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+           
+
+          
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'regionId'" [labelName]="'Region'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="regionId" formControlName="regionId" [clearable]="false"
+                            [ngClass]="{ 'is-invalid ' : ( staffForm.regionId?.touched || staffForm.regionId?.dirty || submitted) && staffForm.regionId?.errors  }">
+                            <ng-option value="" class="fs-6" disabled selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfRegions" [value]="data.recordId">
+                                {{data.regionName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="staffForm.regionId?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'departmentId'" [labelName]="'Department'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="departmentId" formControlName="departmentId" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( staffForm.departmentId?.touched || staffForm.departmentId?.dirty || submitted) && staffForm.departmentId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfDepartments" [value]="data.recordId">
+                                {{data.departmentName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="staffForm.departmentId?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'officeContactNo'" [labelName]="'Office Contact Number'" />
+                    <div class="form-control-wrap">
+                        <input type="tel" formControlName="officeContactNo" class="form-control" id="officeContactNo"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': ( staffForm.officeContactNo ?.touched ||  staffForm.officeContactNo ?.dirty || submitted) && ! staffForm.officeContactNo ?.valid  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" staffForm.officeContactNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'address'" [labelName]="'Address'" />
+                    <div class="form-control-wrap">
+                        <textarea type="text" formControlName="address" class="form-control" id="address" autocomplete="off"
+                            style="min-height: 30px"
+                            [ngClass]="{ 'is-invalid': (  staffForm.address ?.touched ||  staffForm.address ?.dirty || submitted) && ! staffForm.address ?.valid  }">
+                        </textarea>
+                        <span class="invalid-feedback">
+                            <div *ngIf="staffForm.address ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  mt-3">
+            <div class="col-sm-12">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew"
+                            class="custom-control-input">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new staff
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="row gx-3 justify-content-end mt-5">
+            <div class="col-auto">
+                <button class="btn btn-outline-lighter" type="button" title="" (click)="addStaffBsModalRef?.hide()">
+                    Close
+                </button>
+            </div>
+
+            <div class="col-auto" *ngIf="!isAddMode">
+                <button class="btn btn-primary" (click)="updateStaff()"
+                    [title]="staffFormGroup.invalid ? 'There must be errors on the form':''">
+                    Update
+                </button>
+            </div>
+            <div class="col-auto" *ngIf="isAddMode">
+                <button class="btn btn-primary" (click)="saveStaff()"
+                    [title]="staffFormGroup.invalid ? 'There must be errors on the form':''">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

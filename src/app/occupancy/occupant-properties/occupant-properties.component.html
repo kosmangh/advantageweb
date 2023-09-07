@@ -1,0 +1,188 @@
+<app-add-item [pageTitleName]="'Occupants'"
+    [description]="'Defines the contract between occupant, properties and estate company'">
+    <span class="newItemName">
+        <a (click)="openOccupantPropertyModalComponent(null,true)" class="btn btn-primary"><em class="icon ni ni-plus">
+            </em><span>Add occupant property</span>
+        </a>
+    </span>
+</app-add-item>
+<div class="row gy-2 gx-2 mt-5 mb-4 align-items-center">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="form-label pt-0" for="startsearchByDate">Search Parameter</label><br />
+            <div class="form-control-wrap">
+                <div class="form-control-select">
+                    <select class="form-control" id="searchBy" [(ngModel)]="searchBy" (change)="searchByListener()">
+                        <option value="OCC" selected class="fs-6">Occupant</option>
+                        <option value="BAB">Estate & block</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="searchBy=='OCC'">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="form-label pt-0" for="searchParameter">Search By</label><br />
+                <div class="form-control-wrap">
+                    <div class="form-control-select">
+                        <select class="form-control" id="searchParameter" [(ngModel)]="searchParameter"
+                            (change)="searchParameterListener()">
+                            <option value="NAM">Name</option>
+                            <option value="MOB">Mobile No.</option>
+                            <option value="EMAIL">Email</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2" *ngIf="searchParameter">
+            <div class="form-control-wrap">
+                <label class="form-label pt-0" for="startDate">{{searchParameterLabel}}</label><br />
+                <input type="text" autocomplete="off" class="form-control" id="default-04"
+                    placeholder="Enter {{searchParameterLabel}}" [(ngModel)]="searchValue">
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="searchBy=='BAB'">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
+                <div class="form-control-wrap">
+                    <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
+                        <ng-option value="A" class="fs-6" selected>Select Estate</ng-option>
+                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                            {{data.estateName}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
+                <div class="form-control-wrap">
+                    <ng-select id="block" [clearable]="false" [(ngModel)]="block" (change)="fetchOccupantProperties()">
+                        <ng-option value="A" class="fs-6" selected>Select Block</ng-option>
+                        <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
+                            {{data.block}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    
+
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary mt-4" type="button" title="" (click)="fetchOccupantProperties()">
+            Search
+        </button>
+    </div>
+
+    
+    <div class="col-auto" *ngIf="false">
+        <a (click)="export()" class="btn  mt-4 btn-outline-light">
+            <em class="icon ni ni-download"></em>
+            <span>Export</span>
+        </a>
+    </div>
+    <div class="col-auto " *ngIf="listOfOccupantProperties?.length>0">
+        <div class="dropdown mt-4">
+            <a href="#" class="dropdown-toggle btn btn-outline-light" data-bs-toggle="dropdown" aria-expanded="false">
+                <em class="icon ni ni-download"></em>
+                <span>Export</span>
+            </a>
+            <div class="dropdown-menu" style="">
+                <ul class="link-list-opt no-bdr">
+                    <li><a (click)="export()"><em class="icon ni ni-file-xls text-primary"></em><span>Excel</span></a>
+                    </li>
+                    <li><a style="cursor: not-allowed;"><em class="icon ni ni-file-pdf"></em><span>PDF</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gy-2 gx-3 my-3">
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" autocomplete="off" id="default-04" placeholder="Quick search"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+</div>
+<p-table [value]="listOfOccupantProperties | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SN</th>
+            <th>Occupant</th>
+            <th>Property</th>
+            <th>Usage</th>
+            <th>Block</th>
+            <th>Occupation Period</th>
+            <!-- <th>Occupation End Date</th> -->
+            <th>Duration Left</th>
+            <th>Occupation Status</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td>
+                <app-full-name [showAvatar]="true" fullName="{{data?.occupantName}}" otherFieldName="{{data?.institutionalDisplayName}}" />
+            </td>
+            <td>
+                <app-full-name [showAvatar]="false" fullName="{{data?.propertyName}}" otherFieldName="{{data?.occupationType|titlecase}} ({{data?.propertyNo}})" />
+            </td>
+            <td class="text-capitalize">{{data?.propertyUsage | titlecase | removeHyphen}}</td>
+            <td>{{data.blockName}}</td>
+            <td >
+                {{data?.firstDateOfOccupancy | cleanDate | date:'mediumDate'}} --
+                {{data?.lastDateOfOccupancy | cleanDate | date:'mediumDate'}}
+            </td>
+            <!-- <td >{{data?.lastDateOfOccupancy | cleanDate | date:'mediumDate'}}</td> -->
+            <td>{{data.durationLeft}}</td>
+            <td>{{data.validity}}</td>
+            <td>
+                <div class="drodown">
+                    <a class="dropdown-toggle btn btn-icon btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                        <em class="icon ni ni-more-h"></em>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                            <li>
+                                <a (click)="openOccupantPropertyModalComponent(data,false)">
+                                    <em class="icon ni ni-edit"></em>
+                                    <span>Edit occupancy</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a (click)="openViewOccupantModalComponent(data)">
+                                    <em class="icon ni ni-eye"></em>
+                                    <span>View occupancy</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-danger" (click)="deleteOccupant(data)">
+                                    <em class="icon ni ni-trash"></em>
+                                    <span>Delete</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

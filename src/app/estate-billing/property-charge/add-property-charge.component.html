@@ -1,0 +1,161 @@
+<form novalidate [formGroup]="propertyChargeFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">{{propertyChargeHeaderMsg | titlecase}}</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addPropertyChargeBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="p-10" *ngIf="false">
+            <br />Dirty: {{ propertyChargeFormGroup.dirty }}
+            <br />Touched: {{ propertyChargeFormGroup.touched }}
+            <br />Valid: {{ propertyChargeFormGroup.valid }}
+            <br />Value: {{ propertyChargeFormGroup.value | json }}
+        </div>
+
+        <app-required-fields-notice />
+        <div class="row gy-3 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'regionId'" [labelName]="'Region'" />
+                    <div class="form-control-wrap">
+                        <div class="form-control-select">
+                            <select id="regionId" formControlName="regionId" class="form-control"
+                                [ngClass]="{ 'is-invalid': ( propertyChargeForm.regionId?.touched || propertyChargeForm.regionId?.dirty || submitted) && propertyChargeForm.regionId?.errors  }">
+                                <option value="" class="fs-6" selected>Select One</option>
+                                <option *ngFor="let data of listOfRegions" [value]="data.recordId">
+                                    {{data.regionName}}
+                                </option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <div *ngIf="propertyChargeForm.regionId?.errors?.required">
+                                    <app-required-field />
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( propertyChargeForm.chargeYear?.touched || propertyChargeForm.chargeYear?.dirty || submitted) && propertyChargeForm.chargeYear?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                                {{data}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="propertyChargeForm.chargeYear?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertyUsage'" [labelName]="'Property Usage'" />
+                    <div class="form-control-wrap">
+                        <div class="form-control-select">
+                            <select id="regionId" formControlName="propertyUsage" class="form-control"
+                                [ngClass]="{ 'is-invalid': ( propertyChargeForm.propertyUsage?.touched || propertyChargeForm.propertyUsage?.dirty || submitted) && propertyChargeForm.propertyUsage?.errors  }">
+                                <option value="" class="fs-6" selected>Select One</option>
+                                <option *ngFor="let data of listOfUsages" [value]="data.dataValue">
+                                    {{data.dataLabel}}
+                                </option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <div *ngIf="propertyChargeForm.propertyUsage?.errors?.required">
+                                    <app-required-field />
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'firstClassCharge'" [labelName]="'First Class Charge'" />
+                    <div class="form-control-wrap">
+                        <input type="number" formControlName="firstClassCharge" class="form-control"
+                            id="firstClassCharge" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  propertyChargeForm.firstClassCharge ?.touched ||  propertyChargeForm.firstClassCharge ?.dirty || submitted) &&  propertyChargeForm.firstClassCharge ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyChargeForm.firstClassCharge ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'secondClassCharge'" [labelName]="'Second Class Charge'" />
+                    <div class="form-control-wrap">
+                        <input type="number" formControlName="secondClassCharge" class="form-control"
+                            id="secondClassCharge" autocomplete="off" style="min-height: 40px"
+                            [ngClass]="{ 'is-invalid': (  propertyChargeForm.secondClassCharge ?.touched ||  propertyChargeForm.secondClassCharge ?.dirty || submitted) && propertyChargeForm.secondClassCharge ?.errors  }" />
+
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyChargeForm.secondClassCharge ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'thirdClassCharge'" [labelName]="'Third Class Charge'" />
+                    <div class="form-control-wrap">
+                        <input type="number" formControlName="thirdClassCharge" class="form-control" id="thirdClassCharge"
+                            autocomplete="off" style="min-height: 40px"
+                            [ngClass]="{ 'is-invalid': (  propertyChargeForm.thirdClassCharge ?.touched ||  propertyChargeForm.thirdClassCharge ?.dirty || submitted) && propertyChargeForm.thirdClassCharge ?.errors  }" />
+
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyChargeForm.thirdClassCharge ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                (click)="addPropertyChargeBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updatePropertyCharge()"
+                [title]="propertyChargeFormGroup.invalid ? 'There must be errors on the form':''">
+                Update
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="savePropertyCharge()"
+                [title]="propertyChargeFormGroup.invalid ? 'There must be errors on the form':''">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,113 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{staff.fullName}} Details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="viewStaffBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+        <div class="pricing-body">
+            <ul class="pricing-features">
+
+                <span class="preview-title-lg overline-title">Personal Information</span>
+                <li><span class="w-50 text-black-50">Full Name</span> - <span class="ms-auto ">{{staff.fullName}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50 ">Gender</span> -
+                    <span class="ms-auto ">{{staff.gender | titlecase}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Date Of Birth</span> -
+                    <span class="ms-auto ">
+                        {{staff.dob | date}}
+                        <small>{{staff.dob.toString()|timeAgo}}</small>
+                    </span>
+                </li>
+
+                <li>
+                    <span class="w-50 text-black-50">Mobile Number</span> -
+                    <span class="ms-auto ">{{staff.mobileNo}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Office Contact Number</span> -
+                    <span class="ms-auto ">{{staff.officeContactNo}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Address</span> -
+                    <span class="ms-auto ">{{staff.address}}</span>
+                </li>
+                <span class="preview-title-lg overline-title mt-2">User Account </span>
+                <li>
+                    <span class="w-50 text-black-50">Username</span> -
+                    <span class="ms-auto ">{{staff.username}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">User Role</span> -
+                    <span class="ms-auto ">{{staff.userRole | titlecase}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Region</span> -
+                    <span class="ms-auto ">{{staff.regionName}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Department</span> -
+                    <span class="ms-auto ">{{staff.departmentName}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Account Created By</span> -
+                    <span class="ms-auto ">{{staff.accountCreatedBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Account Date</span> -
+                    <span class="ms-auto ">
+                        {{staff.accountCreatedDate | date}},
+                        <small>{{staff.accountCreatedDate| timeAgo}}</small>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Account Status</span> -
+                    <span class="ms-auto ">{{staff.status | titlecase}}</span>
+                </li>
+                <span class="preview-title-lg overline-title mt-2">User activities</span>
+                <li>
+                    <span class="w-50 text-black-50">Created By</span> -
+                    <span class="ms-auto ">{{staff.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Created Date</span> -
+                    <span class="ms-auto ">
+                        {{staff.createdDate | date}},
+                        <small>{{staff.createdDate.toString()| timeAgo}}</small>
+                    </span>
+                </li>
+                <li><small>{{staff.createdDate.toString()| timeAgo}}</small>
+                    <span class="w-50 text-black-50">Last Modified By</span> -
+                    <span class="ms-auto ">{{staff.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Modified Date</span> -
+                    <span class="ms-auto ">{{staff.lastModifiedDate | date}}
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50 text-black-50">Last Login Date</span> -
+                    <span class="ms-auto ">{{staff.lastLoginDate | date}}
+                        <small>{{staff.lastLoginDate| timeAgo}}</small>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a (click)="viewStaffBsModalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

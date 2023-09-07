@@ -1,0 +1,25 @@
+<app-page-title [pageTitleName]="'Occupancy'" [description]="'Manage  occupants and their properties'" />
+<div class="card card-bordered card-preview" style="min-height: 80vh;">
+    <div class="card-inner">
+        <ul class="nav nav-tabs mt-n3">
+            <li class="nav-item">
+                <a routerLink="/occupancy/occupants" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                    Occupants
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/occupancy/occupant-properties" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                    Occupant Properties
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="false">
+                <a routerLink="/occupancy/re-assignments" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                    Re-Assignment
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <router-outlet />
+        </div>
+    </div>
+</div>

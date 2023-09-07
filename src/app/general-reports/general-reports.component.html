@@ -1,0 +1,61 @@
+<app-page-title [pageTitleName]="'General Reports'" [description]="'General estate reports'" />
+<div class="card card-bordered card-preview" style="min-height: 80vh;">
+    <div class="card-inner">
+        <ul class="nav nav-tabs mt-n3">
+            <li class="nav-item">
+                <a routerLink="/general-reports/property-usage" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Property Usage
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a routerLink="/general-reports/ledger-reports" routerLinkActive="active" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                    href="#" role="button" aria-expanded="false">
+                    Ledger Reports
+                    <em class="icon ni ni-chevron-down"></em></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" routerLink="/general-reports/ledger-reports/ledger-categories"
+                            routerLinkActive="active">
+                            Ledger Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="/general-reports/ledger-reports/ledger-summaries"
+                            routerLinkActive="active">
+                            Ledger Summaries
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="/general-reports/ledger-reports/ledger-payments"
+                            routerLinkActive="active">
+                            Ledger Payments
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/general-reports/ground-rent-demand-notice" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Ground Rent Demand Notice
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/general-reports/return-arrears" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Return Arrears
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/general-reports/ground-rental-property-report" routerLinkActive="active"
+                    class="nav-link" data-bs-toggle="tab">
+                    Ground / Rental Property Report
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <router-outlet />
+        </div>
+    </div>
+</div>

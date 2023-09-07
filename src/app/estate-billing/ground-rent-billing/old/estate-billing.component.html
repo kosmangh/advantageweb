@@ -1,0 +1,78 @@
+<form novalidate [formGroup]="groundRentBillFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">Estate ground rent billing</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addEstateBillingBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-required-fields-notice />
+        <div class="row gy-3 mt-3">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="estateId" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( groundRentBillForm.estateId?.touched || groundRentBillForm.estateId?.dirty || submitted) && groundRentBillForm.estateId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                {{data.estateName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf="groundRentBillForm.estateId?.errors?.required ||  submitted">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( groundRentBillForm.chargeYear?.touched || groundRentBillForm.chargeYear?.dirty || submitted) && groundRentBillForm.chargeYear?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                                {{data}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="groundRentBillForm.chargeYear?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="custom-control custom-control-sm custom-checkbox checked">
+                    <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                        id="saveAndNew">
+                    <label class="custom-control-label fw-bolder" for="saveAndNew">
+                        Save & create new
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                (click)="addEstateBillingBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary btn-sm" (click)="savePropertyCharge()"
+                [title]="groundRentBillFormGroup.invalid ? 'There must be errors on the form':''">
+                Apply estate billing
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,292 @@
+<div class="modal-header">
+    <h6 class="modal-title">Ground rent billing</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="addGroundRentBillBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div>
+        <tabset [justified]="true">
+            <app-required-fields-notice />
+            <br />
+            <tab id="EST" (selectTab)="onSelect($event)">
+                <ng-template tabHeading>
+                    <span>
+                        <em class="icon ni ni-home"></em> Estate Billing</span>
+                </ng-template>
+
+                <form novalidate [formGroup]="estateBillFormGroup">
+                    <div class="row gy-3 mt-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="estateid" formControlName="estateId" [clearable]="false"
+                                        [ngClass]="{ 'is-invalid': ( estateBillForm.estateId?.touched || estateBillForm.estateId?.dirty || estateSubmitted) && estateBillForm.estateId?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" disabled selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                            {{data.estateName}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div *ngIf="estateBillForm.estateId?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
+                                        [ngClass]="{ 'is-invalid': ( estateBillForm.chargeYear?.touched || estateBillForm.chargeYear?.dirty || estateSubmitted) && estateBillForm.chargeYear?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" disabled selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                                            {{data}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <span *ngIf="estateBillForm.chargeYear?.errors?.required">
+                                            <app-required-field />
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="custom-control custom-control-sm custom-checkbox checked">
+                                <input type="checkbox" formControlName="saveAndNew" id="saveAndNew1"
+                                    class="custom-control-input" id="saveAndNew1">
+                                <label class="custom-control-label fw-bolder" for="saveAndNew1">
+                                    Save & create new
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 mb-3 justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                                (click)="addGroundRentBillBsModalRef?.hide()">
+                                Close
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary btn-sm" (click)="saveGroundRentBill()">
+                                Apply estate billing
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab id="BLK" (selectTab)="onSelect($event)">
+                <ng-template tabHeading>
+                    <span>
+                        <em class="icon ni ni-brick"></em> Block Billing</span>
+                </ng-template>
+                <form novalidate [formGroup]="blockBillFormGroup">
+                    <div class="row gy-3 mt-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="estateid" formControlName="estateId" [clearable]="false"
+                                        (change)="fetchBlocks()"
+                                        [ngClass]="{ 'is-invalid': ( blockBillForm.estateId?.touched || blockBillForm.estateId?.dirty || blockSubmitted) && blockBillForm.estateId?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected disabled>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                            {{data.estateName}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div *ngIf="blockBillForm.estateId?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'blockId'" [labelName]="'Block'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="blockId" formControlName="blockId" [clearable]="true"
+                                        [ngClass]="{ 'is-invalid': ( blockBillForm.blockId?.touched || blockBillForm.blockId?.dirty || blockSubmitted) && blockBillForm.blockId?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfBlocks" [value]="data.recordId">
+                                            {{data.block}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div class="text-danger" *ngIf="blockBillForm.blockId?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
+                                        [ngClass]="{ 'is-invalid': ( blockBillForm.chargeYear?.touched || blockBillForm.chargeYear?.dirty || blockSubmitted) && blockBillForm.chargeYear?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                                            {{data}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <span *ngIf="blockBillForm.chargeYear?.errors?.required">
+                                            <app-required-field />
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="custom-control custom-control-sm custom-checkbox checked">
+                                <input type="checkbox" formControlName="saveAndNew" id="saveAndNew2"
+                                    class="custom-control-input" id="saveAndNew2">
+                                <label class="custom-control-label fw-bolder" for="saveAndNew2">
+                                    Save & create new
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 mb-3 justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                                (click)="addGroundRentBillBsModalRef?.hide()">
+                                Close
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary btn-sm" (click)="saveGroundRentBill()"
+                                [title]="blockBillFormGroup.invalid ? 'There must be errors on the form':''">
+                                Apply block billing
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab id="PROP" (selectTab)="onSelect($event)">
+                <ng-template tabHeading>
+                    <span>
+                        <em class="icon ni ni-property-blank"></em>Property Billing</span>
+                </ng-template>
+                <form novalidate [formGroup]="propertyBillFormGroup">
+                    <div class="row gy-3 mt-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="estateid" formControlName="estateId" [clearable]="false"
+                                        (change)="fetchBlocks()"
+                                        [ngClass]="{ 'is-invalid': ( propertyBillForm.estateId?.touched || propertyBillForm.estateId?.dirty || propertySubmitted) && propertyBillForm.estateId?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                            {{data.estateName}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div *ngIf="propertyBillForm.estateId?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'blockId'" [labelName]="'Block'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="estateid" formControlName="blockId" [clearable]="true"
+                                        (change)="fetchEstateProperties()"
+                                        [ngClass]="{ 'is-invalid': ( propertyBillForm.blockId?.touched || propertyBillForm.blockId?.dirty || propertySubmitted) && propertyBillForm.blockId?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfBlocks" [value]="data.recordId">
+                                            {{data.block}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div class="text-danger" *ngIf="propertyBillForm.blockId?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'propertyId'" [labelName]="'Estate Properties'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="propertyId" [clearable]="false" formControlName="propertyId"
+                                        [ngClass]="{'is-valid':propertyBillForm.propertyId?.valid }"
+                                        [ngClass]="{ 'is-invalid': ( propertyBillForm.propertyId ?.touched ||  propertyBillForm.propertyId ?.dirty || propertySubmitted) && propertyBillForm.propertyId ?.errors  }">
+                                        <ng-option value="ALL" class="fs-6" selected disabled>Select
+                                            Property</ng-option>
+                                        <ng-option *ngFor="let data of listOfProperties" [value]="data.recordId">
+                                            {{data.propertyName}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <div *ngIf=" propertyBillForm.propertyId ?.errors?.required">
+                                            <app-required-field />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+                                <div class="form-control-wrap">
+                                    <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
+                                        [ngClass]="{ 'is-invalid': ( propertyBillForm.chargeYear?.touched || propertyBillForm.chargeYear?.dirty || propertySubmitted) && propertyBillForm.chargeYear?.errors  }">
+                                        <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                                        <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                                            {{data}}
+                                        </ng-option>
+                                    </ng-select>
+                                    <span class="invalid-feedback">
+                                        <span *ngIf="propertyBillForm.chargeYear?.errors?.required">
+                                            <app-required-field />
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="custom-control custom-control-sm custom-checkbox checked">
+                                <input type="checkbox" formControlName="saveAndNew" id="saveAndNew3"
+                                    class="custom-control-input" id="saveAndNew3">
+                                <label class="custom-control-label fw-bolder" for="saveAndNew3">
+                                    Save & create new
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 mb-3 justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                                (click)="addGroundRentBillBsModalRef?.hide()">
+                                Close
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary btn-sm" (click)="saveGroundRentBill()">
+                                Apply property billing
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+        </tabset>
+    </div>
+</div>

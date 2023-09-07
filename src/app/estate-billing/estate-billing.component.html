@@ -1,0 +1,39 @@
+<app-page-title [pageTitleName]="'Estate billing'" [description]="'Manage estate billing setups'" />
+<div class="card card-bordered card-preview" style="min-height: 80vh;">
+    <div class="card-inner">
+        <ul class="nav nav-tabs mt-n3">
+            <li class="nav-item">
+                <a routerLink="/estate-billing/charges" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                    Property Charges
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="false">
+                <a routerLink="/estate-billing/penalties" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Penalties
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/estate-billing/ground-rent-billing" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Ground Rent Billing
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/estate-billing/rental-billing" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Rental Billing
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/estate-billing/back-rental-billing" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                   Back Rental Billing
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <router-outlet />
+        </div>
+    </div>
+</div>

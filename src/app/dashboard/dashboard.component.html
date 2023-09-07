@@ -1,0 +1,186 @@
+<app-page-title pageTitleName="Dashboard" 
+    description="{{ greetMsg }} {{ ' ' + currentUser.fullName }}."
+    />
+
+<div class="nk-block" *ngIf="false">
+    <div class="row gy-gs mb-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="nk-wg-card is-dark card card-bordered">
+                <div class="card-inner">
+                    <div class="nk-iv-wg2">
+                        <div class="nk-iv-wg2-title">
+                            <h6 class="title">
+                                Available Balance <em class="icon ni ni-info"></em>
+                            </h6>
+                        </div>
+                        <div class="nk-iv-wg2-text">
+                            <div class="nk-iv-wg2-amount">
+                                105.94
+                                <span class="change up"><span class="sign"></span>3.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="nk-wg-card is-s1 card card-bordered">
+                <div class="card-inner">
+                    <div class="nk-iv-wg2">
+                        <div class="nk-iv-wg2-title">
+                            <h6 class="title">
+                                Total Invested <em class="icon ni ni-info"></em>
+                            </h6>
+                        </div>
+                        <div class="nk-iv-wg2-text">
+                            <div class="nk-iv-wg2-amount">
+                                509,850.90
+                                <span class="change up"><span class="sign"></span>2.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+            <div class="nk-wg-card is-s3 card card-bordered">
+                <div class="card-inner">
+                    <div class="nk-iv-wg2">
+                        <div class="nk-iv-wg2-title">
+                            <h6 class="title">
+                                Total Profits <em class="icon ni ni-info"></em>
+                            </h6>
+                        </div>
+                        <div class="nk-iv-wg2-text">
+                            <div class="nk-iv-wg2-amount">
+                                50,600.48
+                                <span class="change down"><span class="sign"></span>1.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-bordered">
+                <div class="card-inner">
+                    <div class="row gy-4">
+                        <div class="col-sm-3 col-xxl-3">
+                            <div class="nk-order-ovwg-data sell text-center">
+                                <div class="amount">
+                                    {{ dashboardSummary?.totalLinkages }}
+                                    <small class="currenct currency-usd"></small>
+                                </div>
+                                <div class="info">
+                                    <strong><span class="currenct currency-usd"></span></strong>
+                                </div>
+                                <div class="title text-uppercase text-spacing">
+                                    Total Linkages
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xxl-3">
+                            <div class="nk-order-ovwg-data sell text-center">
+                                <div class="amount">
+                                    {{ dashboardSummary?.totalSuccessfulLinkages
+                                    }}<small class="currenct currency-usd"></small>
+                                </div>
+                                <div class="info">
+                                    <strong><span class="currenct currency-usd"></span></strong>
+                                </div>
+                                <div class="title text-uppercase text-spacing">
+                                    Successful Linkages
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xxl-3">
+                            <div class="nk-order-ovwg-data sell text-center">
+                                <div class="amount">
+                                    {{ dashboardSummary?.totalFailedLinkages
+                                    }}<small class="currenct currency-usd"></small>
+                                </div>
+                                <div class="info">
+                                    <strong><span class="currenct currency-usd"></span></strong>
+                                </div>
+                                <div class="title text-uppercase text-spacing">
+                                    Failed Linkages
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xxl-3">
+                            <div class="nk-order-ovwg-data sell text-center">
+                                <div class="amount">
+                                    {{ dashboardSummary?.totalElevytrxns
+                                    }}<small class="currenct currency-usd"></small>
+                                </div>
+                                <div class="info">
+                                    <strong><span class="currenct currency-usd"></span></strong>
+                                </div>
+                                <div class="title text-uppercase text-spacing">
+                                    Total E Levy Transactions
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6 col-xxl-4">
+            <div class="card card-bordered card-full">
+                <div class="card-inner-group">
+                    <div class="card-inner">
+                        <div class="card-title-group">
+                            <div class="card-title">
+                                <h6 class="title">{{ "recent_linkages"  }}</h6>
+                            </div>
+                            <div class="card-tools">
+                                <a routerLink="/elevy/accountlinkages" routerLinkActive="active"
+                                    class="link">{{ "view_all" 
+                                    }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xxl-4">
+            <div class="card card-bordered h-100">
+                <div class="card-inner border-bottom">
+                    <div class="card-title-group">
+                        <div class="card-title">
+                            <h6 class="title">{{ "recent_activities"  }}</h6>
+                        </div>
+                        <div class="card-tools">
+                            <a routerLink="/accounts/users" routerLinkActive="active"
+                                class="link">{{ "view_all" 
+                                }}</a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nk-support" *ngIf="listOfAuditLogs?.length > 0">
+                    <li class="nk-support-item" *ngFor="let user of listOfAuditLogs">
+                        <div class="user-avatar {{ '' | avatarBg }}">
+                            <span>{{ user?.fullName | avatarName }}</span>
+                        </div>
+                        <div class="nk-support-content">
+                            <div class="title">
+                                <span>{{ user?.fullName }}</span>
+                                <span class="time">{{ user?.recordDate | date : "medium" }}</span>
+                            </div>
+                            <p>{{ user?.userActivity }}</p>
+                        </div>
+                    </li>
+                </ul>
+                <div *ngIf="listOfAuditLogs?.length === 0">
+                    No recent recent activities
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

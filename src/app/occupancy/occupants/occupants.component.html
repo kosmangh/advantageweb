@@ -1,0 +1,143 @@
+<app-add-item [pageTitleName]="'Occupants'" [description]="'State Housing occupants(individuals & institutions)'">
+    <span class="newItemName">
+        <div class="dropdown">
+
+            <a href="#" class="btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
+                <em class="icon ni ni-plus"></em>
+                <span>Add occupant</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-auto mt-1" style="">
+                <ul class="link-list-plain">
+                    <li><a (click)="openIndividualModalComponent(null,true)"><em class="icon ni ni-user"></em>
+                            Individual</a></li>
+                    <li><a (click)="openInstitutionModalComponent(null,true)"><em class="icon ni ni-home"></em>
+                            Institution</a></li>
+                </ul>
+            </div>
+        </div>
+    </span>
+</app-add-item>
+<div class="row gy-2 gx-3 mt-5 mb-4 align-items-center">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="form-label pt-0" for="startDate">Occupant Type</label><br />
+            <div class="form-control-wrap">
+                <div class="form-control-select">
+                    <select class="form-control" id="searchBy" [(ngModel)]="occupantType">
+                        <option value="ALL" selected class="fs-6">All Occupants</option>
+                        <option value="INS">Individual</option>
+                        <option value="IND">Institution</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-group">
+                <label class="form-label pt-0" for="startDate">Start Date</label><br />
+                <p-calendar [monthNavigator]="true" [yearNavigator]="true" dateFormat="yy-mm-dd"
+                    styleClass=”form-control” dateFormat="dd-mm-yy" [showIcon]="true" [(ngModel)]="startDate">
+                </p-calendar>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <label class="form-label pt-0" for="endDate">End Date</label><br />
+        <p-calendar styleClass=”form-control” dateFormat="dd-mm-yy" [showIcon]="true" [(ngModel)]="endDate">
+        </p-calendar>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary mt-4" type="button" title="" (click)="fetchOccupants()">
+            Search
+        </button>
+    </div>
+    <div class="col-auto">
+        <a (click)="fetchOccupants()" class="btn  mt-4 btn-outline-light">
+            <em class="icon ni ni-download"></em>
+            <span>Export</span>
+        </a>
+    </div>
+
+</div>
+<div class="row gy-2 gx-3 my-3">
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" id="default-04" placeholder="Quick search"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+</div>
+<p-table [value]="listOfOccupants | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SN</th>
+            <th>Occupant</th>
+            <th>Occupant Type</th>
+            <th>Date of Birth / Reg. Date</th>
+            <th>Email</th>
+            <th>Mobile No.</th>
+            <th>Address</th>
+            <th>Properties</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td>
+                <app-full-name fullName="{{data?.occupantName}}" otherFieldName="{{data?.institutionalDisplayName}}" />
+            </td>
+            <td>{{data.occupantType|titlecase}}</td>
+            <td>{{data.dateOfBirth | cleanDate | date:'mediumDate' }}</td>
+            <td>{{data.emailAddress}}</td>
+            <td>{{data.mobileNo}}</td>
+            <td>{{data.localAddress}}</td>
+            <td>{{data.properties | number}}</td>
+            <td>
+                <div class="drodown">
+                    <a class="dropdown-toggle btn btn-icon btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                        <em class="icon ni ni-more-h"></em>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                            <li *ngIf="data.institutional">
+                                <a (click)=" openInstitutionModalComponent(data,false)">
+                                    <em class="icon ni ni-edit"></em>
+                                    <span>Edit occupant</span>
+                                </a>
+                            </li>
+                            <li *ngIf="!data.institutional">
+                                <a (click)=" openIndividualModalComponent(data,false)">
+                                    <em class="icon ni ni-edit"></em>
+                                    <span>Edit occupant</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="openViewOccupantModalComponent(data)">
+                                    <em class="icon ni ni-eye"></em>
+                                    <span>View details</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-danger" (click)="deleteOccupant(data)">
+                                    <em class="icon ni ni-trash"></em>
+                                    <span>Delete</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

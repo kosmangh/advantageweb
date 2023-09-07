@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <h6 class="modal-title">Property Charge Details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="addPropertyChargeDetailsBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+
+        <div class="pricing-body">
+            <ul class="pricing-features">
+                <span class="preview-title-lg overline-title">Charge Information</span>
+
+                <li>
+                    <span class="w-50 text-soft">Region</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.regionName}}</span>
+                </li>
+
+                <li>
+                    <span class="w-50 text-soft ">Charge Year</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.chargeYear}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">Property Usage</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.propertyUsage | titlecase}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">First Class Charge</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.firstClassCharge | number: '.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">Second Class Charge</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.secondClassCharge | number: '.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">Third Class Charge</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.thirdClassCharge | number: '.2-2'}}</span>
+                </li>
+
+
+                <span class="preview-title-lg overline-title mt-2">User Activities</span>
+                <li>
+                    <span class="w-50 text-soft">Created By</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Created Date</span> -
+                    <span class="ms-auto text-solid">
+                        {{propertyCharge.createdDate | date:'medium' }}
+                    </span>
+                    <span class="ms-auto text-solid text-primary">
+                        : {{propertyCharge.createdDate.toString()|timeAgo}}
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Last Modified By</span> -
+                    <span class="ms-auto text-solid">{{propertyCharge.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Last Modified Date</span> -
+                    <span class="ms-auto text-solid">
+                        {{propertyCharge.lastModifiedDate | date:'medium' }}
+                    </span>
+                    <span class="ms-auto text-solid text-primary">
+                        : {{propertyCharge.lastModifiedDate.toString()|timeAgo}}
+                    </span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a (click)="addPropertyChargeDetailsBsModalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

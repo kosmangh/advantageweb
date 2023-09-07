@@ -1,0 +1,97 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{estate.estateName| titlecase}} Details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="viewEstateBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+       
+        <div class="pricing-body">
+            <ul class="pricing-features">
+                <span class="preview-title-lg overline-title">Estate Information</span>
+
+                <li>
+                    <span class="w-50 text-soft">Estate Name</span> -
+                    <span class="ms-auto text-solid">{{estate.estateName}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">Estate Class</span> -
+                    <span class="ms-auto text-solid">{{estate.estateClass | titlecase | removeHyphen}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft ">Region</span> -
+                    <span class="ms-auto text-solid">{{estate.regionName | titlecase}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Land Size <small>(Acres)</small></span> - 
+                    <span class="ms-auto text-solid">{{estate.landSize | number}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Land Size Left<small> (Acres)</small></span> - 
+                    <span class="ms-auto text-solid">{{estate.landSizeLeft | number}}</span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Lease Start Date</span> -
+                    <span class="ms-auto text-solid">
+                        {{estate.leaseStartDate | cleanDate | date}} ,
+                        <small>{{estate.leaseStartDate.toString()|
+                            timeAgo}}
+                        </small>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Lease End Date</span> -
+                    <span class="ms-auto text-solid">
+                        {{estate.leaseEndDate | cleanDate | date}} ,
+                        <small>{{estate.leaseEndDate.toString()|
+                            timeAgo}}
+                        </small>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50 text-soft">Duration Left</span> -
+                    <span class="ms-auto text-solid">{{estate.durationLeft}}</span>
+                </li>
+               
+               
+                <li>
+                    <span class="w-50 text-soft">Blocks</span> - 
+                    <span class="ms-auto text-solid">{{estate.totalBlocks | number}}</span>
+                </li>
+                <li *ngIf="false">
+                    <span class="w-50 text-soft">Properties</span> -
+                    <span class="ms-auto text-solid">{{estate.properties | number}}</span>
+                </li>
+                <span class="preview-title-lg overline-title mt-2">Estate activities</span>
+                    <li>
+                        <span class="w-50 text-soft">Created By</span> -
+                        <span class="ms-auto text-solid">{{estate.createdBy}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50 text-soft">Created Date</span> -
+                        <span class="ms-auto text-solid">{{estate.createdDate |  date:'medium'}} ,<small>{{estate.createdDate.toString()|
+                                timeAgo}}</small></span>
+                    </li>
+                    <li>
+                        <span class="w-50 text-soft">Last Modified By</span> -
+                        <span class="ms-auto text-solid">{{estate.createdBy}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50 text-soft">Modified Date</span> -
+                        <span class="ms-auto text-solid">{{estate.lastModifiedDate | date:'medium' }} ,<small>{{estate.lastModifiedDate.toString()|
+                                timeAgo}}</small></span>
+                    </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a  (click)="viewEstateBsModalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

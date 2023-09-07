@@ -1,0 +1,126 @@
+<form novalidate [formGroup]="departmentFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">{{departmentHeaderMsg | titlecase}}</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addDepartmentBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="p-10" *ngIf="false">
+            <br />Dirty: {{ departmentFormGroup.dirty }}
+            <br />Touched: {{ departmentFormGroup.touched }}
+            <br />Valid: {{ departmentFormGroup.valid }}
+            <br />Value: {{ departmentFormGroup.value | json }}
+        </div>
+
+        <app-required-fields-notice />
+        <div class="row gy-2 mt-3">
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'departmentName'" [labelName]="'Department Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="departmentName" class="form-control" id="departmentName"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  departmentForm.departmentName ?.touched ||  departmentForm.departmentName ?.dirty || submitted) && departmentForm.departmentName ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" departmentForm.departmentName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" departmentForm.departmentName ?.errors?.minlength">
+                                * department name must be longer than 3 characters.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <app-form-label [labelForName]="'remarks'" [labelName]="'Remarks'"></app-form-label>
+                    <div class="form-control-wrap">
+                        <textarea type="text" formControlName="remarks" class="form-control" id="remarks"
+                            style="min-height: 40px"
+                            [ngClass]="{ 'is-invalid':( departmentForm.remarks ?.touched ||  departmentForm.remarks ?.dirty || submitted) &&  departmentForm.remarks ?.errors}">
+                        </textarea>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" departmentForm.remarks ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="false"><label class="form-label">Payment Methods</label>
+                    <ul class="custom-control-group g-3 align-center">
+                        <li>
+                            <div class="custom-control custom-control-sm custom-checkbox"><input type="checkbox"
+                                    class="custom-control-input" id="pay-card"><label class="custom-control-label"
+                                    for="pay-card">Card</label></div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-control-sm custom-checkbox"><input type="checkbox"
+                                    class="custom-control-input" id="pay-bitcoin"><label class="custom-control-label"
+                                    for="pay-bitcoin">Bitcoin</label></div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-control-sm custom-checkbox"><input type="checkbox"
+                                    class="custom-control-input" id="pay-cash"><label class="custom-control-label"
+                                    for="pay-cash">Cash</label></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group" *ngIf="false">
+                    <app-form-label [labelForName]="'remarks'" [labelName]="'Choices'"/><br />
+                    <ul class="custom-control-group">
+                        <li>
+                            <div class="custom-control custom-radio custom-control-pro no-control checked"><input
+                                    type="radio" class="custom-control-input" name="btnRadioNc" id="btnRadioNc1"><label
+                                    class="custom-control-label" for="btnRadioNc1">This is very nice</label></div>
+                        </li>
+                        <li>
+                            <div class="custom-control custom-radio custom-control-pro no-control"><input type="radio"
+                                    class="custom-control-input" name="btnRadioNc" id="btnRadioNc2"><label
+                                    class="custom-control-label" for="btnRadioNc2">No</label></div>
+                        </li>
+                     
+                    </ul>
+                </div>
+
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new department
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                (click)="addDepartmentBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteDepartment()"
+                [title]="departmentFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updateDepartment()"
+                [title]="departmentFormGroup.invalid ? 'There must be errors on the form':''">
+                Update
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="saveDepartment()"
+                [title]="departmentFormGroup.invalid ? 'There must be errors on the form':''">
+                Create
+            </button>
+        </div>
+    </div>
+</form>

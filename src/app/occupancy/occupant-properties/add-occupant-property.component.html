@@ -1,0 +1,181 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{headerMsg | titlecase}}</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="addOccupantPropertyBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <app-required-fields-notice />
+
+    <form novalidate [formGroup]="occupantPropertyFormGroup">
+        <div class="row gy-4 mt-1">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateId'" [labelName]="'Estates'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateId" [clearable]="false" formControlName="estateId"
+                            (change)="fetchEstateBlocks()" 
+                            [ngClass]="{ 'is-invalid': ( occupantPropertyForm.estateId ?.touched ||  occupantPropertyForm.estateId ?.dirty || submitted) && occupantPropertyForm.estateId ?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select Estate</ng-option>
+                            <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                {{data.estateName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" occupantPropertyForm.estateId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'blockId'" [labelName]="'Estate Blocks'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="blockId" [clearable]="false" formControlName="blockId"
+                            (change)="fetchEstateProperties()"
+                            [ngClass]="{ 'is-invalid': ( occupantPropertyForm.blockId ?.touched ||  occupantPropertyForm.blockId ?.dirty || submitted) && occupantPropertyForm.blockId ?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select Block</ng-option>
+                            <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
+                                {{data.block}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" occupantPropertyForm.blockId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertyId'" [labelName]="'Estate Properties'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="propertyId" [clearable]="false" formControlName="propertyId"
+                            (change)="fetchOccupants()" [ngClass]="{'is-valid':occupantPropertyForm.propertyId?.valid }"
+                            [ngClass]="{ 'is-invalid': ( occupantPropertyForm.propertyId ?.touched ||  occupantPropertyForm.propertyId ?.dirty || submitted) && occupantPropertyForm.propertyId ?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select Property</ng-option>
+                            <ng-option *ngFor="let data of listOfEstateProperties" [value]="data.recordId">
+                                {{data.propertyName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" occupantPropertyForm.propertyId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'occupantId'" [labelName]="'Occupants'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="occupantId" [clearable]="false" formControlName="occupantId"
+                            [ngClass]="{ 'is-invalid': ( occupantPropertyForm.occupantId ?.touched ||  occupantPropertyForm.occupantId ?.dirty || submitted) && occupantPropertyForm.occupantId ?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select Occupant</ng-option>
+                            <ng-option class="text-capitalize" *ngFor="let data of listOfOccupants"
+                                [value]="data.recordId">
+                                {{data.occupantName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" occupantPropertyForm.occupantId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'firstDateOfOccupancy'" [labelName]="'First Date  Of Occupancy'" />
+                    <p-calendar styleClass="w-100" formControlName="firstDateOfOccupancy" id="firstDateOfOccupancy"
+                        dateFormat="dd-mm-yy" [showIcon]="true"
+                        [ngClass]="{ 'is-invalid': (  occupantPropertyForm.firstDateOfOccupancy ?.touched ||  occupantPropertyForm.firstDateOfOccupancy ?.dirty || submitted) &&  occupantPropertyForm.firstDateOfOccupancy ?.errors  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="occupantPropertyForm.firstDateOfOccupancy?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'lastDateOfOccupancy'" [labelName]="'Last Date  Of Occupancy'" />
+                    <p-calendar styleClass="w-100" formControlName="lastDateOfOccupancy" id="lastDateOfOccupancy"
+                        dateFormat="dd-mm-yy" [showIcon]="true"
+                        [ngClass]="{ 'is-invalid': (  occupantPropertyForm.lastDateOfOccupancy ?.touched ||  occupantPropertyForm.lastDateOfOccupancy ?.dirty || submitted) && occupantPropertyForm.lastDateOfOccupancy ?.errors  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="occupantPropertyForm.lastDateOfOccupancy?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label class="form-check-label" [labelForName]="'occupationType'" [labelName]="'Occupancy Type'" />
+                    <div class="form-control-wrap">
+                        <ul class="custom-control-group">
+                            <li *ngFor="let item of listOfProOccupantTypes let i = index">
+                                <div class="custom-control custom-radio custom-control-pro no-control">
+                                    <input formControlName="occupationType" name="occupationType" [id]="item.dataValue" type="radio"
+                                        class="custom-control-input form-check-input" value="{{item.dataValue}}"
+                                        [ngClass]="{ 'is-invalid': ( occupantPropertyForm.occupationType ?.touched ||  occupantPropertyForm.occupationType?.dirty || submitted)
+                                                                                                                 && occupantPropertyForm.occupationType ?.errors  }">
+                                    <label class="custom-control-label form-check-label"
+                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-danger" *ngIf="submitted && occupantPropertyForm.occupationType.errors?.required">
+                            <app-required-field />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & assign new property
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+
+
+        </div>
+        <div class="row gx-3 justify-content-end mt-5">
+            <div class="col-auto">
+                <button class="btn btn-outline-light btn-sm" type="button" title="" data-bs-dismiss="modal"
+                    (click)="addOccupantPropertyBsModalRef?.hide()">
+                    Close
+                </button>
+            </div>
+
+            <div class="col-auto" *ngIf="!isAddMode">
+                <button class="btn btn-primary btn-sm" (click)="updateOccupant()"
+                    [title]="occupantPropertyFormGroup.invalid ? 'There must be errors on the form':''">
+                    Update
+                </button>
+            </div>
+            <div class="col-auto" *ngIf="isAddMode">
+                <button class="btn btn-primary btn-sm" (click)="saveOccupant()"
+                    [title]="occupantPropertyFormGroup.invalid ? 'There must be errors on the form':''">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Advantage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+</head>
+
+<!-- <body class="nk-body bg-lighter npc-general has-sidebar"> -->
+
+<body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme toggle-shown">
+    <ng-http-loader [filteredUrlPatterns]="[ 'occupiedpropertiesquicksearch']" [extraDuration]="0" [backgroundColor]="'#293684'" [spinner]="spinnerStyle.skThreeBounce"/>
+    <!-- <ng-http-loader  [extraDuration]="0" [backgroundColor]="'#293684'" [spinner]="spinnerStyle.skThreeBounce"/> -->
+    <router-outlet/>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<app-add-item [pageTitleName]="'Bill Payments'" [description]="'Payments of ground and house rents'" />
+<div class="row gy-2 gx-2 mt-5 mb-4 align-items-center">
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="form-label pt-0" for="searchParameter">Search By</label><br />
+            <div class="form-control-wrap">
+                <div class="form-control-select">
+                    <select class="form-control" id="searchParameter" [(ngModel)]="searchParameter"
+                        (change)="searchParameterListener()">
+                        <option value="receiptNumberIssued" selected class="fs-6">Receipt No.</option>
+                        <option value="mediumOfPaymentNumber" selected class="fs-6">Payment Mode No.</option>
+                        <option value="BAB">Estate & block</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="searchParameter !=='BAB'">
+        <div class="col-sm-2" *ngIf="searchParameter">
+            <div class="form-control-wrap">
+                <label class="form-label pt-0" for="searchParameter">{{searchParameterLabel}}</label><br />
+                <input type="text" autocomplete="off" class="form-control" id="searchParameter"
+                    placeholder="Enter {{searchParameterLabel}}" [(ngModel)]="searchValue">
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="searchParameter=='BAB'">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
+                <div class="form-control-wrap">
+                    <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
+                        <ng-option value="A" class="fs-6" selected>Select Estate</ng-option>
+                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                            {{data.estateName}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
+                <div class="form-control-wrap">
+                    <ng-select id="block" [clearable]="false" [(ngModel)]="block">
+                        <ng-option value="A" class="fs-6" selected>Select Block</ng-option>
+                        <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
+                            {{data.block}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="form-control-wrap">
+                <div class="form-group">
+                    <label class="form-label pt-0" for="startDate">Start Date</label><br />
+                    <p-calendar [monthNavigator]="true" [yearNavigator]="true" dateFormat="yy-mm-dd" styleClass=”form-control”
+                        dateFormat="dd-mm-yy" [showIcon]="true" [(ngModel)]="startDate">
+                    </p-calendar>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="form-label pt-0" for="endDate">End Date</label><br />
+            <p-calendar styleClass=”form-control” dateFormat="dd-mm-yy" [showIcon]="true" [(ngModel)]="endDate">
+            </p-calendar>
+        </div>
+    </ng-container>
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary mt-4" type="button" (click)="searchBillPayments()">
+            Search
+        </button>
+    </div>
+   
+</div>
+<div class="row gy-2 gx-3 my-3" *ngIf="billPayments?.length>0">
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" autocomplete="off" id="default-04" placeholder="Quick search"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+    <div class="col-auto " *ngIf="billPayments?.length>0">
+        <div class="dropdown" tooltip="Data export">
+            <a href="#" class="dropdown-toggle btn btn-icon btn-light btn-outline-light1" data-bs-toggle="dropdown"
+                aria-expanded="false" title="Export Data">
+                <em class="icon ni ni-download"></em>
+            </a>
+            <div class="dropdown-menu" style="">
+                <ul class="link-list-opt no-bdr">
+                    <li>
+                        <a (click)="export()">
+                            <em class="icon ni ni-file-xls"></em>
+                            <span>Export to Excel</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="cursor: not-allowed;">
+                            <em class="icon ni ni-file-pdf disabled"></em>
+                            <span>Export to PDF</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<p-table [value]="billPayments | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Property</th>
+            <th>Occupant</th>
+            <th class="text-end">Amount(GHS)</th>
+            <th>Receipt No.</th>
+            <th>Narration</th>
+            <th>Payment Mode</th>
+            <th>Payment Date</th>
+            <th>Recorded By</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <td>
+                <app-full-name [showAvatar]="false" fullName="{{data?.propertyName}}"
+                    otherFieldName="{{data?.propertyId}}" />
+            </td>
+            <td>
+                <app-full-name [showAvatar]="false" fullName="{{data?.occupantName }}"
+                    otherFieldName="{{data?.institutionalDisplayName}}" />
+            </td>
+            <td class="text-end font-monospace">
+                {{data?.amountInvolved | number: '.2-2'}}
+            </td>
+            <td>{{data?.receiptNumberIssued}}</td>
+            <td>{{data?.paymentFor}}</td>
+            <td>
+                <app-full-name [showAvatar]="false" fullName="{{data?.mediumOfPayment | titlecase | removeHyphen}}"
+                    otherFieldName="{{data?.mediumOfPaymentNumber}}" />
+            </td>
+            <td>
+                {{data?.paymentDate | lowercase}}
+                <div class="fw-lighter">
+                    <small class="d-block">{{data?.createdDate | date:'medium'}}</small>
+                    <small class='text-primary'> {{data?.createdDate | timeAgo}}</small>
+                </div>
+            </td>
+            <td>{{data?.createdBy}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<div class="row mt-3 justify-content-end">
+    <div class="col-6"></div>
+    <div class="col-6">
+        <div class="row gy-2">
+            <div class="col-sm-12 text-end">
+                Currency:<span class="ff-mono fw-bolder "> GHS</span>
+            </div>
+            <div class="col-sm-12 text-end ">
+                Total Arrears: <span class="ff-mono fw-bolder "> {{totalDebit | number : '1.2-2'}}</span>
+            </div>
+            <div class="col-sm-12  text-end  ">
+                Total Payments: <span class="ff-mono fw-bolder "> {{totalCredit | number : '1.2-2'}}</span>
+            </div>
+            <div class="col-sm-12 text-end">
+                Outstanding Bal: <span class="ff-mono fw-bolder "> {{balance | number : '1.2-2'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

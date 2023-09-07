@@ -1,0 +1,113 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{headerMsg}}</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="loginAccountBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <form novalidate [formGroup]="loginAccountFormGroup">
+        <div class="gallery-body card-inner align-center justify-between flex-wrap g-2" *ngIf="false">
+            <div class="user-card">
+                <div class="user-info">
+                    <app-full-name fullName="{{staff?.fullName}} ({{staff.username}})"
+                        otherFieldName="{{staff?.email}}" />
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 m-t-10">
+            <div class="col-12">
+                <div class="form-control-wrap">
+                    <app-form-label [labelForName]="'username'" [labelName]="'Temporary Password'" />
+
+                    <div class="input-group has-validation">
+
+                        <input type="text" formControlName="password" class="form-control" id="password"
+                            autocomplete="off" [ngClass]="{'is-valid':loginAccountForm.password?.valid }"
+                            [ngClass]="{ 'is-invalid': (  loginAccountForm.password ?.touched ||  loginAccountForm.password ?.dirty || submitted) && ! loginAccountForm.password ?.valid  }" />
+                        <div class="input-group-append">
+                            <app-copy-button message="{{loginAccountForm.password.value}}" />
+                            <button (click)="generatePassword()" class="btn btn-outline-light" tooltip="Generate new password" [delay]="500"><em class="icon ni ni-repeat"></em></button>
+                        </div>
+
+                        <span class="invalid-feedback">
+                            <div *ngIf=" loginAccountForm.password ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'userRole'" [labelName]="'User Role'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="userRole" formControlName="userRole" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( loginAccountForm.userRole?.touched || loginAccountForm.userRole?.dirty || submitted) && loginAccountForm.userRole?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfUserRoles" [value]="data.dataValue">
+                                {{data.dataLabel}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="loginAccountForm.userRole?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label class="form-check-label" [labelForName]="'status'" [labelName]="'Account Status'" />
+                    <div class="form-control-wrap">
+                        <ul class="custom-control-group">
+                            <li *ngFor="let item of listOfStatus let i = index">
+                                <div class="custom-control custom-radio custom-control-pro no-control">
+                                    <input formControlName="status" name="status" [id]="item.dataValue" type="radio"
+                                        class="custom-control-input form-check-input" value="{{item.dataValue}}"
+                                        [ngClass]="{ 'is-invalid': ( loginAccountForm.status ?.touched ||  loginAccountForm.status ?.dirty || submitted)
+                                                                             && loginAccountForm.status ?.errors  }">
+                                    <label class="custom-control-label form-check-label"
+                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="text-danger mt-1" *ngIf="submitted && loginAccountForm.status.errors?.required">
+                            <app-required-field />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gx-3 justify-content-end mt-5">
+            <div class="col-auto">
+                <button class="btn btn-outline-lighter" type="button" title="" (click)="loginAccountBsModalRef?.hide()">
+                    Close
+                </button>
+            </div>
+
+            <div class="col-auto" *ngIf="!isAddMode">
+                <button class="btn btn-primary" (click)="updateStaff()"
+                    [title]="loginAccountFormGroup.invalid ? 'There must be errors on the form':''">
+                    Update
+                </button>
+            </div>
+            <div class="col-auto" *ngIf="isAddMode">
+                <button class="btn btn-primary" (click)="saveStaff()"
+                    [title]="loginAccountFormGroup.invalid ? 'There must be errors on the form':''">
+                    Create
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer" *ngIf="false">
+    Hello
+</div>

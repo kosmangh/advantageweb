@@ -1,0 +1,129 @@
+<form novalidate [formGroup]="rentalBillFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">Property Rental billing</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addRentalBillBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-primary alert-icon">
+            <em class="icon ni ni-alert-c"></em>
+            <strong><em>Heads up</em></strong>.
+            Selected property must be occupied as <strong>Rental</strong>
+        </div><br/>
+        <app-required-fields-notice />
+       
+        <div class="row gy-3 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="estateId" [clearable]="false" (change)="fetchBlocks()"
+                            [ngClass]="{ 'is-invalid': ( rentalBillForm.estateId?.touched || rentalBillForm.estateId?.dirty || submitted) && rentalBillForm.estateId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                {{data.estateName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf="rentalBillForm.estateId?.errors?.required ||  submitted">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'blockId'" [labelName]="'Block'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="blockId" [clearable]="true"
+                            (change)="fetchEstateProperties()"
+                            [ngClass]="{ 'is-invalid': ( rentalBillForm.blockId?.touched || rentalBillForm.blockId?.dirty || submitted) && rentalBillForm.blockId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfBlocks" [value]="data.recordId">
+                                {{data.block}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div class="text-danger" *ngIf="rentalBillForm.blockId?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertyId'" [labelName]="'Estate Properties'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="propertyId" [clearable]="false" formControlName="propertyId"
+                            [ngClass]="{'is-valid':rentalBillForm.propertyId?.valid }"
+                            [ngClass]="{ 'is-invalid': ( rentalBillForm.propertyId ?.touched ||  rentalBillForm.propertyId ?.dirty || submitted) && rentalBillForm.propertyId ?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select Property</ng-option>
+                            <ng-option *ngFor="let data of listOfProperties" [value]="data.recordId">
+                                {{data.propertyName}} {{data.recordId}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" rentalBillForm.propertyId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'billDate'" [labelName]="'Date of Billing'" />
+                    <p-calendar styleClass="w-100" formControlName="billDate" id="billDate" dateFormat="dd-mm-yy"
+                        [showIcon]="true" [yearNavigator]="true" [monthNavigator]="true"
+                        [ngClass]="{ 'is-invalid': (  rentalBillForm.billDate ?.touched ||  rentalBillForm.billDate ?.dirty || submitted) &&  rentalBillForm.billDate ?.errors  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="rentalBillForm.billDate?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'rentAmount'" [labelName]="'Rent Charge'" />
+                    <div class="form-control-wrap">
+                        <input type="number" formControlName="rentAmount" class="form-control" id="rentAmount"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  rentalBillForm.rentAmount ?.touched ||  rentalBillForm.rentAmount ?.dirty || submitted) &&  rentalBillForm.rentAmount ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" rentalBillForm.rentAmount ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="custom-control custom-control-sm custom-checkbox checked">
+                    <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                        id="saveAndNew">
+                    <label class="custom-control-label fw-bolder" for="saveAndNew">
+                        Save & create new
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal"
+                (click)="addRentalBillBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary btn-sm" (click)="savePropertyCharge()">
+                Apply property billing
+            </button>
+        </div>
+    </div>
+</form>

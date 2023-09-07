@@ -1,0 +1,532 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{headerMsg | titlecase}}</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="addInstitutionOccupantBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-bordered">
+        <form class="nk-stepper stepper-init is-alter nk-stepper-s1" action="#" id="stepper-create-profile"
+            data-step-current="4" novalidate="novalidate" style="display: block;">
+            <div class="row g-0 col-sep col-sep-md col-sep-xl">
+                <div class="col-md-5 col-xl-5">
+                    <div class="card-inner">
+                        <ul class="nk-stepper-nav nk-stepper-nav-s1 stepper-nav is-vr">
+                            <!-- <li class="done current "> -->
+                            <li [ngClass]="{'current':currentStep===1, 'done' : currentStep > 1}">
+                                <div class="step-item">
+                                    <div class="step-text">
+                                        <div class="lead-text">Personal Information</div>
+                                        <div class="sub-text">
+                                            Personal details of occupant
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li [ngClass]="{'current':currentStep===2, 'done' : (currentStep >2) }">
+                                <div class="step-item">
+                                    <div class="step-text">
+                                        <div class="lead-text">Contact & Address Details</div>
+                                        <div class="sub-text">Verify customer number from the operator.
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li [ngClass]="{'current':currentStep===3, 'done' : currentStep > 3}">
+                                <div class="step-item">
+                                    <div class="step-text">
+                                        <div class="lead-text">Next of Kin(NOK) Details</div>
+                                        <div class="sub-text">S
+                                            elect service for the account or wallet.
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7 col-xl-7">
+                    <div class="card-inner">
+                        <div class="nk-stepper-content">
+                            <div class="nk-stepper-steps stepper-steps">
+                                <!-- <div class="nk-stepper-step active done"> -->
+                                <div class="nk-stepper-step"
+                                    [ngClass]="{'active ':currentStep===1, 'done' : currentStep === 2}">
+                                    <h5 class="title mb-2">Personal Information</h5>
+                                    <p>
+                                        Provide your personal details of occupant
+                                    </p>
+                                    <app-required-fields-notice />
+
+                                    <form novalidate [formGroup]="personalInformGroup">
+                                        <div class="row gy-4 mt-1">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'occupantName'"
+                                                        [labelName]="'Full Name'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" formControlName="occupantName"
+                                                            class="form-control" id="occupantName" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  personalInfoForm.occupantName ?.touched ||  personalInfoForm.occupantName ?.dirty) && ! personalInfoForm.occupantName ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div
+                                                                *ngIf=" personalInfoForm.occupantName ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label class="form-check-label" [labelForName]="'occupantType'" [labelName]="'Occupant Type'" />
+                                                    <div class="form-control-wrap">
+                                                        <ul class="custom-control-group">
+                                                            <li *ngFor="let item of listOfOccupantTypes let i = index">
+                                                                <div class="custom-control custom-radio custom-control-pro no-control">
+                                                                    <input formControlName="occupantType" name="occupantType" [id]="item.dataValue" type="radio"
+                                                                        class="custom-control-input form-check-input" value="{{item.dataValue}}"
+                                                                        [ngClass]="{ 'is-invalid': (  personalInfoForm.occupantType ?.touched ||  personalInfoForm.occupantType ?.dirty) && ! personalInfoForm.occupantType ?.valid  }">
+                                                                    <label class="custom-control-label form-check-label"
+                                                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                                                </div>
+                                                            </li>
+                                            
+                                                        </ul>
+                                                        <div class="text-danger mt-1"
+                                                            *ngIf="(  personalInfoForm.gender ?.touched ||  personalInfoForm.gender ?.dirty) && ! personalInfoForm.gender ?.valid">
+                                                            <app-required-field />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label class="form-check-label" [labelForName]="'gender'"
+                                                        [labelName]="'Gender'" />
+                                                    <div class="form-control-wrap">
+                                                        <ul class="custom-control-group">
+                                                            <li *ngFor="let item of listOfGenders let i = index">
+                                                                <div
+                                                                    class="custom-control custom-radio custom-control-pro no-control">
+                                                                    <input formControlName="gender" name="gender"
+                                                                        [id]="item.dataValue" type="radio"
+                                                                        class="custom-control-input form-check-input"
+                                                                        value="{{item.dataValue}}"
+                                                                        [ngClass]="{ 'is-invalid': (  personalInfoForm.gender ?.touched ||  personalInfoForm.gender ?.dirty) && ! personalInfoForm.gender ?.valid  }">
+                                                                    <label class="custom-control-label form-check-label"
+                                                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                        <div class="text-danger mt-1"
+                                                            *ngIf="(  personalInfoForm.gender ?.touched ||  personalInfoForm.gender ?.dirty) && ! personalInfoForm.gender ?.valid">
+                                                            <app-required-field />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'dateOfBirth'"
+                                                        [labelName]="'Date Of Birth'" />
+                                                    <p-calendar styleClass="w-100" formControlName="dateOfBirth"
+                                                        id="dateOfBirth" dateFormat="dd-mm-yy" [showIcon]="true"
+                                                        [ngClass]="{ 'is-invalid': (  personalInfoForm.dateOfBirth ?.touched ||  personalInfoForm.dateOfBirth ?.dirty) && ! personalInfoForm.dateOfBirth ?.valid  }" />
+                                                    <span class="invalid-feedback">
+                                                        <span *ngIf="personalInfoForm.dateOfBirth?.errors?.required">
+                                                            <app-required-field />
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'maritalStatus'"
+                                                        [labelName]="'Marital Status'" />
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-control-select">
+                                                            <select id="maritalStatus" formControlName="maritalStatus"
+                                                                class="form-control"
+                                                                [ngClass]="{ 'is-invalid': ( personalInfoForm.maritalStatus?.touched || personalInfoForm.maritalStatus?.dirty) && personalInfoForm.maritalStatus?.errors  }">
+                                                                <option value="" class="fs-6" selected>Select One
+                                                                </option>
+                                                                <option *ngFor="let data of listOfMaritalStatus"
+                                                                    [value]="data.dataValue">
+                                                                    {{data.dataLabel}}
+                                                                </option>
+                                                            </select>
+                                                            <span class="invalid-feedback">
+                                                                <div
+                                                                    *ngIf=" personalInfoForm.maritalStatus ?.errors?.required">
+                                                                    <app-required-field />
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'occupation'"
+                                                        [labelName]="'Occupation'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" formControlName="occupation"
+                                                            class="form-control" id="occupation" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  personalInfoForm.occupation ?.touched ||  personalInfoForm.occupation ?.dirty) && ! personalInfoForm.occupation ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div
+                                                                *ngIf=" personalInfoForm.occupation ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'idType'" [labelName]="'ID Type'" />
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-control-select">
+                                                            <select id="idType" formControlName="idType"
+                                                                class="form-control"
+                                                                [ngClass]="{ 'is-invalid': ( personalInfoForm.idType?.touched || personalInfoForm.idType?.dirty) && personalInfoForm.idType?.errors  }">
+                                                                <option value="" class="fs-6" selected>Select One
+                                                                </option>
+                                                                <option *ngFor="let data of listOfIdTypes"
+                                                                    [value]="data.dataValue">
+                                                                    {{data.dataLabel}}
+                                                                </option>
+                                                            </select>
+                                                            <span class="invalid-feedback">
+                                                                <div
+                                                                    *ngIf=" personalInfoForm.idType ?.errors?.required">
+                                                                    <app-required-field />
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'idNo'" [labelName]="'ID Number'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" formControlName="idNo" class="form-control"
+                                                            id="idNo" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  personalInfoForm.idNo ?.touched ||  personalInfoForm.idNo ?.dirty) && ! personalInfoForm.idNo ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf=" personalInfoForm.idNo ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row gx-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <button class="btn btn-outline-primary mt-4" type="button" title=""
+                                                    (click)="addInstitutionOccupantBsModalRef?.hide()">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button [disabled]="!personalInformGroup.valid"
+                                                    class="btn btn-primary mt-4" type="button" title=""
+                                                    (click)="continueStep()">
+                                                    Continue
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="nk-stepper-step"
+                                    [ngClass]="{'active ':currentStep===2, 'done' : currentStep === 3}">
+                                    <h5 class="title mb-2">Contact & Address Details</h5>
+                                    <p>
+                                        Provide contact and address information
+                                    </p>
+                                    <app-required-fields-notice />
+                                    <form novalidate [formGroup]="contactAddressFormGroup">
+                                        <div class="row gy-3 mt-1">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'mobileNo'"
+                                                        [labelName]="'Phone Number'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="tel" formControlName="mobileNo"
+                                                            class="form-control" id="mobileNo" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  contactAddressForm.mobileNo ?.touched ||  contactAddressForm.mobileNo ?.dirty) && ! contactAddressForm.mobileNo ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div
+                                                                *ngIf=" contactAddressForm.mobileNo ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                            <div
+                                                                *ngIf=" contactAddressForm.mobileNo ?.errors?.minlength || contactAddressForm.mobileNo ?.errors?.maxlength">
+                                                                * Invalid mobile number
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'emailAddress'"
+                                                        [labelName]="'Email'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="email" formControlName="emailAddress"
+                                                            class="form-control" id="emailAddress" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  contactAddressForm.emailAddress ?.touched ||  contactAddressForm.emailAddress ?.dirty) && ! contactAddressForm.emailAddress ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div
+                                                                *ngIf=" contactAddressForm.emailAddress ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'homeTown'"
+                                                        [labelName]="'Home Town'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" formControlName="homeTown"
+                                                            class="form-control" id="homeTown" autocomplete="off"
+                                                            style="min-height: 30px"
+                                                            [ngClass]="{ 'is-invalid': (  contactAddressForm.homeTown ?.touched ||  contactAddressForm.homeTown ?.dirty) && ! contactAddressForm.homeTown ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf="contactAddressForm.homeTown ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'Address'"
+                                                        [labelName]="'Address'" />
+                                                    <div class="form-control-wrap">
+                                                        <textarea type="text" formControlName="localAddress"
+                                                            class="form-control" id="localAddress" autocomplete="off"
+                                                            style="min-height: 30px"
+                                                            [ngClass]="{ 'is-invalid': (  contactAddressForm.localAddress ?.touched ||  contactAddressForm.localAddress ?.dirty) && ! contactAddressForm.localAddress ?.valid  }">
+                                                        </textarea>
+                                                        <span class="invalid-feedback">
+                                                            <div
+                                                                *ngIf="contactAddressForm.localAddress ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row gx-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <button class="btn btn-outline-primary mt-4" type="button" title=""
+                                                    (click)="previousStep()">
+                                                    {{"back" }}
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button [disabled]="!contactAddressFormGroup.valid"
+                                                    class="btn  btn-primary mt-4" type="button" title=""
+                                                    (click)="continueStep()">
+                                                    {{"continue"}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="nk-stepper-step"
+                                    [ngClass]="{'active ':currentStep===3, 'done' : currentStep === 4}">
+                                    <h5 class="title mb-3">Next of Kin(NOK) information</h5>
+                                    <p>
+                                        Provide next of Kin(NOK) information
+                                    </p>
+                                    <app-required-fields-notice />
+                                    <form novalidate [formGroup]="nokFormGroup">
+                                        <div class="row gy-3 mt-1">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'nextOfKin'"
+                                                        [labelName]="'NOK Name'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" formControlName="nextOfKin"
+                                                            class="form-control" id="nextOfKin" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (  nokForm.nextOfKin ?.touched ||  nokForm.nextOfKin ?.dirty) && ! nokForm.nextOfKin ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf=" nokForm.nextOfKin ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'nokPhone'"
+                                                        [labelName]="'NOk Mobile No.'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="tel" formControlName="nokPhone"
+                                                            class="form-control" id="nokPhone" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (nokForm.nokPhone ?.touched ||  nokForm.nokPhone ?.dirty) && ! nokForm.nokPhone ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf="nokForm.nokPhone ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                            <div
+                                                                *ngIf="nokForm.nokPhone ?.errors?.minlength || nokForm.nokPhone ?.errors?.maxlength">
+                                                                * Invalid mobile number
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'nokEmail'"
+                                                        [labelName]="'NOk Email'" />
+                                                    <div class="form-control-wrap">
+                                                        <input type="email" formControlName="nokEmail"
+                                                            class="form-control" id="nokEmail" autocomplete="off"
+                                                            [ngClass]="{ 'is-invalid': (nokForm.nokEmail ?.touched ||  nokForm.nokEmail ?.dirty) && ! nokForm.nokEmail ?.valid  }" />
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf="nokForm.nokEmail ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                            <div *ngIf="nokForm.nokEmail ?.errors?.email">
+                                                                <app-email-not-valid />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'relationship'"
+                                                        [labelName]="'Marital Status'" />
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-control-select">
+                                                            <select id="relationship" formControlName="relationship"
+                                                                class="form-control"
+                                                                [ngClass]="{ 'is-invalid': ( personalInfoForm.relationship?.touched || personalInfoForm.relationship?.dirty) && personalInfoForm.relationship?.errors  }">
+                                                                <option value="" class="fs-6" selected>Select One
+                                                                </option>
+                                                                <option *ngFor="let data of listOfRelationship"
+                                                                    [value]="data.dataValue">
+                                                                    {{data.dataLabel}}
+                                                                </option>
+                                                            </select>
+                                                            <span class="invalid-feedback">
+                                                                <div
+                                                                    *ngIf=" personalInfoForm.relationship ?.errors?.required">
+                                                                    <app-required-field />
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12" *ngIf="false">
+
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'relationship'"
+                                                        [labelName]="'Relationship'" />
+                                                    <div class="form-control-wrap">
+                                                        <ul class="custom-control-group">
+                                                            <li *ngFor="let item of listOfRelationship">
+                                                                <div class="custom-control custom-radio checked">
+                                                                    <input type="radio" class="custom-control-input"
+                                                                        formControlName="relationship"
+                                                                        name="relationship" [id]="item.dataValue"
+                                                                        value="{{item.dataValue}}">
+                                                                    <label class="custom-control-label"
+                                                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <span class="invalid-feedback">
+                                                            <div *ngIf=" nokForm.relationship ?.errors?.required">
+                                                                <app-required-field />
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <app-form-label [labelForName]="'nokAddress'" [showRequired]="false"
+                                                        [labelName]="'NOK Address'"></app-form-label>
+                                                    <div class="form-control-wrap">
+                                                        <textarea type="nokAddress" formControlName="nokAddress"
+                                                            class="form-control" id="nokAddress"
+                                                            style="min-height: 30px">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <ng-container *ngIf="isAddMode">
+                                                    <div
+                                                        class="custom-control custom-control-sm custom-checkbox checked">
+                                                        <input type="checkbox" formControlName="saveAndNew"
+                                                            id="saveAndNew" class="custom-control-input">
+                                                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                                                            Save & create new occupant
+                                                        </label>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="row gx-3 align-items-center mt-5">
+                                            <div class="col-auto">
+                                                <button class="btn btn-outline-primary" type="button" title=""
+                                                    (click)="previousStep()">
+                                                    Back
+                                                </button>
+                                            </div>
+
+                                            <div class="col-auto" *ngIf="!isAddMode">
+                                                <button [disabled]="!nokFormGroup.valid" class="btn btn-primary"
+                                                    (click)="updateOccupant()"
+                                                    [title]="nokFormGroup.invalid ? 'There must be errors on the form':''">
+                                                    Update occupant
+                                                </button>
+                                            </div>
+                                            <div class="col-auto" *ngIf="isAddMode">
+                                                <button [disabled]="!nokFormGroup.valid" class="btn btn-primary"
+                                                    (click)="saveOccupant()"
+                                                    [title]="nokFormGroup.invalid ? 'There must be errors on the form':''">
+                                                    Create occupant
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

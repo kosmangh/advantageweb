@@ -1,0 +1,22 @@
+
+
+<div class="col-sm-6">
+    <div class="form-group">
+        <app-form-label [labelForName]="'endMonth'" [labelName]="'End Month'" />
+        <div class="form-control-wrap">
+            <ng-select id="endMonth" [clearable]="false" formControlName="endMonth"
+                [ngClass]="{'is-valid':rentalBillForm.endMonth?.valid }"
+                [ngClass]="{ 'is-invalid': ( rentalBillForm.endMonth ?.touched ||  rentalBillForm.endMonth ?.dirty || submitted) && rentalBillForm.endMonth ?.errors  }">
+                <ng-option value="" class="fs-6" selected>Select Property</ng-option>
+                <ng-option *ngFor="let data of listOfMonths" [value]="data">
+                 {{data}}
+                </ng-option>
+            </ng-select>
+            <span class="invalid-feedback">
+                <div *ngIf=" rentalBillForm.endMonth ?.errors?.required">
+                    <app-required-field />
+                </div>
+            </span>
+        </div>
+    </div>
+</div>

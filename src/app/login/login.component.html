@@ -1,0 +1,86 @@
+<div class="nk-app-root">
+    <div class="nk-main ">
+        <div class="nk-wrap nk-wrap-nosidebar">
+            <div class="nk-content ">
+                <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
+                    <div class="brand-logo pb-4 text-center" *ngIf="false">
+                        <a href="#" class="logo-link">
+                            <img class=" logo-img logo-img-lg" src="assets/images/logo.png" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="card card-bordered">
+                        <div class="card-inner card-inner-lg">
+                            <app-alert class="mb-2" />
+
+                            <div class="brand-logo pb-4 text-center">
+                                <a class="logo-link">
+                                    <img class=" logo-img logo-img-lg" src="assets/images/logo.png" alt="logo" />
+                                </a>
+                            </div>
+
+                            <div class="nk-block-head mb-4">
+                                <div class="nk-block-head-content">
+                                    <h5 class="nk-block-title text-center">Advantage Plus</h5>
+                                    <br />
+                                    <h5 class="nk-block-title text-center text-primary">Login</h5>
+                                    <div class="nk-block-des text-center">
+                                        <p>Login with your username and password</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <div class="form-label-group">
+                                            <app-form-label [labelForName]="'merchantId'" [labelName]="'Username'" />
+                                        </div>
+                                    </div>
+                                    <div class="form-control-wrap">
+                                        <input type="text" formControlName="username" class="form-control" id="username"
+                                            placeholder="Enter your username"
+                                            [ngClass]="{ 'is-invalid': (loginForm.username.touched || loginForm.username.dirty || submitted) && loginForm.username.errors}">
+                                        <div class="invalid-feedback">
+                                            <div *ngIf="loginForm.username.errors?.required">
+                                                <app-required-field />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <app-form-label [labelForName]="'password'" [labelName]="'Password'" />
+                                        <a class="link link-primary link-sm" routerLink="/passwordresetstep1">
+                                            Forgot password ?</a>
+                                    </div>
+                                    <div class="form-control-wrap">
+                                        <a (click)="showPassword()" class="form-icon form-icon-right passcode-switch"
+                                            data-target="password">
+                                            <em [ngClass]="{ 'ni-eye-off': !show,'ni-eye': show}"
+                                                class="passcode-icon icon-show icon ni ni-eye">
+                                            </em>
+                                        </a>
+                                        <input formControlName="password" [type]="show ? 'text' : 'password'"
+                                            [ngClass]="{ 'is-invalid': (loginForm.password.touched || loginForm.password.dirty || submitted) && loginForm.password.errors}"
+                                            class="form-control" id="password" placeholder="Enter your password">
+
+                                        <div *ngIf="loginForm.password.errors?.required" class="invalid-feedback">
+                                            <app-required-field />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <button class="btn btn-lg btn-primary btn-block">{{"login"}}</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-5">
+                                <app-copy-right></app-copy-right>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

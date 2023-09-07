@@ -1,0 +1,92 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{occupantProperty?.propertyName}} Details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="viewOccupantPropertyBsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+        <div class="pricing-body">
+            <ul class="pricing-features">
+                <span class="preview-title-lg overline-title">Occupant Information</span>
+                <ng-container *ngIf="occupantProperty?.institutional">
+                    <li>
+                        <span class="w-50">Institution Name</span> - <span
+                            class="ms-auto">{{occupantProperty?.propertyName}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50">Mobile No.</span> - <span
+                            class="ms-auto ">{{occupantProperty?.mobileNo}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50">Telephone</span> -
+                        <span class="ms-auto ">{{occupantProperty?.mobileNo}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50">Email</span> -
+                        <span class="ms-auto ">{{occupantProperty?.emailAddress}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50">Address</span> -
+                        <span class="ms-auto ">{{occupantProperty?.localAddress}}</span>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="!occupantProperty?.institutional">
+                    <li>
+                        <span class="w-50">Full Name</span> - <span
+                            class="ms-auto ">{{occupantProperty?.propertyName}}</span>
+                    </li>
+                    <li>
+                        <span class="w-50">Mobile No.</span> -
+                        <span class="ms-auto ">{{occupantProperty?.mobileNo}}</span>
+                    </li>
+                </ng-container>
+                <span class="preview-title-lg overline-title my-2">Property Information</span>
+
+                <li>
+                    <span class="w-50">Property Name</span> -
+                    <span class="ms-auto ">{{occupantProperty?.propertyName}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Size</span> -
+                    <span class="ms-auto ">{{occupantProperty?.propertySize | number}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Occupancy Type</span> -
+                    <span class="ms-auto ">{{occupantProperty?.occupationType}}</span>
+                </li>
+
+                <span class="preview-title-lg overline-title my-2">User activities</span>
+                <li>
+                    <span class="w-50">Created By</span> -
+                    <span class="ms-auto ">{{occupantProperty?.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Created Date</span> -
+                    <span class="ms-auto ">{{occupantProperty?.createdDate | date:'medium'}}
+                        ,{{occupantProperty?.createdDate.toString()|
+                        timeAgo}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Last Modified By</span> -
+                    <span class="ms-auto ">{{occupantProperty?.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Modified Date</span> -
+                    <span class="ms-auto ">{{occupantProperty?.lastModifiedDate | date:'medium'}}
+                        ,{{occupantProperty?.lastModifiedDate.toString()|
+                        timeAgo}}</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a (click)="viewOccupantPropertyBsModalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<form novalidate [formGroup]="estateBlockFormGroup">
+
+    <div class="container">
+        <div class="p-10" *ngIf="false">
+            <br />Dirty: {{ estateBlockFormGroup.dirty }}
+            <br />Touched: {{ estateBlockFormGroup.touched }}
+            <br />Valid: {{ estateBlockFormGroup.valid }}
+            <br />Value: {{ estateBlockFormGroup.value | json }}
+        </div>
+    </div>
+    <div class="modal-header">
+        <h6 class="modal-title">{{estateHeaderMsg | titlecase}}</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addEstateBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-required-fields-notice />
+        <div class="row gy-2 mt-3">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="estateId" [clearable]="false"
+                            [ngClass]="{ 'is-invalid': ( estateBlockForm.estateId?.touched || estateBlockForm.estateId?.dirty || submitted) && estateBlockForm.estateId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                {{data.estateName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <span class="text-danger" *ngIf="estateBlockForm.estateId?.errors?.required">
+                                <app-required-field />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'block'" [labelName]="'Block'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="block" class="form-control text-uppercase" id="block" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateBlockForm.block ?.touched ||  estateBlockForm.block ?.dirty || submitted) && estateBlockForm.block ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateBlockForm.block ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" estateBlockForm.block ?.errors?.minlength">
+                                * Estate ID must be at least 1 character.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'blockSize'" labelName="Block Size" />
+                    <div class="form-control-wrap">
+                        <div class="form-text-hint">
+                            <span class="overline-title">Acre(s)</span>
+                        </div>
+                        <input type="number" formControlName="blockSize" class="form-control" id="blockSize"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateBlockForm.blockSize ?.touched ||  estateBlockForm.blockSize ?.dirty || submitted) &&  estateBlockForm.blockSize ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateBlockForm.blockSize ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'remarks'" [showRequired]="false"
+                        [labelName]="'Addition Information'"></app-form-label>
+                    <div class="form-control-wrap">
+                        <textarea type="remarks" formControlName="remarks" class="form-control"
+                            id="remarks" style="min-height: 30px">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new block
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addEstateBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteBlock()"
+                [title]="estateBlockFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updateBlock()"
+                [title]="estateBlockFormGroup.invalid ? 'There must be errors on the form':''">
+                Update block
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="saveBlock()"
+                [title]="estateBlockFormGroup.invalid ? 'There must be errors on the form':''">
+                Create block
+            </button>
+        </div>
+    </div>
+</form>

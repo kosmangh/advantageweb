@@ -1,0 +1,89 @@
+<app-add-item [pageTitleName]="'Estate blocks'" [description]="'Setup state housing estate blocks'">
+    <span class="newItemName">
+        <a (click)="openEstateModalComponent(null,true)" class="btn btn-primary"><em class="icon ni ni-plus">
+            </em><span>Add estate block</span>
+        </a>
+    </span>
+</app-add-item>
+
+
+
+<div class="row gy-2 gx-3 mb-4 align-items-center">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
+            <div class="form-control-wrap">
+                <ng-select id="region" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
+                    <ng-option value="A" class="fs-6" disabled selected>Select Estate</ng-option>
+                    <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                        {{data.estateName}}
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2" *ngIf="estate">
+        <div class="form-control-wrap mt-4">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" id="default-04" placeholder=" Search blocks here"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary mt-4" type="button" title="" (click)="refreshButton()">
+            Refresh
+        </button>
+    </div>
+</div>
+<p-table [value]="listOfEstateBlocks | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SN</th>
+            <th>Estate</th>
+            <th>Block</th>
+            <th>Block Size / Acres</th>
+            <th>Properties</th>
+            <th>Remarks</th>
+            <th>Created By</th>
+            <th>Last Last Modified By</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td>{{data?.estateName}}</td>
+            <td>{{data.block}}</td>
+            <td>{{data.blockSize}} <span class="text-primary">({{data?.blockSizeLeft}} left)</span></td>
+            <td>{{data.properties | number}}</td>
+            <td>{{data.remarks}}</td>
+            
+            <td>
+                {{data.createdBy | lowercase}}
+                <div class="fw-lighter">
+                    <small class="d-block">{{data.createdDate | date:'medium'}}</small>
+                    <small class='text-primary'> {{data.createdDate | timeAgo}}</small>
+                </div>
+            </td>
+            <td>
+                {{data.lastModifiedBy | lowercase}}
+                <div class="fw-lighter">
+                    <small class="d-block">{{data.lastModifiedDate | date:'medium'}}</small>
+                    <small class='text-primary'>{{data.lastModifiedDate | timeAgo}}</small>
+                </div>
+            </td>
+            <td>
+                <div class="align-center select-cursor" (click)="openEstateModalComponent(data,false)">
+                    <div class="user-avatar user-avatar-sm bg-light">
+                        <span><em class="icon ni ni-edit"></em></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

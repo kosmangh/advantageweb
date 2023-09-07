@@ -1,0 +1,39 @@
+<app-page-title [pageTitleName]="'Estate bill payment'" [description]="'Manage estate bill payments'" />
+<div class="card card-bordered card-preview" style="min-height: 80vh;">
+    <div class="card-inner">
+        <ul class="nav nav-tabs mt-n3">
+            <li class="nav-item">
+                <a routerLink="/estate-bill-payment/bill-payment" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                Pay Bill
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/estate-bill-payment/payment-records" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                 Payment Records
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/estate-bill-payment/demand-notice" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                    Demand Notice
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="false">
+                <a routerLink="/estate-bill-payment/payment-reversal" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Payment Reversal
+                </a>
+            </li>
+            
+            <li class="nav-item" *ngIf="false">
+                <a routerLink="/estate-bill-payment/property-ledger" routerLinkActive="active" class="nav-link"
+                    data-bs-toggle="tab">
+                    Property Ledger
+                </a>
+            </li>
+           
+        </ul>
+        <div class="tab-content">
+            <router-outlet />
+        </div>
+    </div>
+</div>

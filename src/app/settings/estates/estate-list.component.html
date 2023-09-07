@@ -1,0 +1,100 @@
+<app-add-item [pageTitleName]="'Region setup'" [description]="'Setup state housing estates'">
+    <span class="newItemName">
+        <a (click)="openEstateModalComponent(null,true)" class="btn btn-primary"><em class="icon ni ni-plus">
+            </em><span>Add estate</span>
+        </a>
+    </span>
+</app-add-item>
+
+
+
+<div class="row gy-2 gx-3 mb-4 align-items-center">
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" id="default-04" placeholder=" Search here"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary" type="button" title="" (click)="refreshButton()">
+            Refresh
+        </button>
+    </div>
+</div>
+
+<p-table [value]="listOfEstates | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SN</th>
+            <th>Estate</th>
+            <th>Estate Class</th>
+            <th>Region</th>
+            <th>Land Size / Acres</th>
+            <th>Lease Start Date</th>
+            <th>Lease End Date</th>
+            <th>Duration Left</th>
+            <th>Blocks</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td>
+                <app-full-name fullName="{{data?.estateName}}" otherFieldName="{{data?.recordId}}" />
+            </td>
+            <td class="text-capitalize">{{data.estateClass | titlecase | removeHyphen}}</td>
+            <td>{{data?.regionName}}</td>
+            <td>{{data?.landSize}} <span class="text-primary">({{data?.landSizeLeft}} left)</span></td>
+            <td>{{data?.leaseStartDate | cleanDate | date:'mediumDate' }}</td>
+            <td>{{data?.leaseEndDate | cleanDate | date:'mediumDate'}}</td>
+            <td>
+                {{data?.durationLeft}}
+            </td>
+            <td>{{data?.totalBlocks | number}}</td>
+            <!-- <td>{{data.properties | number}}</td> -->
+          
+            <td>
+                <div class="drodown">
+                    <a class="dropdown-toggle btn btn-icon btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                        <em class="icon ni ni-more-h"></em>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                            <li>
+                                <a (click)="openEstateModalComponent(data,false)">
+                                    <em class="icon ni ni-edit"></em>
+                                    <span>Edit estate</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="openEstateDetailsModalComponent(data)">
+                                    <em class="icon ni ni-eye"></em>
+                                    <span>View details</span>
+                                </a>
+                            </li>
+                            <li *ngIf="false">
+                                <a (click)="openEstateBlocksModalComponent(data)">
+                                    <em class="icon ni ni-home"></em>
+                                    <span>Blocks</span>
+                                </a>
+                            </li>
+                            <li *ngIf="false">
+                                <a (click)="openEstatePropertiesModalComponent(data)">
+                                    <em class="icon ni ni-property"></em>
+                                    <span>Properties</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

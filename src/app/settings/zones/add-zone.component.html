@@ -1,0 +1,115 @@
+<form novalidate [formGroup]="zoneFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">{{zoneHeaderMsg | titlecase}}</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addZoneBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="p-10" *ngIf="false">
+            <br />Dirty: {{ zoneFormGroup.dirty }}
+            <br />Touched: {{ zoneFormGroup.touched }}
+            <br />Valid: {{ zoneFormGroup.valid }}
+            <br />Value: {{ zoneFormGroup.value | json }}
+        </div>
+
+        <app-required-fields-notice />
+        <div class="row gy-2 mt-3">
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'zoneName'" [labelName]="'Zone Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="zoneName" class="form-control" id="zoneName"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.zoneName ?.touched ||  zoneForm.zoneName ?.dirty || submitted) && zoneForm.zoneName ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.zoneName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" zoneForm.zoneName ?.errors?.minlength">
+                                * zone name must be longer than 3 characters.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <app-form-label [labelForName]="'contactNo'" [labelName]="'Contact No.'" />
+                    <div class="form-control-wrap">
+                        <input type="tel" formControlName="contactNo" class="form-control" id="contactNo"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  zoneForm.contactNo ?.touched ||  zoneForm.contactNo ?.dirty || submitted) &&  zoneForm.contactNo ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.contactNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <app-form-label [labelForName]="'address'" [labelName]="'Address'" />
+                    <div class="form-control-wrap">
+                        <textarea type="text" formControlName="address" class="form-control" id="address"
+                            autocomplete="off" style="min-height: 40px"
+                            [ngClass]="{ 'is-invalid': (  zoneForm.address ?.touched ||  zoneForm.address ?.dirty || submitted) && zoneForm.address ?.errors  }">
+                        </textarea>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.address ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <app-form-label [labelForName]="'remarks'" [labelName]="'Remarks'"></app-form-label>
+                    <div class="form-control-wrap">
+                        <textarea type="text" formControlName="remarks" class="form-control" id="remarks"
+                            style="min-height: 40px"
+                            [ngClass]="{ 'is-invalid':( zoneForm.remarks ?.touched ||  zoneForm.remarks ?.dirty || submitted) &&  zoneForm.remarks ?.errors}">
+                        </textarea>
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.remarks ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new zone
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addZoneBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteZone()"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updateZone()"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Update zone
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="saveZone()"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Create zone
+            </button>
+        </div>
+    </div>
+</form>

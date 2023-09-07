@@ -1,0 +1,180 @@
+<form novalidate [formGroup]="propertyFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">{{estateHeaderMsg | titlecase}} Block</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addEstateBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-required-fields-notice />
+        <div class="row gy-3 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateId'" [labelName]="'Estate'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="estateId" [clearable]="true" (change)="fetchBlocks()"
+                            [ngClass]="{ 'is-invalid': ( propertyForm.estateId?.touched || propertyForm.estateId?.dirty || submitted) && propertyForm.estateId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                                {{data.estateName}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div *ngIf="propertyForm.estateId?.errors?.required ||  submitted">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'blockId'" [labelName]="'Block'" />
+                    <div class="form-control-wrap">
+                        <ng-select id="estateid" formControlName="blockId" [clearable]="true"
+                            [ngClass]="{ 'is-invalid': ( propertyForm.blockId?.touched || propertyForm.blockId?.dirty || submitted) && propertyForm.blockId?.errors  }">
+                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option *ngFor="let data of listOfBlocks" [value]="data.recordId">
+                                {{data.block}}
+                            </ng-option>
+                        </ng-select>
+                        <span class="invalid-feedback">
+                            <div class="text-danger" *ngIf="propertyForm.blockId?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertyNo'" [labelName]="'Property No.'" />
+                    <div class="form-control-wrap">
+                        <input type="number" formControlName="propertyNo" class="form-control" id="blockId"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  propertyForm.propertyNo ?.touched ||  propertyForm.propertyNo?.dirty || submitted) && propertyForm.propertyNo ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyForm.propertyNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertyName'" labelName="Property Name" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="propertyName" class="form-control" id="propertyName"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  propertyForm.propertyName ?.touched ||  propertyForm.propertyName?.dirty || submitted) &&  propertyForm.propertyName ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyForm.propertyName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'propertySize'" labelName="Property Size" />
+                    <div class="form-control-wrap">
+                        <div class="form-text-hint">
+                            <span class="overline-title">Acre(s)</span>
+                        </div>
+                        <input type="number" formControlName="propertySize" class="form-control" id="propertySize"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  propertyForm.propertySize ?.touched ||  propertyForm.propertySize?.dirty || submitted) &&  propertyForm.propertySize ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" propertyForm.propertySize ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'usage'" [labelName]="'Usage'" />
+                    <div class="form-control-wrap">
+                        <div class="form-control-select">
+                            <select id="usage" formControlName="usage" class="form-control"
+                                [ngClass]="{ 'is-invalid': ( propertyForm.usage?.touched || propertyForm.usage?.dirty || submitted) && propertyForm.usage?.errors  }">
+                                <option value="" class="fs-6" selected disabled>Select One</option>
+                                <option *ngFor="let data of listOfUsages" [value]="data.dataValue">
+                                    {{data.dataLabel}}
+                                </option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <div *ngIf=" propertyForm.usage ?.errors?.required ">
+                                    <app-required-field />
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label class="form-check-label" [labelForName]="'category'" [labelName]="'Category'" />
+                    <div class="form-control-wrap">
+                        <ul class="custom-control-group">
+                            <li *ngFor="let item of listOfCategories let i = index">
+                                <div class="custom-control custom-radio custom-control-pro no-control">
+                                    <input formControlName="category" name="category" [id]="item.dataValue" type="radio"
+                                        class="custom-control-input form-check-input" value="{{item.dataValue}}"
+                                        [ngClass]="{ 'is-invalid': ( propertyForm.category ?.touched ||  propertyForm.category?.dirty || submitted)
+                                                                                         && propertyForm.category ?.errors  }">
+                                    <label class="custom-control-label form-check-label"
+                                        for="{{item.dataValue}}">{{item.dataLabel}}</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-danger mt-1" *ngIf="submitted && propertyForm.category.errors?.required">
+                            <app-required-field />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new property
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addEstateBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button [disabled]="!propertyFormGroup.valid" class="btn btn-outline-danger btn-sm" (click)="deleteBlock()"
+                [title]="propertyFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updateBlock()"
+                [title]="propertyFormGroup.invalid ? 'There must be errors on the form':''">
+                Update
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="saveBlock()"
+                [title]="propertyFormGroup.invalid ? 'There must be errors on the form':''">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

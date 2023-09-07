@@ -1,0 +1,226 @@
+<div class="p-10" *ngIf="false">
+    <br />Dirty: {{ estateFormGroup.dirty }}
+    <br />Touched: {{ estateFormGroup.touched }}
+    <br />Valid: {{ estateFormGroup.valid }}
+    <br />Value: {{ estateFormGroup.value | json }}
+</div>
+<form novalidate [formGroup]="estateFormGroup">
+    <div class="modal-header">
+        <h6 class="modal-title">{{estateHeaderMsg | titlecase}}</h6>
+        <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+            (click)="addEstateBsModalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <app-required-fields-notice />
+        <div class="row gy-3 mt-3">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'regionId'" [labelName]="'Region'" />
+                    <div class="form-control-wrap">
+                        <div class="form-control-select">
+                            <select id="regionId" formControlName="regionId" class="form-control"
+                                [ngClass]="{ 'is-invalid': ( estateForm.regionId?.touched || estateForm.regionId?.dirty || submitted) && estateForm.regionId?.errors  }">
+                                <option value="" class="fs-6" selected>Select One</option>
+                                <option *ngFor="let data of listOfRegions" [value]="data.recordId">
+                                    {{data.regionName}}
+                                </option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <div *ngIf="estateForm.regionId?.errors?.required">
+                                    <app-required-field />
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'recordId'" [labelName]="'Estate ID'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="recordId" class="form-control" id="recordId"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateForm.recordId ?.touched ||  estateForm.recordId ?.dirty || submitted) && estateForm.recordId ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateForm.recordId ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" estateForm.recordId ?.errors?.minlength">
+                                * Estate ID must be at least 2 characters long.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateName'" [labelName]="'Estate Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="estateName" class="form-control" id="estateName"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateForm.estateName ?.touched ||  estateForm.estateName ?.dirty || submitted) && estateForm.estateName ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateForm.estateName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" estateForm.estateName ?.errors?.minlength">
+                                * estate name must be longer than 3 characters.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'estateClass'" [labelName]="'Estate Class'" />
+                    <div class="form-control-wrap">
+                        <div class="form-control-select">
+                            <select id="estateClass" formControlName="estateClass" class="form-control"
+                                [ngClass]="{ 'is-invalid': ( estateForm.estateClass?.touched || estateForm.estateClass?.dirty || submitted) && estateForm.estateClass?.errors  }">
+                                <option value="" class="fs-6" selected>Select One</option>
+                                <option *ngFor="let data of listOfEstateClasses" [value]="data.dataValue">
+                                    {{data.dataLabel}}
+                                </option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <div *ngIf=" estateForm.estateClass ?.errors?.required">
+                                    <app-required-field />
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'landSize'" labelName="Land Size" />
+                    <div class="form-control-wrap">
+                        <div class="form-text-hint">
+                            <span class="overline-title">Acre(s)</span>
+                        </div>
+                        <input type="number" formControlName="landSize" class="form-control" id="landSize"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateForm.landSize ?.touched ||  estateForm.landSize ?.dirty || submitted) &&  estateForm.landSize ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateForm.landSize ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label labelForName="estateLocation" labelName="Location" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="estateLocation" class="form-control" id="estateLocation"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  estateForm.estateLocation ?.touched ||  estateForm.estateLocation ?.dirty || submitted) && estateForm.estateLocation ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" estateForm.estateLocation ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" estateForm.estateLocation ?.errors?.minlength">
+                                * estate name must be longer than 3 characters.
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'leaseStartDate'" [labelName]="'Lease Start Date'" />
+                    <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2021" styleClass="w-100"
+                        formControlName="leaseStartDate" id="leaseStartDate" dateFormat="dd/mm/yy" [showIcon]="true"
+                        [ngClass]="{ 'is-invalid': (  estateForm.leaseStartDate ?.touched ||  estateForm.leaseStartDate ?.dirty || submitted)   &&  estateForm.leaseStartDate ?.errors  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="estateForm.leaseStartDate?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'leaseEndDate'" [labelName]="'Lease End Date'" />
+                    <p-calendar styleClass="w-100" formControlName="leaseEndDate" id="leaseEndDate"
+                        dateFormat="dd/mm/yy" [showIcon]="true"
+                        [ngClass]="{ 'is-invalid': (  estateForm.leaseEndDate ?.touched ||  estateForm.leaseEndDate ?.dirty || submitted) &&  estateForm.leaseEndDate ?.errors  }" />
+
+                    <span class="invalid-feedback">
+                        <span *ngIf="estateForm.leaseEndDate?.errors?.required">
+                            <app-required-field />
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6" *ngIf="false">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected="">Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelect02" containerClass="customClass" tooltip="Click to refresh if region is not found" (click)="fetchRegions()">
+                                <em class="icon ni fs-15px ni-repeat text-primary"></em>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'additionalInfo'" [showRequired]="false"
+                        [labelName]="'Addition Information'"></app-form-label>
+                    <div class="form-control-wrap">
+                        <textarea type="additionalInfo" formControlName="additionalInfo" class="form-control"
+                            id="additionalInfo" style="min-height: 30px">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ng-container *ngIf="isAddMode">
+                    <div class="custom-control custom-control-sm custom-checkbox checked">
+                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                            id="saveAndNew">
+                        <label class="custom-control-label fw-bolder" for="saveAndNew">
+                            Save & create new estate
+                        </label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 mx-2 mb-3 justify-content-end">
+        <div class="col-auto">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addEstateBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteEstate()"
+                [title]="estateFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="!isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="updateEstate()"
+                [title]="estateFormGroup.invalid ? 'There must be errors on the form':''">
+                Update estate
+            </button>
+        </div>
+        <div class="col-auto" *ngIf="isAddMode">
+            <button class="btn btn-primary btn-sm" (click)="saveEstate()"
+                [title]="estateFormGroup.invalid ? 'There must be errors on the form':''">
+                Create estate
+            </button>
+        </div>
+    </div>
+</form>
