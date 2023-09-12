@@ -50,14 +50,14 @@
             <td>
                 {{data.createdBy | lowercase}}
                 <div class="fw-lighter">
-                    <small class="d-block">{{data.createdDate | date:'medium'}}</small>
+                    <small class="d-block">{{data.createdDate | cleanDate | date:'medium'}}</small>
                     <small class='text-primary'> {{data.createdDate | timeAgo}}</small>
                 </div>
             </td>
             <td>
-                {{data.modifiedBy | lowercase}}
+                {{data.lastModifiedBy | lowercase}}
                 <div class="fw-lighter">
-                    <small class="d-block">{{data.lastModifiedDate | date:'medium'}}</small>
+                    <small class="d-block">{{data.lastModifiedDate | cleanDate | date:'medium'}}</small>
                     <small class='text-primary'>{{data.lastModifiedDate | timeAgo}}</small>
                 </div>
             </td>

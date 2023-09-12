@@ -18,14 +18,15 @@ import { AddItemComponent } from "../../@shared/components/add-item.component";
 import { AddZoneComponent } from './add-zone.component';
 import { ListFilterPipe } from 'src/app/@shared/pipes/list-filter.pipe';
 import { TimeAgoPipe } from "../../@shared/pipes/time-ago.pipe";
+import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
 
 @Component({
-  selector: 'app-zones',
-  standalone: true,
-  templateUrl: './zones.component.html',
-  imports: [ CommonModule, TableModule, FormsModule,
-    FullNameComponent, AddItemComponent, PageTitleComponent,
-    ListFilterPipe, TimeAgoPipe ]
+    selector: 'app-zones',
+    standalone: true,
+    templateUrl: './zones.component.html',
+    imports: [CommonModule, TableModule, FormsModule,
+        FullNameComponent, AddItemComponent, PageTitleComponent,
+        ListFilterPipe, TimeAgoPipe, CleanDatePipe]
 })
 export class ZonesComponent implements OnInit, OnDestroy {
 

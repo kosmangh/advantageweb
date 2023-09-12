@@ -7,7 +7,7 @@ export const environment = {
     url: 'http://localhost:8080/advantageservices',
     timeout: 50000,
     reset_time:1500,
-    log_url: 'http://10.4.139.49:7003/themartportal/logaction',
+    log_url: 'http://localhost:8080/themartportal/logaction',
     server_log_level: NgxLoggerLevel.OFF,
     disable_console_logging: false,
     api_key: '123456',

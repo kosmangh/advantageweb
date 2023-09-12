@@ -414,7 +414,7 @@ export class SettingsService {
       { dataValue: 'UPPER_WEST_REGION', dataLabel: 'Upper West Region' },
       { dataValue: 'WESTERN_REGION', dataLabel: 'Western Region' },
       { dataValue: 'WESTERN_NORTH_REGION', dataLabel: 'Western North Region' },
-      { dataValue: 'SAVANNAH_REGION', dataLabel: 'Volta Region' },
+      { dataValue: 'SAVANNAH_REGION', dataLabel: 'Savannah Region' },
       { dataValue: 'VOLTA_REGION', dataLabel: 'Volta Region' },
     ];
   }

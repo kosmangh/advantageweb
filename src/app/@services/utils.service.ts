@@ -28,6 +28,13 @@ export class UtilsService {
     // Parse the cleaned date string into a Date object
     return new Date(cleanedDate);
   }
+  
+  getFirstDayOfCurrentYear(): Date {
+    const date = new Date();
+    const y = date.getFullYear();
+    const firstDayOfYear = new Date(y, 0, 1);
+    return firstDayOfYear;
+  }
 
 
   getFirstDayDate(): Date {
@@ -80,24 +87,7 @@ export class UtilsService {
     return isNaN(parsedDate.getTime()) ? null : parsedDate;
   }
 
-  formatDate(date: Date): string {
-    try {
-      const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-      return formattedDate;
-    } catch (error) {
-      console.error('Error formatting date:', error);
-      return null;
-    }
-  }
-
+ 
   formatDateToString(date: Date, locale: string = "en-US"): string {
     return new Intl.DateTimeFormat(locale).format(date);
   }

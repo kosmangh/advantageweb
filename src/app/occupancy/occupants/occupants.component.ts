@@ -63,10 +63,11 @@ export class OccupantsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.spinner.hide();
     this.occupantType = "ALL";
-    this.startDate = this.utilsService.getFirstDayDate();
+    this.startDate = this.utilsService.getFirstDayOfCurrentYear();
     this.endDate = new Date();
     this.fetchOccupants();
   }
+  
   ngOnDestroy(): void {
     this.individualOccupantModalService.hide();
     Swal.close();

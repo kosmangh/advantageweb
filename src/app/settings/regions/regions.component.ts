@@ -19,13 +19,14 @@ import { Region } from 'src/app/@models/settings/region';
 import { RegionListResponse } from 'src/app/@restmodels/settings/region-list.response';
 import { AddRegionComponent } from './add-region.component';
 import { RemoveHyphenPipe } from "../../@shared/pipes/remove-hyphen.pipe";
+import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
 
 @Component({
     standalone: true,
     templateUrl: './regions.component.html',
     imports: [CommonModule, TableModule, FormsModule,
         FullNameComponent, AddItemComponent, PageTitleComponent,
-        ListFilterPipe, TimeAgoPipe, RemoveHyphenPipe]
+        ListFilterPipe, TimeAgoPipe, RemoveHyphenPipe, CleanDatePipe]
 })
 export class RegionsComponent implements OnInit, OnDestroy {
 
