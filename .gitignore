@@ -5,7 +5,9 @@
 
 # Node artifact files
 node_modules/
-Node
+
+node
+
 
 # Compiled Java class files
 *.class
