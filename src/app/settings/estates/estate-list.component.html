@@ -23,6 +23,16 @@
     </div>
 </div>
 
+<!-- <table>
+    <tr *ngFor="let item of items; let i = index" (mouseenter)="showButtons(i)" (mouseleave)="hideButtons()">
+        <td>{{ item.name }}</td>
+        <td>
+            <button *ngIf="showItemButtons && selectedItem === i" (click)="editItem(item)">Edit</button>
+            <button *ngIf="showItemButtons && selectedItem === i" (click)="deleteItem(item)">Delete</button>
+        </td>
+    </tr>
+</table> -->
+
 <p-table [value]="listOfEstates | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
     responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
@@ -40,11 +50,12 @@
             <th>Lease End Date</th>
             <th>Duration Left</th>
             <th>Blocks</th>
-            <th>Actions</th>
+            <th></th>
+            <th>More Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
-        <tr>
+        <tr (mouseenter)="showButtons(rowIndex)" (mouseleave)="hideButtons()">
             <td>{{rowIndex+1}}</td>
             <td>
                 <app-full-name fullName="{{data?.estateName}}" otherFieldName="{{data?.recordId}}" />
@@ -59,11 +70,28 @@
             </td>
             <td>{{data?.totalBlocks | number}}</td>
             <!-- <td>{{data.properties | number}}</td> -->
-          
             <td>
-                <div class="drodown">
+                <span>
+                    <a *ngIf="showItemButtons && selectedItem === rowIndex" tooltip="Edit"
+                        (click)="openEstateModalComponent(data,false)" class="btn btn-trigger btn-icon fs-15px"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Wallet"
+                        aria-label="Wallet"><em class="icon ni ni-edit"></em>
+                    </a>
+                </span>
+                <span>
+                    <a *ngIf="showItemButtons && selectedItem === rowIndex" tooltip="View"
+                        (click)="openEstateDetailsModalComponent(data)" class="btn btn-trigger btn-icon fs-15px"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"
+                        aria-label="Send Email"><em class="icon ni ni-eye"></em></a>
+                </span>
+            </td>
+            <td>
+
+
+
+                <div class="drodown" *ngIf="true">
                     <a class="dropdown-toggle btn btn-icon btn-light" data-bs-toggle="dropdown" aria-expanded="false">
-                        <em class="icon ni ni-more-h"></em>
+                        <em class="icon ni ni-more-v"></em>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <ul class="link-list-opt no-bdr">

@@ -114,7 +114,7 @@ export class AddInstitutionOccupantComponent implements OnInit {
   createPersonalInfoForm(): void {
     this.institutionFormGroup = this.fb.group({
       occupantName: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
-      mobileNo: [ '', { updateOn: 'blur', validators: [ Validators.required, Validators.minLength(10), Validators.minLength(12) ] } ],
+      mobileNo: [ '', { updateOn: 'blur', validators: [ Validators.required, Validators.minLength(10), Validators.maxLength(12) ] } ],
       emailAddress: [ '', [ Validators.required ] ],
       occupantType: [ '', [ Validators.required ] ],
       localAddress: [ '', [ Validators.required ] ],

@@ -51,4 +51,7 @@ export abstract class GenericService<T> {
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}${this.url}/${id}`);
   }
+
+
+  
 }

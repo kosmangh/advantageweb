@@ -52,10 +52,11 @@ const handleConfirmOrDenyWithInput = (instance, type) => {
     error(`The "input" parameter is needed to be set when using returnInputValueOn${capitalizeFirstLetter(type)}`)
     return
   }
+  const input = instance.getInput()
   const inputValue = getInputValue(instance, innerParams)
   if (innerParams.inputValidator) {
     handleInputValidator(instance, inputValue, type)
-  } else if (!instance.getInput().checkValidity()) {
+  } else if (input && !input.checkValidity()) {
     instance.enableButtons()
     instance.showValidationMessage(innerParams.validationMessage)
   } else if (type === 'deny') {
@@ -67,7 +68,7 @@ const handleConfirmOrDenyWithInput = (instance, type) => {
 
 /**
  * @param {SweetAlert} instance
- * @param {string | number | File | FileList | null} inputValue
+ * @param {SweetAlertInputValue} inputValue
  * @param {'confirm' | 'deny'} type
  */
 const handleInputValidator = (instance, inputValue, type) => {

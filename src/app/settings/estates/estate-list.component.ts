@@ -23,6 +23,7 @@ import { SelectedEstatePropertiesComponent } from './selected-estate-properties.
 import { EstateService } from 'src/app/@services/estate.service';
 import { RemoveHyphenPipe } from "../../@shared/pipes/remove-hyphen.pipe";
 import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @Component({
     selector: 'app-estate-list',
@@ -30,7 +31,7 @@ import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
     templateUrl: './estate-list.component.html',
     imports: [CommonModule, TableModule, FormsModule,
         FullNameComponent, AddItemComponent, PageTitleComponent,
-        ListFilterPipe, TimeAgoPipe, RemoveHyphenPipe, CleanDatePipe]
+      ListFilterPipe, TimeAgoPipe, RemoveHyphenPipe, CleanDatePipe, TooltipModule ]
 })
 export class EstateListComponent implements OnInit, OnDestroy {
 
@@ -59,6 +60,46 @@ export class EstateListComponent implements OnInit, OnDestroy {
   ) {
     this.accountService.currentUser.subscribe(x => this.currentUser = x);
   }
+
+  showActionButtons: boolean = false;
+
+  // showButtons() {
+  //   this.showActionButtons = true;
+  // }
+
+  // hideButtons() {
+  //   this.showActionButtons = false;
+  // }
+
+
+
+  items = [
+    { name: 'Item 1' },
+    { name: 'Item 2' },
+    { name: 'Item 3' }
+  ];
+
+  showItemButtons = false;
+  selectedItem: any;
+
+  showButtons(index: number) {
+    this.showItemButtons = true;
+    this.selectedItem = index;
+  }
+
+  hideButtons() {
+    this.showItemButtons = false;
+    this.selectedItem = null;
+  }
+
+  editItem(item: any) {
+    // Perform edit action here
+  }
+
+  deleteItem(item: any) {
+    // Perform delete action here
+  }
+
 
   ngOnInit(): void {
     this.searchBy = "ALL";

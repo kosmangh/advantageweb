@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h6 class="modal-title">{{occupant.occupantName}} Details</h6>
+  <h6 class="modal-title">{{occupant?.occupantName}} Details</h6>
   <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
     (click)="viewOccupantBsModalRef?.hide()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
@@ -9,27 +9,27 @@
   <div class="card card-no-border">
     <div class="pricing-body">
       <ul class="pricing-features">
-        <ng-container *ngIf="occupant.institutional">
+        <ng-container *ngIf="occupant?.institutional">
 
           <span class="preview-title-lg overline-title">Institution Information</span>
 
           <li>
-            <span class="w-50">Institution Name</span> - <span class="ms-auto">{{occupant.occupantName}}</span>
+            <span class="w-50">Institution Name</span> - <span class="ms-auto">{{occupant?.occupantName}}</span>
           </li>
           <li>
-            <span class="w-50">Mobile No.</span> - <span class="ms-auto ">{{occupant.mobileNo}}</span>
+            <span class="w-50">Mobile No.</span> - <span class="ms-auto ">{{occupant?.mobileNo}}</span>
           </li>
           <li>
             <span class="w-50">Telephone</span> -
-            <span class="ms-auto ">{{occupant.telephoneNumber}}</span>
+            <span class="ms-auto ">{{occupant?.telephoneNumber}}</span>
           </li>
           <li>
             <span class="w-50">Email</span> -
-            <span class="ms-auto ">{{occupant.emailAddress}}</span>
+            <span class="ms-auto ">{{occupant?.emailAddress}}</span>
           </li>
           <li>
             <span class="w-50">Address</span> -
-            <span class="ms-auto ">{{occupant.localAddress}}</span>
+            <span class="ms-auto ">{{occupant?.localAddress}}</span>
           </li>
 
 
@@ -37,109 +37,120 @@
 
           <li>
             <span class="w-50">Full Name</span> -
-            <span class="ms-auto ">{{occupant.supervisorName}}</span>
+            <span class="ms-auto ">{{occupant?.supervisorName}}</span>
           </li>
           <li>
             <span class="w-50">Phone No.</span> -
-            <span class="ms-auto ">{{occupant.supervisorMobileNo}}</span>
+            <span class="ms-auto ">{{occupant?.supervisorMobileNo}}</span>
           </li>
           <li>
             <span class="w-50">Email</span> -
-            <span class="ms-auto ">{{occupant.supervisorEmail}}</span>
+            <span class="ms-auto ">{{occupant?.supervisorEmail}}</span>
           </li>
           <li>
             <span class="w-50">Email</span> -
-            <span class="ms-auto ">{{occupant.supervisorAddress}}</span>
+            <span class="ms-auto ">{{occupant?.supervisorAddress}}</span>
+          </li>
+          <li>
+            <span class="w-50">Registration Date</span> -
+            <span class="ms-auto ">
+              {{occupant?.dateOfBirth | date}}
+            </span>
           </li>
         </ng-container>
 
 
-        <ng-container *ngIf="!occupant.institutional">
+        <ng-container *ngIf="!occupant?.institutional">
 
           <span class="preview-title-lg overline-title">Personal Information</span>
-
-          <li><span class="w-50">Full Name</span> - <span class="ms-auto ">{{occupant.occupantName}}</span></li>
+          <li><span class="w-50">Full Name</span> -
+            <span class="ms-auto ">{{occupant?.occupantName}}</span>
+          </li>
           <li>
             <span class="w-50">Gender</span> -
-            <span class="ms-auto ">{{occupant.mobileNo}}</span>
+            <span class="ms-auto ">{{occupant?.gender}}</span>
           </li>
           <li>
             <span class="w-50">Date Of Birth</span> -
-            <span class="ms-auto ">{{occupant.dateOfBirth | date}}
-              ,<small>{{occupant.dateOfBirth.toString()|
-                timeAgo}}</small></span>
+            <span class="ms-auto ">
+              {{occupant?.dateOfBirth | date}}
+            </span>
           </li>
+          
           <li>
             <span class="w-50">Marital Status</span> -
-            <span class="ms-auto ">{{occupant.maritalStatus | titlecase | removeHyphen}}</span>
+            <span class="ms-auto ">{{occupant?.maritalStatus | titlecase | removeHyphen}}</span>
           </li>
           <li>
             <span class="w-50">National ID Type</span> -
-            <span class="ms-auto ">{{occupant.idType | titlecase | removeHyphen}}</span>
+            <span class="ms-auto ">{{occupant?.idType | titlecase | removeHyphen}}</span>
           </li>
           <li>
             <span class="w-50">National ID No.</span> -
-            <span class="ms-auto ">{{occupant.idNo}}</span>
+            <span class="ms-auto ">{{occupant?.idNo}}</span>
           </li>
           <li>
             <span class="w-50">Occupation</span> -
-            <span class="ms-auto ">{{occupant.occupation}}</span>
+            <span class="ms-auto ">{{occupant?.occupation}}</span>
           </li>
           <span class="preview-title-lg overline-title my-2">Contact & Address Information</span>
           <li>
-            <span class="w-50">Mobile No.</span> - <span class="ms-auto ">{{occupant.mobileNo}}</span>
+            <span class="w-50">Mobile No.</span> - <span class="ms-auto ">{{occupant?.mobileNo}}</span>
           </li>
           <li>
             <span class="w-50">Telephone</span> -
-            <span class="ms-auto ">{{occupant.telephoneNumber}}</span>
+            <span class="ms-auto ">{{occupant?.telephoneNumber}}</span>
           </li>
           <li>
             <span class="w-50">Email</span> -
-            <span class="ms-auto ">{{occupant.emailAddress}}</span>
+            <span class="ms-auto ">{{occupant?.emailAddress}}</span>
           </li>
           <li>
             <span class="w-50">Home Town</span> -
-            <span class="ms-auto ">{{occupant.localAddress}}</span>
+            <span class="ms-auto ">{{occupant?.localAddress}}</span>
           </li>
           <span class="preview-title-lg overline-title my-2">Next of Kin(NOK) Information</span>
           <li><span class="w-50">Full Name</span> - 
-            <span class="ms-auto ">{{occupant.nextOfKin}}</span>
+            <span class="ms-auto ">{{occupant?.nextOfKin}}</span>
           </li>
             <li>
               <span class="w-50">NOK Mobile No.</span> -
-              <span class="ms-auto ">{{occupant.nokPhone}}</span>
+              <span class="ms-auto ">{{occupant?.nokPhone}}</span>
             </li>
           <li>
             <span class="w-50">Relationship</span> -
-            <span class="ms-auto ">{{occupant.relationship | removeHyphen | titlecase}}</span>
+            <span class="ms-auto ">{{occupant?.relationship | removeHyphen | titlecase}}</span>
           </li>
           <li>
             <span class="w-50">Address</span> -
-            <span class="ms-auto ">{{occupant.nokAddress}}</span>
+            <span class="ms-auto ">{{occupant?.nokAddress}}</span>
           </li>
 
         </ng-container>
-        <span class="preview-title-lg overline-title my-2">User activities</span>
+
+
+        <!-- <span class="preview-title-lg overline-title my-2">User activities</span>
         <li>
           <span class="w-50">Created By</span> -
-          <span class="ms-auto ">{{occupant.createdBy}}</span>
+          <span class="ms-auto ">{{occupant?.createdBy}}</span>
         </li>
         <li>
           <span class="w-50">Created Date</span> -
-          <span class="ms-auto ">{{occupant.createdDate | date}}
-            ,<small>{{occupant.createdDate.toString()|
+          <span class="ms-auto ">{{occupant?.createdDate | date}}
+            ,<small>{{occupant?.createdDate.toString()|
               timeAgo}}</small></span>
         </li>
         <li>
           <span class="w-50">Last Modified By</span> -
-          <span class="ms-auto ">{{occupant.createdBy}}</span>
+          <span class="ms-auto ">{{occupant?.createdBy}}</span>
         </li>
         <li>
           <span class="w-50">Modified Date</span> -
-          <span class="ms-auto ">{{occupant.lastModifiedDate | date}}
-            ,<small>{{occupant.lastModifiedDate.toString()|
+          <span class="ms-auto ">{{occupant?.lastModifiedDate | date}}
+            ,<small>{{occupant?.lastModifiedDate.toString()|
               timeAgo}}</small></span>
-        </li>
+        </li> -->
+
       </ul>
     </div>
   </div>

@@ -55,6 +55,7 @@ export class OccupantsComponent implements OnInit, OnDestroy {
     public viewOccupantBsModalRef: BsModalRef,
     private individualOccupantModalService: BsModalService,
     private institutionOccupantModalService: BsModalService,
+    private viewOccupantModalService: BsModalService,
     private spinner: SpinnerVisibilityService
   ) {
     this.accountService.currentUser.subscribe(x => this.currentUser = x);
@@ -70,6 +71,8 @@ export class OccupantsComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     this.individualOccupantModalService.hide();
+    this.institutionOccupantModalService.hide();
+    this.viewOccupantModalService.hide();
     Swal.close();
   }
 
@@ -177,9 +180,9 @@ export class OccupantsComponent implements OnInit, OnDestroy {
         occupant
       }
     };
-    this.institutionOccupantModalService.config.ignoreBackdropClick = true;
-    this.institutionOccupantModalService.config.animated = true;
-    this.viewOccupantBsModalRef = this.institutionOccupantModalService.show(ViewOccupantDetailsComponent, initialState);
+    this.viewOccupantModalService.config.ignoreBackdropClick = true;
+    this.viewOccupantModalService.config.animated = true;
+    this.viewOccupantBsModalRef = this.viewOccupantModalService.show(ViewOccupantDetailsComponent, initialState);
     this.viewOccupantBsModalRef.content.closeBtnName = 'Close';
   }
 
