@@ -235,6 +235,8 @@ export class AddEstatePropertyComponent implements OnInit {
       }
     });
   }
+
+  
   deleteBlock(): void {
     this.alertService.clear();
     this.submitted = true;

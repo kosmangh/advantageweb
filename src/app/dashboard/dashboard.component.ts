@@ -8,18 +8,21 @@ import { UtilsService } from '../@services/utils.service';
 import { AuthService } from '../@services/auth.service';
 import { AvatarBgPipe } from "../@shared/pipes/avatar-bg.pipe";
 import { AvatarNamePipe } from "../@shared/pipes/avatar-name.pipe";
+import { DashboardService } from '../@services/dashboard.service';
+import { DashboardResponse } from '../@restmodels/dashboard.response';
+import { FullNameComponent } from "../@shared/components/full-name.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  imports: [ CommonModule, PageTitleComponent, AvatarBgPipe, AvatarNamePipe ]
+  imports: [ CommonModule, PageTitleComponent, AvatarBgPipe, AvatarNamePipe, FullNameComponent ]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
   currentUser!: User;
   greetMsg: string;
-  dashboardSummary: any;
+  dashboardSummary: DashboardResponse;
   listOfAuditLogs: any;
 
 
@@ -27,19 +30,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private accountService: AuthService,
     private alertService: AlertService,
-    private utilsService: UtilsService,
+    private dashboardService: DashboardService,
   ) {
     this.accountService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-
-
   ngOnInit(): void {
     this.findDay();
+    this.fetchDashboardSummary();
   }
   ngOnDestroy(): void {
   }
-
 
   findDay() {
     let myDate = new Date();
@@ -52,15 +53,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.greetMsg = 'Good Evening';
   }
 
-  buttonVisible: boolean = false;
 
-  showButton(): void {
-    this.buttonVisible = true;
+  fetchDashboardSummary(): void {
+
+    this.dashboardService.getDashboardSummary(this.currentUser).subscribe({
+      next: (res: DashboardResponse) => {
+        if (res.headerResponse.responseCode !== "000") {
+          this.alertService.showErrorMsg(res.headerResponse.responseMessage);
+          return;
+        }
+        this.dashboardSummary = res;
+      },
+      error: error => {
+        this.alertService.showInfoMsg(error);
+      }
+    });
   }
 
-  hideButton(): void {
-    this.buttonVisible = false;
-  }
+
 
 
 }

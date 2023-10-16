@@ -27,14 +27,15 @@ import { AddEstatePropertyComponent } from './add-estate-property.component';
 import { RemoveHyphenPipe } from "../../@shared/pipes/remove-hyphen.pipe";
 
 @Component({
-    selector: 'app-estate-properties',
-    standalone: true,
-    templateUrl: './estate-properties.component.html',
-    imports: [CommonModule, TableModule, FormsModule, NgSelectModule,
-        FullNameComponent, AddItemComponent, PageTitleComponent,
-        ListFilterPipe, TimeAgoPipe, FormLabelComponent, RemoveHyphenPipe]
+  selector: 'app-estate-properties',
+  standalone: true,
+  templateUrl: './estate-properties.component.html',
+  imports: [ CommonModule, TableModule, FormsModule, NgSelectModule,
+    FullNameComponent, AddItemComponent, PageTitleComponent,
+    ListFilterPipe, TimeAgoPipe, FormLabelComponent, RemoveHyphenPipe ]
 })
 export class EstatePropertiesComponent implements OnInit, OnDestroy {
+
 
 
   currentUser: User;
@@ -45,8 +46,11 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
   listOfProperties: EstateProperty[];
 
   searchedKeyword: string;
-  searchBy: string;
+  searchParameter: string;
   searchValue: string;
+  searchBy: string;
+  searchParameterLabel: string;
+
   constructor(
     public addPropertyBsModalRef: BsModalRef,
     private addPropertyModalService: BsModalService,
@@ -60,10 +64,13 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.searchBy = "ALL";
     this.estate = "A";
     this.block = "A";
-    this.fetchEstates();
+    this.searchParameter = "PROP";
+    this.searchBy == "PNAM";
+    // this.searchByListener();
+    this.searchParameterListener();
+
   }
   ngOnDestroy(): void {
     this.addPropertyModalService.hide();
@@ -72,6 +79,28 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
 
   refreshButton() {
     this.fetchEstateProperties();
+  }
+
+  searchByListener(): void {
+    if (this.searchParameter == "BAB") {
+      this.estate = "A";
+      this.block = "A";
+      this.fetchEstates();
+      this.listOfEstateBlocks = [];
+    }
+    this.listOfProperties = [];
+  }
+
+  searchParameterListener(): void {
+    this.searchValue = '';
+    if (this.searchBy == "PNAM") {
+      this.searchParameterLabel = "Property Name";
+      return;
+    }
+    if (this.searchBy == "PNUM") {
+      this.searchParameterLabel = "Property Number"
+    }
+   
   }
 
   fetchEstates(): void {
@@ -124,7 +153,18 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
 
   fetchEstateProperties(): void {
     this.listOfProperties = [];
-    this.settingsService.getEstateProperties(this.currentUser, this.block,false,"").subscribe({
+
+
+    if (this.searchParameter == "BAB") {
+      this.searchValue = this.block;
+      this.searchBy = "BAB";
+    }
+    // else {
+    //   this.searchParameter = this.searchBy;
+    // }
+    
+
+    this.settingsService.getProperties(this.currentUser, this.searchBy, this.searchValue).subscribe({
       next: (res: EstatePropertyListResponse) => {
         this.logger.info(`getEstateProperties response ` + JSON.stringify(res))
         if (res.headerResponse.responseCode !== '000') {

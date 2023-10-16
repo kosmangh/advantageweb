@@ -77,7 +77,6 @@ export class OccupantsComponent implements OnInit, OnDestroy {
   }
 
   fetchOccupants(): void {
-    // this.spinner.hide();
 
     let request = new OccupantListRequest();
     request.dateRange = true;

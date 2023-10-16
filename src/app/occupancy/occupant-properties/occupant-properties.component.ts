@@ -98,7 +98,6 @@ export class OccupantPropertyComponent implements OnInit, OnDestroy {
       this.listOfEstateBlocks = [];
     }
     this.listOfOccupantProperties = [];
-
   }
   searchParameterListener(): void {
     if (this.searchParameter == "MOB") {

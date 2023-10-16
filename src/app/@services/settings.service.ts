@@ -244,6 +244,24 @@ export class SettingsService {
       );
   }
 
+  getProperties(currentUser: User, searchBy: string, searchValue: string): Observable<EstatePropertyListResponse> {
+    const request = new GeneralSearchRequest();
+    if (searchBy === "PNAM") {
+      request.searchBy = "propertyName";
+    } else if (searchBy === "PNUM") {
+      request.searchBy = "propertyNumber";
+    } else if (searchBy === "BAB") {
+      request.searchBy = "estateBlock.recordId";
+    }
+    request.searchValue = searchValue;
+    request.headerRequest = this.utilsService.getRequestHeader(currentUser.zoneId, currentUser.regionId, 'ESTATE_PROPERTY_LIST');
+    this.logger.info('estate properties list request ' + JSON.stringify(request));
+    return this.http.post<EstatePropertyListResponse>(`${environment.url + PortalMenus.API_SETTINGS}properties`, request)
+      .pipe(
+        timeout(environment.timeout),
+      );
+  }
+
   createEstateProperty(currentUser: User, request: EstatePropertyRequest): Observable<GeneralResponse> {
     request.createdBy = currentUser.username;
     request.recordId = request.estateId + "-" + request.blockId + "-" + request.propertyNo;

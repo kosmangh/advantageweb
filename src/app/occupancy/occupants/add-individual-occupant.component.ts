@@ -237,7 +237,9 @@ export class AddIndividualOccupantComponent implements OnInit {
               this.alertService.showSuccessMsg(`${occupantName} updated successfully`);
               this.addInstitutionOccupantBsModalRef.hide();
               this.logAction(`Updated ${occupantName}`, PortalMenus.OCCUPANCY);
-              setTimeout(() => window.location.reload(), 1500);
+              // setTimeout(() => window.location.reload(), 1500);
+              this.accountService.reloadCurrentRoute();
+
             },
             error: error => {
               this.alertService.showInfoMsg(error.message);

@@ -9,43 +9,86 @@
 
 
 <div class="row gy-2 gx-3 mb-4 align-items-center">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <div class="form-group">
-            <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
+            <label class="form-label pt-0" for="searchParameter">Search Parameter</label><br />
             <div class="form-control-wrap">
-                <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
-                    <ng-option value="A" class="fs-6" selected>Select Estate</ng-option>
-                    <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
-                        {{data.estateName}}
-                    </ng-option>
-                </ng-select>
+                <div class="form-control-select">
+                    <select class="form-control" id="searchParameter" [(ngModel)]="searchParameter" (change)="searchByListener()">
+                        <option value="PROP" selected class="fs-6">Property</option>
+                        <option value="BAB">Estate & block</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
-            <div class="form-control-wrap">
-                <ng-select id="block" [clearable]="false" [(ngModel)]="block" (change)="fetchEstateProperties()">
-                    <ng-option value="A" class="fs-6" selected>Select Block</ng-option>
-                    <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
-                        {{data.block}}
-                    </ng-option>
-                </ng-select>
+    <ng-container *ngIf="searchParameter=='PROP'">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="form-label pt-0" for="searchBy">Search By</label><br />
+                <div class="form-control-wrap">
+                    <div class="form-control-select">
+                        <select class="form-control" id="searchBy" [(ngModel)]="searchBy"
+                            (change)="searchParameterListener()">
+                            <option value="PNAM" selected class="fs-6">Property Name</option>
+                            <option value="PNUM">Property No.</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-2" *ngIf="estate">
-        <div class="form-control-wrap mt-4">
-            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
-            <input type="text" class="form-control" id="default-04" placeholder=" Search property here"
-                [(ngModel)]="searchedKeyword">
+        <div class="col-sm-2" *ngIf="searchBy">
+            <div class="form-control-wrap">
+                <label class="form-label pt-0" for="searchParameterLabel">{{searchParameterLabel}}</label><br />
+                <input type="text" autocomplete="off" class="form-control" id="searchParameterLabel"
+                    placeholder="Enter {{searchParameterLabel}}" [(ngModel)]="searchValue">
+            </div>
         </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="searchParameter=='BAB'">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
+                <div class="form-control-wrap">
+                    <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
+                        <ng-option value="A" class="fs-6" selected>Select Estate</ng-option>
+                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                            {{data.estateName}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
+                <div class="form-control-wrap">
+                    <ng-select id="block" [clearable]="false" [(ngModel)]="block" (change)="fetchEstateProperties()">
+                        <ng-option value="A" class="fs-6" selected>Select Block</ng-option>
+                        <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
+                            {{data.block}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+   
     <div class="col-auto">
         <button class="btn btn-dim btn-primary mt-4" type="button" title="" (click)="refreshButton()">
             Search
         </button>
+    </div>
+</div>
+
+<div class="row gy-2 gx-3 my-3">
+    <div class="col-auto">
+        <div class="form-control-wrap">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" autocomplete="off" id="default-04" placeholder="Quick search"
+                [(ngModel)]="searchedKeyword">
+        </div>
     </div>
 </div>
 <p-table [value]="listOfProperties | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"

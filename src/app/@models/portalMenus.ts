@@ -14,6 +14,7 @@ export enum PortalMenus {
     API_SETTINGS= "/settings/",
     API_USER_ACCOUNTS= "/useraccounts/",
     API_AUTH = "/auth/",
+    API_DASH = "/dash/",
     API_ESTATE_BILLING = "/estatebilling/",
     API_BILL_PAYMENT= "/billpayment/"
 

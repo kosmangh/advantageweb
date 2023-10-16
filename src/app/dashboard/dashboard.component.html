@@ -1,186 +1,165 @@
-<app-page-title pageTitleName="Dashboard" 
-    description="{{ greetMsg }} {{ ' ' + currentUser.fullName }}."
-    />
+<app-page-title pageTitleName="Dashboard" description="{{ greetMsg }} {{ ' ' + currentUser.fullName }}.">
+<span class="newButtonName">
+    <a (click)="fetchDashboardSummary()" class="btn btn-dim btn-primary">
+        <em class="icon ni ni-reload"></em>
+        <span>Refresh</span>
+    </a>
+</span>
+</app-page-title>
+<div class="nk-block">
 
-<div class="nk-block" *ngIf="false">
-    <div class="row gy-gs mb-4">
-        <div class="col-md-6 col-lg-4">
-            <div class="nk-wg-card is-dark card card-bordered">
+    <div class="row g-gs">
+        <div class="col-md-4">
+            <div class="card card-bordered card-full">
                 <div class="card-inner">
-                    <div class="nk-iv-wg2">
-                        <div class="nk-iv-wg2-title">
-                            <h6 class="title">
-                                Available Balance <em class="icon ni ni-info"></em>
-                            </h6>
+                    <div class="card-title-group align-start mb-0 text-center">
+                        <div class="card-title">
+                            <h6 class="title">Estates</h6>
                         </div>
-                        <div class="nk-iv-wg2-text">
-                            <div class="nk-iv-wg2-amount">
-                                105.94
-                                <span class="change up"><span class="sign"></span>3.4%</span>
+                    </div>
+                    <div class="card-amount text-center">
+                        <div class="amount"> {{dashboardSummary?.totalEstateSize | number: '.2-2'}}
+                            <span style="letter-spacing: .1em;color: #8094ae;"
+                                class="fs-11px sub-text-sm text-uppercase">
+                                arches
+                            </span>
+                        </div>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Total</div>
+                                <div class="amount">{{(dashboardSummary?.occupiedEstates + dashboardSummary?.availableEstates) | number}}</div>
                             </div>
+                            <div class="invest-data-history">
+                                <div class="title">Allocated</div>
+                                <div class="amount">{{dashboardSummary?.occupiedEstates | number}}</div>
+                            </div>
+                            <div class="invest-data-history">
+                                <div class="title">Available</div>
+                                <div class="amount">{{dashboardSummary?.availableEstates | number}}</div>
+                            </div>
+                        </div>
+                        <div class="invest-data-ck">
+                            <img src="assets/images/graphs.png" alt="" />
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="nk-wg-card is-s1 card card-bordered">
+            </div><!-- .card -->
+        </div><!-- .col -->
+        <div class="col-md-4">
+            <div class="card card-bordered card-full">
                 <div class="card-inner">
-                    <div class="nk-iv-wg2">
-                        <div class="nk-iv-wg2-title">
-                            <h6 class="title">
-                                Total Invested <em class="icon ni ni-info"></em>
-                            </h6>
+                    <div class="card-title-group align-start mb-0">
+                        <div class="card-title">
+                            <h6 class="title">Blocks</h6>
                         </div>
-                        <div class="nk-iv-wg2-text">
-                            <div class="nk-iv-wg2-amount">
-                                509,850.90
-                                <span class="change up"><span class="sign"></span>2.8%</span>
+                    </div>
+                    <div class="card-amount">
+                        <span class="amount"> {{dashboardSummary?.totalBlockSize | number: '.2-2'}}
+                            <span style="letter-spacing: .1em;color: #8094ae;"
+                                class="fs-11px sub-text-sm text-uppercase">
+                                arches
+                            </span>
+                        </span>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Total</div>
+                                <div class="amount">{{(dashboardSummary?.occupiedBlocks + dashboardSummary?.availableBlocks) | number}}</div>
                             </div>
+                            <div class="invest-data-history">
+                                <div class="title">Allocated</div>
+                                <div class="amount"> {{dashboardSummary?.occupiedBlocks | number}} </div>
+                            </div>
+                            <div class="invest-data-history">
+                                <div class="title">Available</div>
+                                <div class="amount"> {{dashboardSummary?.availableBlocks | number}} </div>
+                            </div>
+                        </div>
+                        <div class="invest-data-ck">
+                            <!-- <div> -->
+                            <img src="assets/images/graphs.png" alt="" />
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-            <div class="nk-wg-card is-s3 card card-bordered">
+            </div><!-- .card -->
+        </div><!-- .col -->
+        <div class="col-md-4">
+            <div class="card card-bordered card-full">
                 <div class="card-inner">
-                    <div class="nk-iv-wg2">
-                        <div class="nk-iv-wg2-title">
-                            <h6 class="title">
-                                Total Profits <em class="icon ni ni-info"></em>
-                            </h6>
+                    <div class="card-title-group align-start mb-0">
+                        <div class="card-title">
+                            <h6 class="title">Properties</h6>
                         </div>
-                        <div class="nk-iv-wg2-text">
-                            <div class="nk-iv-wg2-amount">
-                                50,600.48
-                                <span class="change down"><span class="sign"></span>1.4%</span>
+                    </div>
+                    <div class="card-amount">
+                        <span class="amount"> {{dashboardSummary?.totalPropertySize | number: '.2-2'}}
+                            <span style="letter-spacing: .1em;color: #8094ae;"
+                                class="fs-11px sub-text-sm text-uppercase">
+                                arches
+                            </span>
+                        </span>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Total</div>
+                                <div class="amount">{{(dashboardSummary?.occupiedProperties + dashboardSummary?.availableProperties) | number}}</div>
                             </div>
+                            <div class="invest-data-history">
+                                <div class="title">Allocated</div>
+                                <div class="amount"> {{dashboardSummary?.occupiedProperties | number}} </div>
+                            </div>
+                            <div class="invest-data-history">
+                                <div class="title">Available</div>
+                                <div class="amount">
+                                    {{dashboardSummary?.availableProperties | number}}
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="invest-data-ck">
+                            <!-- <div> -->
+                            <img src="assets/images/graphs.png" alt="" />
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+            </div><!-- .card -->
+        </div><!-- .col -->
+        <div class="col-md-3 col-lg-3" *ngFor="let item of dashboardSummary?.estateSummary">
             <div class="card card-bordered">
                 <div class="card-inner">
-                    <div class="row gy-4">
-                        <div class="col-sm-3 col-xxl-3">
-                            <div class="nk-order-ovwg-data sell text-center">
-                                <div class="amount">
-                                    {{ dashboardSummary?.totalLinkages }}
-                                    <small class="currenct currency-usd"></small>
-                                </div>
-                                <div class="info">
-                                    <strong><span class="currenct currency-usd"></span></strong>
-                                </div>
-                                <div class="title text-uppercase text-spacing">
-                                    Total Linkages
-                                </div>
+                    <div class="team">
+                        <div class="user-card user-card-s2">
+                            <div class="user-avatar md {{''|avatarBg}}">
+                                <span>{{item.estateName |avatarName}}</span>
+                            </div>
+                            <div class="user-info">
+                                <h6>{{item.estateName}}</h6>
+                                <span class="sub-text">{{item.recordId}}</span>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-xxl-3">
-                            <div class="nk-order-ovwg-data sell text-center">
-                                <div class="amount">
-                                    {{ dashboardSummary?.totalSuccessfulLinkages
-                                    }}<small class="currenct currency-usd"></small>
-                                </div>
-                                <div class="info">
-                                    <strong><span class="currenct currency-usd"></span></strong>
-                                </div>
-                                <div class="title text-uppercase text-spacing">
-                                    Successful Linkages
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-xxl-3">
-                            <div class="nk-order-ovwg-data sell text-center">
-                                <div class="amount">
-                                    {{ dashboardSummary?.totalFailedLinkages
-                                    }}<small class="currenct currency-usd"></small>
-                                </div>
-                                <div class="info">
-                                    <strong><span class="currenct currency-usd"></span></strong>
-                                </div>
-                                <div class="title text-uppercase text-spacing">
-                                    Failed Linkages
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-xxl-3">
-                            <div class="nk-order-ovwg-data sell text-center">
-                                <div class="amount">
-                                    {{ dashboardSummary?.totalElevytrxns
-                                    }}<small class="currenct currency-usd"></small>
-                                </div>
-                                <div class="info">
-                                    <strong><span class="currenct currency-usd"></span></strong>
-                                </div>
-                                <div class="title text-uppercase text-spacing">
-                                    Total E Levy Transactions
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-md-6 col-xxl-4">
-            <div class="card card-bordered card-full">
-                <div class="card-inner-group">
-                    <div class="card-inner">
-                        <div class="card-title-group">
-                            <div class="card-title">
-                                <h6 class="title">{{ "recent_linkages"  }}</h6>
-                            </div>
-                            <div class="card-tools">
-                                <a routerLink="/elevy/accountlinkages" routerLinkActive="active"
-                                    class="link">{{ "view_all" 
-                                    }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <ul class="team-info">
+                            <li><span>Blocks</span><span> {{item?.blocks| number}}</span></li>
+                            <li><span>Properties</span><span> {{item?.properties| number}}</span></li>
+                            <li><span>Inactive Prop</span><span> {{item?.inactiveProperties| number}}</span></li>
+                            <li><span>Prop. Allocated</span><span> {{item?.allocatedProperties| number}}</span></li>
+                            <li><span>Prop. Available</span><span> {{item?.availableProperties| number}}</span></li>
+                        </ul>
+                    </div><!-- .team -->
+                </div><!-- .card-inner -->
+            </div><!-- .card -->
         </div>
 
-        <div class="col-lg-6 col-xxl-4">
-            <div class="card card-bordered h-100">
-                <div class="card-inner border-bottom">
-                    <div class="card-title-group">
-                        <div class="card-title">
-                            <h6 class="title">{{ "recent_activities"  }}</h6>
-                        </div>
-                        <div class="card-tools">
-                            <a routerLink="/accounts/users" routerLinkActive="active"
-                                class="link">{{ "view_all" 
-                                }}</a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="nk-support" *ngIf="listOfAuditLogs?.length > 0">
-                    <li class="nk-support-item" *ngFor="let user of listOfAuditLogs">
-                        <div class="user-avatar {{ '' | avatarBg }}">
-                            <span>{{ user?.fullName | avatarName }}</span>
-                        </div>
-                        <div class="nk-support-content">
-                            <div class="title">
-                                <span>{{ user?.fullName }}</span>
-                                <span class="time">{{ user?.recordDate | date : "medium" }}</span>
-                            </div>
-                            <p>{{ user?.userActivity }}</p>
-                        </div>
-                    </li>
-                </ul>
-                <div *ngIf="listOfAuditLogs?.length === 0">
-                    No recent recent activities
-                </div>
-            </div>
-        </div>
     </div>
+
+
+
+
+
 </div>

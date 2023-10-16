@@ -36,7 +36,7 @@
                     <span class="w-50 text-soft">Lease Start Date</span> -
                     <span class="ms-auto text-solid">
                         {{estate.leaseStartDate | cleanDate | date}} ,
-                        <small>{{estate.leaseStartDate.toString()|
+                        <small>{{estate.leaseStartDate?.toString()|
                             timeAgo}}
                         </small>
                     </span>
@@ -45,7 +45,7 @@
                     <span class="w-50 text-soft">Lease End Date</span> -
                     <span class="ms-auto text-solid">
                         {{estate.leaseEndDate | cleanDate | date}} ,
-                        <small>{{estate.leaseEndDate.toString()|
+                        <small>{{estate.leaseEndDate?.toString()|
                             timeAgo}}
                         </small>
                     </span>
@@ -71,7 +71,7 @@
                     </li>
                     <li>
                         <span class="w-50 text-soft">Created Date</span> -
-                        <span class="ms-auto text-solid">{{estate.createdDate |  date:'medium'}} ,<small>{{estate.createdDate.toString()|
+                        <span class="ms-auto text-solid">{{estate.createdDate |  date:'medium'}} ,<small>{{estate.createdDate?.toString()|
                                 timeAgo}}</small></span>
                     </li>
                     <li>
@@ -80,7 +80,7 @@
                     </li>
                     <li>
                         <span class="w-50 text-soft">Modified Date</span> -
-                        <span class="ms-auto text-solid">{{estate.lastModifiedDate | date:'medium' }} ,<small>{{estate.lastModifiedDate.toString()|
+                        <span class="ms-auto text-solid">{{estate.lastModifiedDate | date:'medium' }} ,<small>{{estate.lastModifiedDate?.toString()|
                                 timeAgo}}</small></span>
                     </li>
 
