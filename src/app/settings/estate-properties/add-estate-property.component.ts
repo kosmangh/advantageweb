@@ -63,7 +63,7 @@ export class AddEstatePropertyComponent implements OnInit {
 
     this.createNewForm();
     if (this.isAddMode) {
-      this.estateHeaderMsg = 'New estateId property';
+      this.estateHeaderMsg = 'New estate property';
       this.title.setTitle(this.estateHeaderMsg);
     } else {
       this.estateHeaderMsg = 'Edit ' + this.estateProperty.propertyName;
@@ -215,13 +215,17 @@ export class AddEstatePropertyComponent implements OnInit {
         this.settingsService.updateEstateProperty(this.currentUser, this.propertyFormGroup.value)
           .subscribe({
             next: (res: GeneralResponse) => {
-              this.logger.info('updateUserAccount response:' + JSON.stringify(res));
+              this.logger.info('updateEstateProperty response:' + JSON.stringify(res));
               if (res.headerResponse.responseCode !== '000') {
                 this.alertService.showErrorMsg(res.headerResponse.responseMessage);
                 return;
               }
               this.alertService.showSuccessMsg(`${blockId} updated successfully`);
               this.addEstateBsModalRef.hide();
+
+              localStorage.setItem('estate', this.propertyFormGroup.value.estateId);
+              localStorage.setItem('estateBlock', this.propertyFormGroup.value.blockId);
+
               this.logAction(`Updated ${blockId}`, PortalMenus.SETTINGS);
               this.accountService.reloadCurrentRoute();
             },

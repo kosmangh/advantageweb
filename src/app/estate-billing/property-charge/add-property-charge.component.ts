@@ -155,7 +155,7 @@ export class AddPropertyChargeComponent implements OnInit {
               }
               this.propertyChargeFormGroup.reset();
               this.submitted = false;
-              this.logAction(`created PropertyCharge ${propertyUsageName}`, PortalMenus.SETTINGS);
+              this.logAction(`created PropertyCharge ${propertyUsageName}`, PortalMenus.ESTATE_BILLING);
             },
             error: error => {
               this.alertService.showInfoMsg(error);
@@ -196,7 +196,7 @@ export class AddPropertyChargeComponent implements OnInit {
               }
               this.alertService.showSuccessMsg(res.headerResponse.responseMessage);
               this.addPropertyChargeBsModalRef.hide();
-              this.logAction(`Updated ${propertyUsageName}`, PortalMenus.SETTINGS);
+              this.logAction(`Updated ${propertyUsageName}`, PortalMenus.ESTATE_BILLING);
               this.accountService.reloadCurrentRoute();
             },
             error: error => {
@@ -241,7 +241,7 @@ export class AddPropertyChargeComponent implements OnInit {
               }
               this.alertService.showSuccessMsg(res.headerResponse.responseMessage);
               this.addPropertyChargeBsModalRef.hide();
-              this.logAction(`delete PropertyCharge  ${PropertyChargeName}`, PortalMenus.SETTINGS);
+              this.logAction(`delete PropertyCharge  ${PropertyChargeName}`, PortalMenus.ESTATE_BILLING);
               this.accountService.reloadCurrentRoute();
             },
             error: error => {

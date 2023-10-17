@@ -10,10 +10,8 @@ import { Title } from '@angular/platform-browser';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NGXLogger } from 'ngx-logger';
 import { PortalMenus } from 'src/app/@models/portalMenus';
-import { Region } from 'src/app/@models/settings/region';
 import { User } from 'src/app/@models/user';
 import { GeneralResponse } from 'src/app/@restmodels/general.response';
-import { RegionListResponse } from 'src/app/@restmodels/settings/region-list.response';
 import { AlertService } from 'src/app/@services/alert.service';
 import { AuthService } from 'src/app/@services/auth.service';
 import { SettingsService } from 'src/app/@services/settings.service';
@@ -185,7 +183,7 @@ export class AddEstateBlockComponent implements OnInit {
         this.settingsService.updateEstateBlock(this.currentUser, this.estateBlockFormGroup.value)
           .subscribe({
             next: (res: GeneralResponse) => {
-              this.logger.info('updateUserAccount response:' + JSON.stringify(res));
+              this.logger.info('updateEstateBlock response:' + JSON.stringify(res));
               if (res.headerResponse.responseCode !== '000') {
                 this.alertService.showErrorMsg(res.headerResponse.responseMessage);
                 return;

@@ -310,6 +310,8 @@ export class AddOccupantPropertyComponent implements OnInit {
               }
               this.alertService.showSuccessMsg(`${property} updated successfully`);
               this.addOccupantPropertyBsModalRef.hide();
+              localStorage.setItem('estate', this.occupantPropertyFormGroup.value.estateId);
+              localStorage.setItem('estateBlock', this.occupantPropertyFormGroup.value.blockId);
               this.logAction(`Updated ${property}`, PortalMenus.OCCUPANCY);
               this.accountService.reloadCurrentRoute();
             },

@@ -148,7 +148,7 @@ export class AddPaymentComponent implements OnInit {
               }
               this.paymentFormGroup.reset();
               this.submitted = false;
-              this.logAction(`saved  ${this.selectedOccupant.paymentType} payment of ${this.paymentForm.amountInvolved.value} for  ${this.selectedOccupant.propertyName}`, PortalMenus.SETTINGS);
+              this.logAction(`saved  ${this.selectedOccupant.paymentType} payment of ${this.paymentForm.amountInvolved.value} for  ${this.selectedOccupant.propertyName}`, PortalMenus.BILL_PAYMENTS);
             },
             error: error => {
               this.alertService.showInfoMsg(error);
@@ -189,7 +189,7 @@ export class AddPaymentComponent implements OnInit {
               }
               this.alertService.showSuccessMsg(res.headerResponse.responseMessage);
               this.addPaymentBsModalRef.hide();
-              this.logAction(`Updated ${propertyUsageName}`, PortalMenus.SETTINGS);
+              this.logAction(`Updated ${propertyUsageName}`, PortalMenus.BILL_PAYMENTS);
               this.accountService.reloadCurrentRoute();
             },
             error: error => {

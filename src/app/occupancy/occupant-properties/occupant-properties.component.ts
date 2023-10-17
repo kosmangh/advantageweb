@@ -79,11 +79,35 @@ export class OccupantPropertyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.searchBy = "OCC";
-    this.searchParameter == "NAM";
-    this.startDate = this.utilsService.getFirstDayDate();
-    this.endDate = new Date();
-    this.searchParameterListener();
+
+    this.block = localStorage.getItem("estateBlock") ?? 'A';
+    if (this.block !== "A") {
+      // this.searchParameter = "BAB";
+      this.searchBy = "BAB";
+      // this.block = this.block;
+      this.estate = localStorage.getItem("estate");
+      this.fetchEstates();
+      this.fetchEstateBlocks();
+      this.fetchOccupantProperties();
+    } else {
+      this.estate = "A";
+      this.block = "A";
+      this.searchParameter = "PROP";
+      this.searchBy == "PNAM";
+      // this.searchParameterListener();
+
+      this.searchBy = "OCC";
+      this.searchParameter == "NAM";
+      this.startDate = this.utilsService.getFirstDayDate();
+      this.endDate = new Date();
+      this.searchParameterListener();
+    }
+
+    // this.searchBy = "OCC";
+    // this.searchParameter == "NAM";
+    // this.startDate = this.utilsService.getFirstDayDate();
+    // this.endDate = new Date();
+    // this.searchParameterListener();
   }
   ngOnDestroy(): void {
     this.addOccupantPropertyModalService.hide();

@@ -64,12 +64,23 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.estate = "A";
-    this.block = "A";
-    this.searchParameter = "PROP";
-    this.searchBy == "PNAM";
-    // this.searchByListener();
-    this.searchParameterListener();
+
+    this.block = localStorage.getItem("estateBlock") ?? 'A';
+    if (this.block !== "A") {
+      this.searchParameter = "BAB";
+      this.searchBy = "estateBlock.recordId";
+      this.searchBy = this.estate;
+      this.estate = localStorage.getItem("estate");
+      this.fetchEstateBlocks();
+      this.fetchEstates();
+      this.fetchEstateProperties();
+    } else {
+      this.estate = "A";
+      this.block = "A";
+      this.searchParameter = "PROP";
+      this.searchBy == "PNAM";
+      this.searchParameterListener();
+    }
 
   }
   ngOnDestroy(): void {
@@ -100,7 +111,7 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
     if (this.searchBy == "PNUM") {
       this.searchParameterLabel = "Property Number"
     }
-   
+
   }
 
   fetchEstates(): void {
@@ -162,11 +173,16 @@ export class EstatePropertiesComponent implements OnInit, OnDestroy {
     // else {
     //   this.searchParameter = this.searchBy;
     // }
-    
+
 
     this.settingsService.getProperties(this.currentUser, this.searchBy, this.searchValue).subscribe({
+
       next: (res: EstatePropertyListResponse) => {
         this.logger.info(`getEstateProperties response ` + JSON.stringify(res))
+        
+        // localStorage.removeItem("estate");
+        // localStorage.removeItem("estateBlock");
+          
         if (res.headerResponse.responseCode !== '000') {
           this.alertService.error(res.headerResponse.responseMessage);
           return;

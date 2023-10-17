@@ -79,8 +79,8 @@ export class EstateBlocksComponent implements OnInit, OnDestroy {
           return;
         }
         if (res.estates.length <= 0) {
-          this.alertService.showInfoMsgGeneral("No zones found");
-          this.logger.info("No zones found");
+          this.alertService.showInfoMsgGeneral("No estates found");
+          this.logger.info("No estates found");
           return;
         }
         this.listOfEstates = res.estates;

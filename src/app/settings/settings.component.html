@@ -1,36 +1,48 @@
-<app-page-title  [pageTitleName]="'Settings'" [description]="'Manage all Estate setups'" />
+<app-page-title [pageTitleName]="'Settings'" [description]="'Manage all Estate setups'" />
 <div class="card card-bordered card-preview" style="min-height: 80vh;">
     <div class="card-inner">
+        <!-- <div>
+            <tabset>
+                <tab heading="Basic title" id="tab1">Basic content</tab>
+                <tab heading="Basic Title 1">Basic content 1</tab>
+                <tab heading="Basic Title 2">Basic content 2</tab>
+            </tabset>
+        </div> -->
         <ul class="nav nav-tabs mt-n3">
             <li class="nav-item">
-                <a routerLink="/settings/zones" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                <a routerLink="/settings/zones" id="zones" routerLinkActive="active" class="nav-link"
+                    data-url="#/settings/zones">
                     Zones
                 </a>
             </li>
             <li class="nav-item">
-                <a routerLink="/settings/regions" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                <a routerLink="/settings/regions" id="regions" routerLinkActive="active" class="nav-link"
+                    data-url="#/settings/regions">
                     Regions
                 </a>
             </li>
             <li class="nav-item">
-                <a routerLink="/settings/estates" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                <a routerLink="/settings/estates" routerLinkActive="active" class="nav-link"
+                    data-url="#/settings/estates">
                     Estates
                 </a>
             </li>
             <li class="nav-item">
-                <a routerLink="/settings/estate-blocks" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                <a routerLink="/settings/estate-blocks" routerLinkActive="active" class="nav-link"
+                    data-url="#/settings/estate-blocks">
                     Estate Blocks
                 </a>
             </li>
 
             <li class="nav-item">
-                <a routerLink="/settings/estate-properties" routerLinkActive="active" class="nav-link" data-bs-toggle="tab">
+                <a routerLink="/settings/estate-properties" routerLinkActive="active" class="nav-link" style="cursor: pointer;"
+                    data-url="#/settings/estate-properties">
                     Estate Properties
                 </a>
             </li>
         </ul>
         <div class="tab-content">
-            <router-outlet/>
+            <router-outlet />
         </div>
     </div>
 </div>
