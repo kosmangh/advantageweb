@@ -5,6 +5,7 @@ export const environment = {
     // url: 'http://localhost:3003/advantageservices',
     url: 'http://localhost:8888/advantageservices',
     // url: 'http://localhost:8080/advantageservices',
+    // url: 'http://testsite.bolaapps.com/advantageservices',
     timeout: 50000,
     reset_time:1500,
     log_url: 'http://localhost:8080/themartportal/logaction',
