@@ -17,7 +17,7 @@ import { GeneralResponse } from 'src/app/@restmodels/general.response';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-add-zone',
+  selector: 'app-add-customer',
   standalone: true,
   templateUrl: './add-zone.component.html',
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, RequiredFieldsNoticeComponent,

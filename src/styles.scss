@@ -1,5 +1,7 @@
 @import url("../src/assets/css/dashlite19ce.css");
-@import "~@ng-select/ng-select/themes/default.theme.css";
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
 
 a {
   cursor: pointer;
@@ -224,3 +226,20 @@ form h3.required:after {
 .disabled-element {
   cursor: not-allowed;
 }
+
+
+.invest-data-history .title  {
+    font-size: 11px;
+    color: #8094ae;
+    text-transform: uppercase;
+    margin-bottom: 0.125rem;
+    letter-spacing: .1em;
+}
+
+ .card-title .title {
+    font-size: 16px;
+    color: #8094ae;
+    text-transform: uppercase;
+    margin-bottom: 0.125rem;
+    letter-spacing: .25em;
+ }

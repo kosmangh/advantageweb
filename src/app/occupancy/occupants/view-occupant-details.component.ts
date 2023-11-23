@@ -11,7 +11,7 @@ import { RemoveHyphenPipe } from "../../@shared/pipes/remove-hyphen.pipe";
 
 @Component({
     standalone: true,
-    selector: 'app-view-occupant-details',
+    selector: 'app-view-advert-details',
     templateUrl: './view-occupant-details.component.html',
     imports: [CommonModule, AvatarBgPipe, AvatarNamePipe, TimeAgoPipe, RemoveHyphenPipe]
 })

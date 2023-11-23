@@ -25,7 +25,7 @@ import { RentalBillService } from 'src/app/@services/rental-bill.service';
 import { FullNameComponent } from "../../@shared/components/full-name.component";
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
-import { AddPaymentComponent } from './add-payment.component';
+import { AddPaymentComponent } from '../add-payment/add-payment.component';
 import { BillPaymentService } from 'src/app/@services/bill-payment.service';
 import { PropertyLedgerEntriesRequest } from 'src/app/@restmodels/bill-payment/property-ledger-entries.request';
 import { PropertyLedgerEntriesResponse } from 'src/app/@restmodels/bill-payment/property-ledger-entries.response';
@@ -141,6 +141,39 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
         this.showSpinner = false;
     }
 
+    searchOccupant() {
+        this.selectedOccupant = new OccupantProperty();
+        this.showOccupantDetails = false;
+        this.showNoRecordsFound = false;
+        this.listOfOccupantProperties = [];
+
+        this.occupantsService.quickSearchOccupantProperties(this.currentUser, this.searchTerm, 'ALL').subscribe({
+            next: (res: OccupantPropertyListResponse) => {
+                this.logger.info(`quickSearchOccupantProperties response ` + JSON.stringify(res))
+                if (res.headerResponse.responseCode !== '000') {
+                    this.alertService.error(res.headerResponse.responseMessage);
+                    return;
+                }
+                if (res.occupantProperties.length <= 0) {
+                    let msg = `No occupant found `;
+                    this.alertService.showInfoMsgGeneral(msg);
+                    this.logger.info(msg);
+                    return;
+                }
+                this.listOfOccupantProperties = res.occupantProperties;
+                if (this.listOfOccupantProperties.length === 1) {
+                    this.selectedOccupant = this.listOfOccupantProperties[ 0 ];
+                    this.selectOccupant(this.selectedOccupant);
+                }
+
+            },
+            error: error => {
+                this.logger.error(error);
+                this.alertService.showInfoMsg(error);
+            }
+        });
+    }
+
     searchGetCall(term: string): any {
         return this.occupantsService.quickSearchOccupantProperties(this.currentUser, term, 'ALL').pipe(
             catchError((error) => {
@@ -150,12 +183,13 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
         );
     }
 
+
     selectOccupant(occupant: OccupantProperty) {
         this.listOfOccupantProperties = [];
         this.searchTerm = '';
         this.selectedOccupant = occupant;
         this.showOccupantDetails = true;
-        this.searchOccupantPayments();
+        this.searchAllOccupantLedger();
     }
 
     searchParameterListener(): void {
@@ -193,7 +227,7 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
     }
 
     openPaymentDetailsComponent(propertyLedger: PropertyLedger, selectedOccupant: OccupantProperty) {
-       
+
         const initialState: ModalOptions = {
             initialState: {
                 propertyLedger,
@@ -209,6 +243,11 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
     export(): void {
         // let Heading = [ [ 'brandId', 'Contact', 'City', 'Location', 'Digital Address', 'Created By', 'Created Date', 'Last Modified By', 'Last Modified Date' ] ];
         this.excelExporterService.exportAsExcelFile(this.listOfPropertyLedgers, "occupantProperties");
+    }
+
+
+    printDemandNotice(): void {
+        this.billPaymentService.generateJasperReport(this.currentUser);
     }
 
 
@@ -234,6 +273,53 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
         }
 
         this.billPaymentService.fetchPropertyEntries(this.currentUser, request).subscribe({
+            next: (res: PropertyLedgerEntriesResponse) => {
+                this.logger.info(`getPropertyCharges response ` + JSON.stringify(res))
+                if (res.headerResponse.responseCode !== '000') {
+                    this.alertService.error(res.headerResponse.responseMessage);
+                    return;
+                }
+                if (res.propertyLedgers.length <= 0) {
+                    let msg = `No ledgers found `;
+                    this.alertService.showInfoMsgGeneral(msg);
+                    this.logger.info(msg);
+                    return;
+                }
+                this.listOfPropertyLedgers = res.propertyLedgers;
+                this.totalCredit = res.totalCredit;
+                this.totalDebit = res.totalDebit;
+                this.currentBal = res.currentBalance;
+                this.balance = this.totalDebit - this.totalCredit;
+            },
+            error: error => {
+                this.logger.error(error);
+                this.alertService.showInfoMsg(error);
+            }
+        });
+    }
+
+    searchAllOccupantLedger(): void {
+
+        this.listOfPropertyLedgers = [];
+        this.totalCredit = 0;
+        this.totalDebit = 0;
+        this.currentBal = 0;
+        this.balance = 0;
+
+
+        let request = new PropertyLedgerEntriesRequest();
+        request.endDate = this.endDate;
+        request.startDate = this.startDate;
+        request.occupantId = this.selectedOccupant.occupantId;
+        request.propertyId = this.selectedOccupant.propertyId;
+        request.searchBy = this.searchParameter;
+        request.searchValue = this.searchValue;
+
+        if (this.searchParameter === 'DR') {
+            request.searchValue = "DR";
+        }
+
+        this.billPaymentService.fetchAllPropertyEntries(this.currentUser, request).subscribe({
             next: (res: PropertyLedgerEntriesResponse) => {
                 this.logger.info(`getPropertyCharges response ` + JSON.stringify(res))
                 if (res.headerResponse.responseCode !== '000') {

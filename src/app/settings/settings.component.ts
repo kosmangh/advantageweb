@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'app-manage-customers',
   standalone: true,
   templateUrl: './settings.component.html',
   imports: [ CommonModule, PageTitleComponent, RouterModule, TabsModule ]

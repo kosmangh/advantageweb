@@ -20,7 +20,7 @@ import { RequiredFieldsNoticeComponent } from 'src/app/@shared/components/requir
 import { GroupRentBillingService } from 'src/app/@services/ground-rent-billing.service';
 
 @Component({
-  selector: 'app-estate-billing-component',
+  selector: 'app-fees-mgt-component',
   standalone: true,
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, RequiredFieldsNoticeComponent,
     FormLabelComponent, RequiredFieldComponent, NgSelectModule ],

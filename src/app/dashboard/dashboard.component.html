@@ -14,11 +14,11 @@
                 <div class="card-inner">
                     <div class="card-title-group align-start mb-0 text-center">
                         <div class="card-title">
-                            <h6 class="title">Estates</h6>
+                            <h6 class="title text-uppercase fs-12px">Estates</h6>
                         </div>
                     </div>
                     <div class="card-amount text-center">
-                        <div class="amount"> {{dashboardSummary?.totalEstateSize | number: '.2-2'}}
+                        <div class="amount fw-bold"> {{dashboardSummary?.totalEstateSize | number: '.2-2'}}
                             <span style="letter-spacing: .1em;color: #8094ae;"
                                 class="fs-11px sub-text-sm text-uppercase">
                                 arches
@@ -29,15 +29,15 @@
                         <div class="invest-data-amount g-2">
                             <div class="invest-data-history">
                                 <div class="title">Total</div>
-                                <div class="amount">{{(dashboardSummary?.occupiedEstates + dashboardSummary?.availableEstates) | number}}</div>
+                                <div class="amount fw-bold">{{(dashboardSummary?.occupiedEstates + dashboardSummary?.availableEstates) | number}}</div>
                             </div>
                             <div class="invest-data-history">
                                 <div class="title">Allocated</div>
-                                <div class="amount">{{dashboardSummary?.occupiedEstates | number}}</div>
+                                <div class="amount fw-bold">{{dashboardSummary?.occupiedEstates | number}}</div>
                             </div>
                             <div class="invest-data-history">
                                 <div class="title">Available</div>
-                                <div class="amount">{{dashboardSummary?.availableEstates | number}}</div>
+                                <div class="amount fw-bold">{{dashboardSummary?.availableEstates | number}}</div>
                             </div>
                         </div>
                         <div class="invest-data-ck">
@@ -52,11 +52,11 @@
                 <div class="card-inner">
                     <div class="card-title-group align-start mb-0">
                         <div class="card-title">
-                            <h6 class="title">Blocks</h6>
+                            <h6 class="title fw-bold">Blocks</h6>
                         </div>
                     </div>
                     <div class="card-amount">
-                        <span class="amount"> {{dashboardSummary?.totalBlockSize | number: '.2-2'}}
+                        <span class="amount fw-bold"> {{dashboardSummary?.totalBlockSize | number: '.2-2'}}
                             <span style="letter-spacing: .1em;color: #8094ae;"
                                 class="fs-11px sub-text-sm text-uppercase">
                                 arches
@@ -67,15 +67,15 @@
                         <div class="invest-data-amount g-2">
                             <div class="invest-data-history">
                                 <div class="title">Total</div>
-                                <div class="amount">{{(dashboardSummary?.occupiedBlocks + dashboardSummary?.availableBlocks) | number}}</div>
+                                <div class="amount fw-bold">{{(dashboardSummary?.occupiedBlocks + dashboardSummary?.availableBlocks) | number}}</div>
                             </div>
                             <div class="invest-data-history">
-                                <div class="title">Allocated</div>
-                                <div class="amount"> {{dashboardSummary?.occupiedBlocks | number}} </div>
+                                <div class="title fw-bold">Allocated</div>
+                                <div class="amount fw-bold"> {{dashboardSummary?.occupiedBlocks | number}} </div>
                             </div>
                             <div class="invest-data-history">
                                 <div class="title">Available</div>
-                                <div class="amount"> {{dashboardSummary?.availableBlocks | number}} </div>
+                                <div class="amount fw-bold"> {{dashboardSummary?.availableBlocks | number}} </div>
                             </div>
                         </div>
                         <div class="invest-data-ck">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="card-amount">
-                        <span class="amount"> {{dashboardSummary?.totalPropertySize | number: '.2-2'}}
+                        <span class="amount fw-bold"> {{dashboardSummary?.totalPropertySize | number: '.2-2'}}
                             <span style="letter-spacing: .1em;color: #8094ae;"
                                 class="fs-11px sub-text-sm text-uppercase">
                                 arches
@@ -107,15 +107,15 @@
                         <div class="invest-data-amount g-2">
                             <div class="invest-data-history">
                                 <div class="title">Total</div>
-                                <div class="amount">{{(dashboardSummary?.occupiedProperties + dashboardSummary?.availableProperties) | number}}</div>
+                                <div class="amount fw-bold">{{(dashboardSummary?.occupiedProperties + dashboardSummary?.availableProperties) | number}}</div>
                             </div>
                             <div class="invest-data-history">
                                 <div class="title">Allocated</div>
-                                <div class="amount"> {{dashboardSummary?.occupiedProperties | number}} </div>
+                                <div class="amount fw-bold"> {{dashboardSummary?.occupiedProperties | number}} </div>
                             </div>
                             <div class="invest-data-history">
                                 <div class="title">Available</div>
-                                <div class="amount">
+                                <div class="amount fw-bold">
                                     {{dashboardSummary?.availableProperties | number}}
                                 </div>
 

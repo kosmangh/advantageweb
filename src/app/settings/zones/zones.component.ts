@@ -21,7 +21,7 @@ import { TimeAgoPipe } from "../../@shared/pipes/time-ago.pipe";
 import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
 
 @Component({
-    selector: 'app-zones',
+    selector: 'app-manage-customers',
     standalone: true,
     templateUrl: './zones.component.html',
     imports: [CommonModule, TableModule, FormsModule,

@@ -14,7 +14,7 @@
             <div class="card-title">
                 <div class="form-group mb-3">
                     <app-form-label [labelForName]="'searchText'" [labelName]="'Search  occupant or property'" />
-                    <div class="form-control-wrap">
+                    <div class="form-control-wrap" *ngIf="false">
                         <div class="form-icon form-icon-right">
                             <em [ngClass]="{ 'ni-search': !showSpinner,'ni-loader spinner text-gray fw-bold': showSpinner}"
                                 class="icon ni">
@@ -23,6 +23,17 @@
                         <input type="text" class="form-control" autocomplete="off" id="searchText"
                             placeholder="Enter occupant name,mobile no,property name,id" [(ngModel)]="searchTerm"
                             (input)="searchOccupants()">
+                    </div>
+                    <div class="form-control-wrap">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="searchTerm"
+                                placeholder="Enter occupant name,mobile no,property name,id">
+                            <div class="input-group-append select-cursor">
+                                <span class="input-group-text btn-dim btn-primary" id="searching" (click)="searchOccupant()">
+                                    <em class="icon ni ni-search"></em><span>Search</span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +97,7 @@
                         <dt class="col-sm-6">{{selectedOccupant?.propertyCategory | titlecase}}</dt>
                     </dl>
                     <dl class="row">
-                        <dd class="col-sm-6">Balance As @ Today:</dd>
+                        <dd class="col-sm-6">Balance As of Today:</dd>
                         <dt class="col-sm-6 text-primary fs-17px">{{currentBal | number : '1.2-2'}}</dt>
                     </dl>
                 </div>
@@ -186,8 +197,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-auto">
+                    <button class="btn btn-dim btn-primary btn-sm" type="button" title="" (click)="printDemandNotice()">
+                        Print Demand Notice
+                    </button>
+                </div>
 
-                
+
             </div>
 
             <p-table [value]="listOfPropertyLedgers | filter:searchedKeyword" #dt1 responsiveLayout="scroll"
@@ -224,7 +240,7 @@
                             {{data.paymentDate | lowercase}}
                             <div class="fw-lighter">
                                 <small class="d-block">{{data.createdDate | date:'medium'}}</small>
-                                <small > {{data.createdDate | timeAgo}}</small>
+                                <small> {{data.createdDate | timeAgo}}</small>
                             </div>
                         </td>
                         <td>
@@ -278,11 +294,11 @@
                         <div class="col-sm-12 text-end">
                             Currency:<span class="ff-mono fw-bolder "> GHS</span>
                         </div>
-                        <div class="col-sm-12 text-end ">
-                            Total Credit: <span class="ff-mono fw-bolder "> {{totalCredit | number : '1.2-2'}}</span>
-                        </div>
                         <div class="col-sm-12  text-end  ">
                             Total Debit: <span class="ff-mono fw-bolder "> {{totalDebit | number : '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-12 text-end ">
+                            Total Credit: <span class="ff-mono fw-bolder "> {{totalCredit | number : '1.2-2'}}</span>
                         </div>
                         <div class="col-sm-12 text-end">
                             Outstanding Bal: <span class="ff-mono fw-bolder "> {{balance | number : '1.2-2'}}</span>

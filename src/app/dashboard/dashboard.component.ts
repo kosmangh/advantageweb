@@ -13,7 +13,7 @@ import { DashboardResponse } from '../@restmodels/dashboard.response';
 import { FullNameComponent } from "../@shared/components/full-name.component";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dashboard-old',
   standalone: true,
   templateUrl: './dashboard.component.html',
   imports: [ CommonModule, PageTitleComponent, AvatarBgPipe, AvatarNamePipe, FullNameComponent ]

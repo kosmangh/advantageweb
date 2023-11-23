@@ -1,6 +1,6 @@
 {
   "uuid": "c24f7300-4666-4e52-ac1c-fee45fbd924c",
-  "lastMigration": 27,
+  "lastMigration": 29,
   "name": "Advantage",
   "endpointPrefix": "advantageservices",
   "latency": 0,
@@ -15,7 +15,7 @@
       "responses": [
         {
           "uuid": "3d1d88dc-b9dd-4682-acae-74d77cf14b8f",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"EML\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  },\n  \n    \"company\": \"123456\",\n    \"companyName\": \"Lottek Stores\",\n    \"logo\": \"\",\n    \"branchCode\": \"{{faker 'random.alphaNumeric'}}\",\n    \"branchName\": \"{{faker 'company.bsBuzz'}}\",\n    \"emailAddress\": \"{{faker 'internet.email'}}\",\n    \"fullName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n    \"language\": \"FR\",\n    \"lastLoginDate\": \"{{faker 'datatype.datetime'}}\",\n    \"status\": \"ACTIVE\",\n    \"contactNo\":\"0245293945\",\n    \"location\":\"Teshie Rasta,telephone pole\",\n    \"userRole\": \"GROUP_INTERNAL_CONTROL\",\n    \"userRoleName\": \"Group Internal Control\",\n    \"username\": \"sabonay\",\n    \"verified\": \"Y\"\n  \n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"EML\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  },\n  \n    \"company\": \"123456\",\n    \"companyName\": \"Lottek Stores\",\n    \"logo\": \"\",\n    \"branchCode\": \"{{faker 'string.alphaNumeric'}}\",\n    \"branchName\": \"{{faker 'company.buzzPhraseBuzz'}}\",\n    \"emailAddress\": \"{{faker 'internet.email'}}\",\n    \"fullName\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\n    \"language\": \"FR\",\n    \"lastLoginDate\": \"{{faker 'date.anytime'}}\",\n    \"status\": \"ACTIVE\",\n    \"contactNo\":\"0245293945\",\n    \"location\":\"Teshie Rasta,telephone pole\",\n    \"userRole\": \"GROUP_INTERNAL_CONTROL\",\n    \"userRoleName\": \"Group Internal Control\",\n    \"username\": \"sabonay\",\n    \"verified\": \"Y\"\n  \n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -33,7 +33,8 @@
           "fallbackTo404": true,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -66,7 +67,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -107,7 +109,8 @@
           "fallbackTo404": false,
           "default": false,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -148,7 +151,8 @@
           "fallbackTo404": false,
           "default": false,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -163,7 +167,7 @@
       "responses": [
         {
           "uuid": "315e6a97-6433-4534-8668-574fd34593e2",
-          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"zones\": [\n     \n    {\n      \"recordId\": \"KSIZONE\",\n       \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"WSTZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Western Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Southern Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n      ,\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"TEST Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"zones\": [\n     \n    {\n      \"recordId\": \"KSIZONE\",\n       \"zoneId\": \"{{faker \"string.numeric\" 5}}\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"location.city\"}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    },\n     {\n      \"recordId\": \"WSTZONE\",\n      \"zoneId\": \"{{faker \"string.numeric\" 5}}\",\n      \"zoneName\": \"Western Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"location.city\"}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    },\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"string.numeric\" 5}}\",\n      \"zoneName\": \"Southern Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"location.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n      ,\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"string.numeric\" 5}}\",\n      \"zoneName\": \"TEST Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"location.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -176,7 +180,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -209,7 +214,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -242,7 +248,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -275,7 +282,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -290,7 +298,7 @@
       "responses": [
         {
           "uuid": "beca200c-1807-4e6d-866c-7a846709a412",
-          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker \"internet.ip\"}}\"\n  },\n  \"regions\": [\n    {\n      \"recordId\": \"AH\",\n      \"regionName\": \"Ahafo Region\",\n      \"zone\": \"KSIZONE\",\n      \"zoneId\": \"KSIZONE\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"AR\",\n      \"regionName\": \"Ashanti Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"BE\",\n      \"regionName\": \"Bono East Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"BO\",\n      \"regionName\": \"Bono Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker \"internet.ip\"}}\"\n  },\n  \"regions\": [\n    {\n      \"recordId\": \"AH\",\n      \"regionName\": \"Ahafo Region\",\n      \"zone\": \"KSIZONE\",\n      \"zoneId\": \"KSIZONE\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    },\n     {\n      \"recordId\": \"AR\",\n      \"regionName\": \"Ashanti Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    },\n     {\n      \"recordId\": \"BE\",\n      \"regionName\": \"Bono East Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    },\n     {\n      \"recordId\": \"BO\",\n      \"regionName\": \"Bono Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -308,7 +316,8 @@
           "fallbackTo404": true,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -341,7 +350,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -374,7 +384,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -407,7 +418,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -422,7 +434,7 @@
       "responses": [
         {
           "uuid": "a56c472f-fb01-4fb4-88e9-6135761bbce4",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupants\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"datatype.datetime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"name.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"address.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'random.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'name.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"properties\":{{faker \"random.numeric\" 1}}\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupants\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"date.anytime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"person.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"location.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"location.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'string.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'person.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"location.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\"}}\",\n      \"properties\":{{faker \"string.numeric\" 1}}\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -440,7 +452,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -473,7 +486,8 @@
           "fallbackTo404": true,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -506,7 +520,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -521,7 +536,7 @@
       "responses": [
         {
           "uuid": "ce73f01e-be0f-4da2-93e8-bb439762dddc",
-          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estates\": [\n    {{#repeat 10}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estateClass\": \"{{oneOf (array 'First Class' 'Second Class' 'Third Class')}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Bono Region' 'Western Region' 'Central Region')}}\",\n      \"landSize\":{{faker \"random.numeric\" 3}},\n      \"landSizeLeft\":{{faker \"random.numeric\" 2}},\n      \"blocks\":{{faker \"random.numeric\" 3}},\n      \"properties\":{{faker \"random.numeric\" 4}},\n      \"location\": \"{{faker \"lorem.paragraph\" 1}}\",\n      \"leasedStartDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"leasedEndDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estates\": [\n    {{#repeat 10}}\n    {\n      \"recordId\": \"{{faker \"string.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"estateClass\": \"{{oneOf (array 'First Class' 'Second Class' 'Third Class')}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Bono Region' 'Western Region' 'Central Region')}}\",\n      \"landSize\":{{faker \"string.numeric\" 3}},\n      \"landSizeLeft\":{{faker \"string.numeric\" 2}},\n      \"blocks\":{{faker \"string.numeric\" 3}},\n      \"properties\":{{faker \"string.numeric\" 4}},\n      \"location\": \"{{faker \"lorem.paragraph\" 1}}\",\n      \"leasedStartDate\": \"{{faker \"date.anytime\"}}\",\n      \"leasedEndDate\": \"{{faker \"date.anytime\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -534,7 +549,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -567,7 +583,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -600,7 +617,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -633,7 +651,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -648,7 +667,7 @@
       "responses": [
         {
           "uuid": "a5fca1e2-aeb1-45ee-8886-9109155f01ab",
-          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estateBlocks\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estate\": \"{{faker \"company.bsBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"blockSize\":{{faker \"random.numeric\" 3}},\n      \"blockSizeLeft\":{{faker \"random.numeric\" 2}},\n      \"properties\":{{faker \"random.numeric\" 4}},\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estateBlocks\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"string.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"estate\": \"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"blockSize\":{{faker \"string.numeric\" 3}},\n      \"blockSizeLeft\":{{faker \"string.numeric\" 2}},\n      \"properties\":{{faker \"string.numeric\" 4}},\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -661,7 +680,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -694,7 +714,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -727,7 +748,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -760,7 +782,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -775,7 +798,7 @@
       "responses": [
         {
           "uuid": "05100d01-9bd5-4743-838d-6e5de2564ade",
-          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"properties\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estate\": \"{{faker \"company.bsBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"usage\": \"{{oneOf (array 'RESIDENTIAL' 'COMMERCIAL' 'INSTITUTIONAL' 'MIXED_USE' 'ALL')}}\",\n      \"category\": \"{{oneOf (array 'LAND' 'HOUSE')}}\",\n      \"occupancy\": \"{{oneOf (array 'Occupied' 'Unoccupied')}}\",\n      \"propertyNo\":\"{{faker \"random.numeric\" 4}}\",\n      \"propertySize\":{{faker \"random.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.bsBuzz\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"properties\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"string.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"estate\": \"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"usage\": \"{{oneOf (array 'RESIDENTIAL' 'COMMERCIAL' 'INSTITUTIONAL' 'MIXED_USE' 'ALL')}}\",\n      \"category\": \"{{oneOf (array 'LAND' 'HOUSE')}}\",\n      \"occupancy\": \"{{oneOf (array 'Occupied' 'Unoccupied')}}\",\n      \"propertyNo\":\"{{faker \"string.numeric\" 4}}\",\n      \"propertySize\":{{faker \"string.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"person.firstName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"person.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -788,7 +811,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -821,7 +845,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -854,7 +879,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -887,7 +913,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -920,7 +947,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -953,7 +981,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -986,7 +1015,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1001,7 +1031,7 @@
       "responses": [
         {
           "uuid": "778a46e0-438a-4684-937f-f0e33edad562",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupantProperties\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"propertyOccupantType\":\"{{oneOf (array 'Leasehold' 'Rental')}}\",\n      \"propertySize\":{{faker \"random.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.bsBuzz\"}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"firstDateOfOccupancy\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastDateOfOccupancy\": \"{{faker \"datatype.datetime\"}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupantProperties\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"propertyOccupantType\":\"{{oneOf (array 'Leasehold' 'Rental')}}\",\n      \"propertySize\":{{faker \"string.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.buzzPhraseBuzz\"}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"localAddress\": \"{{faker \"location.city\"}}\",\n      \"firstDateOfOccupancy\": \"{{faker \"date.anytime\"}}\",\n      \"lastDateOfOccupancy\": \"{{faker \"date.anytime\"}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1019,7 +1049,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1034,7 +1065,7 @@
       "responses": [
         {
           "uuid": "c0049dc8-db82-40c5-b6f7-9919fcc9cff1",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n     \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"datatype.datetime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"name.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"address.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'random.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'name.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"modifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"modifiedDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"properties\":{{faker \"random.numeric\" 1}}\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n     \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'person.firstName'}} {{faker 'person.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"date.anytime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"person.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"location.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"location.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'string.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'person.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"location.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"modifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"modifiedDate\": \"{{faker \"date.anytime\"}}\",\n      \"properties\":{{faker \"string.numeric\" 1}}\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1052,7 +1083,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1067,7 +1099,7 @@
       "responses": [
         {
           "uuid": "f7f3a908-18c3-46ec-ad1d-42c6bd2b61c9",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"staffs\": [\n     {{#repeat 1000}}\n    {\n      \n      \"recordId\": \"{{faker 'random.numeric' 8}}\",\n      \"firstName\": \"{{faker 'name.firstName'}}\",\n      \"lastName\": \"{{faker 'name.lastName'}}\",\n      \"otherNames\": \"{{faker 'name.lastName'}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"dob\": \"{{faker \"datatype.datetime\"}}\",\n      \"email\": \"{{faker 'internet.email'}}\",\n      \"mobileNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"username\": \"{{faker 'name.firstName'}}\",\n      \"regionId\": \"{{faker 'random.numeric' 8}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Greater Accra' 'Eastern Region')}}\",\n      \"userRole\":\"{{oneOf (array 'Administrator' 'Director' 'Estate Officer')}}\",\n      \"officeContactNo\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"status\":\"{{oneOf (array 'Active' 'Inactive')}}\",\n      \"department\":\"{{oneOf (array 'Finance' 'Evaluation' 'Administration')}}\",\n      \"departmentId\": \"{{faker 'random.numeric' 8}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"staffs\": [\n     {{#repeat 1000}}\n    {\n      \n      \"recordId\": \"{{faker 'string.numeric' 8}}\",\n      \"firstName\": \"{{faker 'person.firstName'}}\",\n      \"lastName\": \"{{faker 'person.lastName'}}\",\n      \"otherNames\": \"{{faker 'person.lastName'}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"dob\": \"{{faker \"date.anytime\"}}\",\n      \"email\": \"{{faker 'internet.email'}}\",\n      \"mobileNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"location.city\"}}\",\n      \"username\": \"{{faker 'person.firstName'}}\",\n      \"regionId\": \"{{faker 'string.numeric' 8}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Greater Accra' 'Eastern Region')}}\",\n      \"userRole\":\"{{oneOf (array 'Administrator' 'Director' 'Estate Officer')}}\",\n      \"officeContactNo\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"status\":\"{{oneOf (array 'Active' 'Inactive')}}\",\n      \"department\":\"{{oneOf (array 'Finance' 'Evaluation' 'Administration')}}\",\n      \"departmentId\": \"{{faker 'string.numeric' 8}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1085,7 +1117,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1118,7 +1151,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1151,7 +1185,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1184,7 +1219,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1199,7 +1235,7 @@
       "responses": [
         {
           "uuid": "7c81362e-d3a1-481c-a8d4-0cebfe3d55d0",
-          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"departments\": [\n     {{#repeat 10}}\n    {\n      \n      \"recordId\": \"{{faker 'random.numeric' 8}}\",\n      \"departmentName\": \"{{faker 'commerce.department'}}\",\n      \"remarks\": \"{{faker 'company.bs'}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"departments\": [\n     {{#repeat 10}}\n    {\n      \n      \"recordId\": \"{{faker 'string.numeric' 8}}\",\n      \"departmentName\": \"{{faker 'commerce.department'}}\",\n      \"remarks\": \"{{faker 'company.buzzPhrase'}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"date.anytime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"date.anytime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -1217,7 +1253,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1250,7 +1287,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1283,7 +1321,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1316,7 +1355,8 @@
           "fallbackTo404": false,
           "default": true,
           "databucketID": "",
-          "bodyType": "INLINE"
+          "bodyType": "INLINE",
+          "crudKey": "id"
         }
       ],
       "enabled": true,
@@ -1372,7 +1412,7 @@
     {
       "uuid": "427bfe97-db38-4c2f-b9e2-a31cf695b69a",
       "name": "settings",
-      "collapsed": true,
+      "collapsed": false,
       "children": [
         {
           "type": "folder",
@@ -1399,7 +1439,7 @@
     {
       "uuid": "68f20c3b-d7c2-45dd-a41f-74b0729944d6",
       "name": "occupancy",
-      "collapsed": true,
+      "collapsed": false,
       "children": [
         {
           "type": "folder",
@@ -1414,7 +1454,7 @@
     {
       "uuid": "6afbc24b-5fa1-4252-a002-4dee00f62005",
       "name": "auth",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -1456,7 +1496,7 @@
     {
       "uuid": "9a56e1f3-3ef2-4b4b-a3fc-01e92d653554",
       "name": "regions",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -1502,7 +1542,7 @@
     {
       "uuid": "0cf733d9-49dd-4a04-81ae-86162f73e12b",
       "name": "estate blocks",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -1525,7 +1565,7 @@
     {
       "uuid": "d89f155e-282a-4e26-b568-50933ab47372",
       "name": "estate properties",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
@@ -1548,7 +1588,7 @@
     {
       "uuid": "2db0e9ef-a8e7-429b-af28-854405ce0a0d",
       "name": "occupants",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",

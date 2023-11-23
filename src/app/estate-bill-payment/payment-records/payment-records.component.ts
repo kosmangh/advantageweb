@@ -8,13 +8,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 import { Occupant } from 'src/app/@models/occupancy/occupant';
 import { OccupantProperty } from 'src/app/@models/occupancy/occupant-property';
-import { PortalMenus } from 'src/app/@models/portalMenus';
 import { Estate } from 'src/app/@models/settings/estate';
 import { EstateBlock } from 'src/app/@models/settings/estate-block';
 import { User } from 'src/app/@models/user';
-import { GeneralResponse } from 'src/app/@restmodels/general.response';
-import { OccupantPropertyListRequest } from 'src/app/@restmodels/occupancy/occupant-property-list.request';
-import { OccupantPropertyListResponse } from 'src/app/@restmodels/occupancy/occupant-property-list.response';
 import { EstateBlockListResponse } from 'src/app/@restmodels/settings/estate-block-list.response';
 import { EstateListResponse } from 'src/app/@restmodels/settings/estate-list.response';
 import { AlertService } from 'src/app/@services/alert.service';
@@ -168,6 +164,10 @@ export class PaymentRecordsComponent implements OnInit, OnDestroy {
     this.excelExporterService.exportAsExcelFile(this.billPayments, "occupantProperties");
   }
 
+  printDemandNotice(): void {
+    this.billPaymentService.generateJasperReport(this.currentUser);
+  }
+  
   fetchEstates(): void {
     this.listOfEstates = [];
     this.settingsService.getEstates().subscribe({
