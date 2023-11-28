@@ -247,7 +247,7 @@ export class BillPaymentComponent implements OnInit, OnDestroy {
 
 
     printDemandNotice(): void {
-        this.billPaymentService.generateJasperReport(this.currentUser);
+        this.billPaymentService.generateJasperReport(this.currentUser,null);
     }
 
 

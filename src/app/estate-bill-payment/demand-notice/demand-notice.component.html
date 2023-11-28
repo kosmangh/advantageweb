@@ -1,5 +1,5 @@
-<app-add-item [pageTitleName]="'Demand Notice'"
-    [description]="'Raise demand notice for block properties or a single property'" />
+<app-add-item [pageTitleName]="'Ground Rent Demand Notice'"
+    [description]="'Raise ground rent demand notice for block properties or a single property'" />
 <div class="row gy-2 gx-2 mt-5 mb-4 align-items-center">
 
     <div class="col-sm-2">
@@ -35,7 +35,7 @@
                 <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
                 <div class="form-control-wrap">
                     <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
-                        <ng-option value="A" class="fs-6" selected>Select Estate</ng-option>
+                        <ng-option value="A" class="fs-6" selected disabled>Select Estate</ng-option>
                         <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
                             {{data.estateName}}
                         </ng-option>
@@ -48,7 +48,7 @@
                 <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
                 <div class="form-control-wrap">
                     <ng-select id="block" [clearable]="false" [(ngModel)]="block">
-                        <ng-option value="A" class="fs-6" selected>Select Block</ng-option>
+                        <ng-option value="A" class="fs-6" disabled selected>Select Block</ng-option>
                         <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
                             {{data.block}}
                         </ng-option>
@@ -71,12 +71,13 @@
     </div>
     <div class="col-auto">
         <button class="btn btn-dim btn-primary mt-4" type="button" (click)="searchBillPayments()">
-            Search
+            Generate
         </button>
     </div>
-    <div class="col-auto" *ngIf="billPayments">
+    <div class="col-auto" *ngIf="demandNotices?.length >0">
         <button class="btn btn-dim1 btn-light mt-4" type="button" (click)="printDemandNotice()">
-            Print demand notice
+        <em class="icon ni ni-printer"></em>
+        <span>Print</span>
         </button>
     </div>
 
@@ -89,32 +90,9 @@
                 [(ngModel)]="searchedKeyword">
         </div>
     </div>
-    <div class="col-auto">
-        <div class="dropdown" tooltip="Data export">
-            <a href="#" class="dropdown-toggle btn btn-icon btn-light btn-outline-light1" data-bs-toggle="dropdown"
-                aria-expanded="false" title="Export Data">
-                <em class="icon ni ni-printer"></em><span>Print</span>
-            </a>
-            <div class="dropdown-menu" style="">
-                <ul class="link-list-opt no-bdr">
-                    <li>
-                        <a (click)="export()">
-                            <em class="icon ni ni-file-xls"></em>
-                            <span>Export to Excel</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="cursor: not-allowed;">
-                            <em class="icon ni ni-file-pdf disabled"></em>
-                            <span>Export to PDF</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    
 </div>
-<p-table [value]="billPayments | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+<p-table [value]="demandNotices | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
     responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
@@ -123,10 +101,11 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Occupant</th>
-            <th>Property</th>
-            <th>Narration</th>
-            <th>Payment Mode</th>
-            <th>Bill Date</th>
+            <th>Street Name</th>
+            <th>File No.</th>
+            <th>Property No.</th>
+            <th>Property Class</th>
+            <th>Location</th>
             <th class="text-end">Current Charge</th>
             <th class="text-end">Arrears</th>
             <th class="text-end">Total Amount Due</th>
@@ -135,36 +114,17 @@
     <ng-template pTemplate="body" let-data>
         <tr>
             <td>
-                <app-full-name [showAvatar]="false" fullName="{{data?.occupantName }}"
-                    otherFieldName="{{data?.institutionalDisplayName}}" />
+                <app-full-name [showAvatar]="false" fullName="{{data?.lessee }}"
+                    otherFieldName="" />
             </td>
-            <td>
-                <app-full-name [showAvatar]="false" fullName="{{data?.propertyName}}"
-                    otherFieldName="{{data?.propertyId}}" />
-            </td>
-            <td>{{data?.paymentFor}}</td>
-            <td>
-                <app-full-name [showAvatar]="false" fullName="{{data?.mediumOfPayment | titlecase | removeHyphen}}"
-                    otherFieldName="{{data?.mediumOfPaymentNumber}}" />
-            </td>
-            <td>
-                {{data?.paymentDate | lowercase}}
-                <div class="fw-lighter">
-                    <small class="d-block">{{data?.createdDate | date:'medium'}}</small>
-                    <small class='text-primary'> {{data?.createdDate | timeAgo}}</small>
-                </div>
-            </td>
-            <td class="text-end font-monospace">
-                {{data?.amountInvolved | number: '.2-2'}}
-            </td>
-            <td class="text-end font-monospace">
-                {{data?.amountInvolved | number: '.2-2'}}
-            </td>
-            <td class="text-end font-monospace">
-                {{ (data?.amountInvolved + data?.amountInvolved)| number: '.2-2'}}
-            </td>
-           
-            <td>{{data?.createdBy}}</td>
+            <td>{{data?.streetName}}</td>
+            <td>{{data?.fileNo}}</td>
+            <td>{{data?.propertyNo}}</td>
+            <td>{{data?.propertyClass | titlecase}}</td>
+            <td>{{data?.location}}</td>
+            <td class="text-end font-monospace"><span class="fs-15px">{{data?.currentCharge | number: '.2-2'}}</span></td>
+            <td class="text-end font-monospace"><span class="fs-15px">{{data?.arrears | number: '.2-2'}}</span></td>
+            <td class="text-end font-monospace"><span class="fs-15px">{{ (data?.currentCharge + data?.arrears)| number: '.2-2'}}</span></td>
         </tr>
     </ng-template>
 </p-table>
@@ -177,13 +137,13 @@
                 Currency:<span class="ff-mono fw-bolder "> GHS</span>
             </div>
             <div class="col-sm-12 text-end ">
-                Total Arrears: <span class="ff-mono fw-bolder "> {{totalDebit | number : '1.2-2'}}</span>
+                Total Current Charge: <span class="ff-mono fw-bolder fs-19px"> {{totalCurrentCharge | number : '1.2-2'}}</span>
             </div>
             <div class="col-sm-12  text-end  ">
-                Total Payments: <span class="ff-mono fw-bolder "> {{totalCredit | number : '1.2-2'}}</span>
+                Total Arrears: <span class="ff-mono fw-bolder fs-19px"> {{totalArrears | number : '1.2-2'}}</span>
             </div>
             <div class="col-sm-12 text-end">
-                Outstanding Bal: <span class="ff-mono fw-bolder "> {{balance | number : '1.2-2'}}</span>
+                Total Amount Due: <span class="ff-mono fw-bolder fs-19px"> {{totalAmountDue | number : '1.2-2'}}</span>
             </div>
         </div>
     </div>

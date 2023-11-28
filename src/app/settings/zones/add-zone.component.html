@@ -17,7 +17,7 @@
         <app-required-fields-notice />
         <div class="row gy-2 mt-3">
 
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <app-form-label [labelForName]="'zoneName'" [labelName]="'Zone Name'" />
                     <div class="form-control-wrap">
@@ -34,6 +34,8 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <app-form-label [labelForName]="'contactNo'" [labelName]="'Contact No.'" />
                     <div class="form-control-wrap">
@@ -47,6 +49,103 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'otherContactNo'" [labelName]="'Other Contact No.'"
+                        [showRequired]="false" />
+                    <div class="form-control-wrap">
+                        <input type="tel" formControlName="otherContactNo" class="form-control" id="contactNo"
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid': (  zoneForm.otherContactNo ?.touched ||  zoneForm.otherContactNo ?.dirty || submitted) &&  zoneForm.otherContactNo ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.otherContactNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'accountNo'" [labelName]="'Account No.'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="accountNo" class="form-control" id="accountNo"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.accountNo ?.touched ||  zoneForm.accountNo ?.dirty || submitted) && zoneForm.accountNo ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.accountNo ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'bankName'" [labelName]="'Bank Name'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="bankName" class="form-control" id="bankName"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.bankName ?.touched ||  zoneForm.bankName ?.dirty || submitted) && zoneForm.bankName ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.bankName ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'bankBranch'" [labelName]="'Bank Branch'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="bankBranch" class="form-control" id="bankBranch"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.bankBranch ?.touched ||  zoneForm.bankBranch ?.dirty || submitted) && zoneForm.bankBranch ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.bankBranch ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'website'" [labelName]="'Website'" />
+                    <div class="form-control-wrap">
+                        <input type="text" formControlName="website" class="form-control" id="website"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.website ?.touched ||  zoneForm.website ?.dirty || submitted) && zoneForm.website ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.website ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <app-form-label [labelForName]="'email'" [labelName]="'Email'" />
+                    <div class="form-control-wrap">
+                        <input type="email" formControlName="email" class="form-control" id="email" autocomplete="off"
+                            [ngClass]="{'is-invalid': (  zoneForm.email ?.touched ||  zoneForm.email ?.dirty || submitted) && zoneForm.email ?.errors  }" />
+                        <span class="invalid-feedback">
+                            <div *ngIf=" zoneForm.email ?.errors?.required">
+                                <app-required-field />
+                            </div>
+                            <div *ngIf=" zoneForm.remarks ?.errors?.email">
+                                <app-required-field />
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <app-form-label [labelForName]="'address'" [labelName]="'Address'" />
                     <div class="form-control-wrap">
@@ -61,6 +160,8 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-6">
                 <div class="form-group">
                     <app-form-label [labelForName]="'remarks'" [labelName]="'Remarks'"></app-form-label>
                     <div class="form-control-wrap">
@@ -72,10 +173,13 @@
                             <div *ngIf=" zoneForm.remarks ?.errors?.required">
                                 <app-required-field />
                             </div>
+
                         </span>
                     </div>
                 </div>
-                <ng-container *ngIf="isAddMode">
+            </div>
+            <ng-container *ngIf="isAddMode">
+                <div class="col-sm-6">
                     <div class="custom-control custom-control-sm custom-checkbox checked">
                         <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
                             id="saveAndNew">
@@ -83,8 +187,8 @@
                             Save & create new zone
                         </label>
                     </div>
-                </ng-container>
-            </div>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="row my-3 mx-2 mb-3 justify-content-end">

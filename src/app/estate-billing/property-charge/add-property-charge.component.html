@@ -23,7 +23,7 @@
                         <div class="form-control-select">
                             <select id="regionId" formControlName="regionId" class="form-control"
                                 [ngClass]="{ 'is-invalid': ( propertyChargeForm.regionId?.touched || propertyChargeForm.regionId?.dirty || submitted) && propertyChargeForm.regionId?.errors  }">
-                                <option value="" class="fs-6" selected>Select One</option>
+                                <option value="" class="fs-6" selected disabled>Select One</option>
                                 <option *ngFor="let data of listOfRegions" [value]="data.recordId">
                                     {{data.regionName}}
                                 </option>
@@ -44,7 +44,7 @@
                     <div class="form-control-wrap">
                         <ng-select id="chargeYear" formControlName="chargeYear" [clearable]="false"
                             [ngClass]="{ 'is-invalid': ( propertyChargeForm.chargeYear?.touched || propertyChargeForm.chargeYear?.dirty || submitted) && propertyChargeForm.chargeYear?.errors  }">
-                            <ng-option value="" class="fs-6" selected>Select One</ng-option>
+                            <ng-option value="" class="fs-6" selected disabled>Select One</ng-option>
                             <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
                                 {{data}}
                             </ng-option>

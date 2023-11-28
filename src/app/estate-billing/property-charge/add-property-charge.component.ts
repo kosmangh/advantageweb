@@ -70,7 +70,10 @@ export class AddPropertyChargeComponent implements OnInit {
     if (this.isAddMode) {
       this.propertyChargeHeaderMsg = 'New property charge';
       this.title.setTitle(this.propertyChargeHeaderMsg);
-      this.propertyChargeFormGroup.patchValue({ chargeYear: new Date().getFullYear() });
+      this.propertyChargeFormGroup.patchValue({
+        chargeYear: new Date().getFullYear() ,
+        regionId: this.currentUser.regionId ,
+        });
     } else {
       this.propertyChargeHeaderMsg = 'Edit property charge';
       this.title.setTitle(this.propertyChargeHeaderMsg);
@@ -93,7 +96,7 @@ export class AddPropertyChargeComponent implements OnInit {
       secondClassCharge: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       thirdClassCharge: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       recordId: [ '', ],
-      saveAndNew: [ false, ]
+      saveAndNew: [ true, ]
     });
   }
   get propertyChargeForm() { return this.propertyChargeFormGroup.controls; }
@@ -153,7 +156,15 @@ export class AddPropertyChargeComponent implements OnInit {
                 this.addPropertyChargeBsModalRef.hide();
                 this.accountService.reloadCurrentRoute();
               }
+              let region = this.propertyChargeFormGroup.value.regionId;
+              let year = this.propertyChargeFormGroup.value.chargeYear;
               this.propertyChargeFormGroup.reset();
+              this.propertyChargeFormGroup.patchValue({
+                regionId: region,
+                chargeYear: year,
+              })
+              localStorage.setItem('region', region);
+              localStorage.setItem('year', year);
               this.submitted = false;
               this.logAction(`created PropertyCharge ${propertyUsageName}`, PortalMenus.ESTATE_BILLING);
             },
@@ -254,7 +265,7 @@ export class AddPropertyChargeComponent implements OnInit {
       }
     });
 
-    
+
   }
 
 

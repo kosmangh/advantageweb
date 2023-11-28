@@ -25,7 +25,7 @@
         <div class="form-group">
             <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
             <div class="form-control-wrap">
-                <ng-select id="chargeYear" [clearable]="false" [(ngModel)]="chargeYear">
+                <ng-select id="chargeYear" [clearable]="false" [(ngModel)]="chargeYear" (change)="fetchPropertyCharges()">
                     <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
                         {{data}}
                     </ng-option>

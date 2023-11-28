@@ -35,6 +35,9 @@ import { AddOccupantPropertyComponent } from 'src/app/occupancy/occupant-propert
 import { ViewOccupantPropertyComponent } from 'src/app/occupancy/occupant-properties/view-occupant-property.component';
 import { AddInstitutionOccupantComponent } from 'src/app/occupancy/occupants/add-institution-occupant.component';
 import Swal from 'sweetalert2';
+import { DemandNoticeResponse } from 'src/app/@restmodels/bill-payment/demand-notice.response';
+import { DemandNotice } from 'src/app/@models/bill-payment/demand-notice';
+import { DemandNoticeRequest } from 'src/app/@restmodels/bill-payment/demand-notice.request';
 
 @Component({
   standalone: true,
@@ -67,13 +70,14 @@ export class DemandNoticeComponent implements OnInit, OnDestroy {
   alertService = inject(AlertService);
   utilsService = inject(UtilsService);
   occupantsService = inject(OccupancyService);
-  totalCredit: string | number;
-  totalDebit: string | number;
-  balance: string | number;
+  totalArrears: string | number;
+  totalCurrentCharge: string | number;
+  totalAmountDue: string | number;
 
   searchParameter: string = "BAB";
   listOfChargeYears: any[];
   chargeYear: number;
+  demandNotices: DemandNotice[];
   constructor(
     private billPaymentService: BillPaymentService,
     private logger: NGXLogger,
@@ -89,13 +93,11 @@ export class DemandNoticeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.searchParameter == "BAB";
     this.chargeYear = this.utilsService.getFirstDayDate().getFullYear();
-    this.startDate = this.utilsService.getFirstDayDate();
-    this.endDate = new Date();
     this.estate = "A";
     this.block = "A";
-    this.totalCredit = 0.0;
-    this.totalDebit = 0.0;
-    this.balance = 0.0;
+    this.totalArrears = 0.0;
+    this.totalCurrentCharge = 0.0;
+    this.totalAmountDue = 0.0;
     this.searchParameterListener();
     this.listOfChargeYears = this.utilsService.getChargeYears();
 
@@ -136,34 +138,34 @@ export class DemandNoticeComponent implements OnInit, OnDestroy {
   }
 
   searchBillPayments(): void {
-    this.billPayments = [];
-    const request = new PropertyLedgerEntriesRequest();
-    request.searchBy = this.searchParameter;
+    const request = new DemandNoticeRequest();
+    request.searchParameter = this.searchParameter;
     request.searchValue = this.searchValue;
-    request.endDate = this.endDate;
-    request.startDate = this.startDate;
-    request.occupantId = "";
-    request.propertyId = "";
+    request.chargeYear = this.chargeYear;
     if (this.searchParameter == "BAB") {
       request.searchValue = this.block;
     }
-    request.propertyId = this.block;
-    this.billPaymentService.fetchBillPayments(this.currentUser, request).subscribe({
-      next: (res: PropertyLedgerEntriesResponse) => {
-        this.logger.info(`fetchBillPayments response ` + JSON.stringify(res));
+    this.totalArrears = 0.0;
+    this.totalCurrentCharge = 0.0;
+    this.totalAmountDue = 0.0;
+    this.demandNotices = [];
+    this.billPaymentService.generateDemandNotice(this.currentUser, request).subscribe({
+      next: (res: DemandNoticeResponse) => {
+        this.logger.info(`generateDemandNotice response ` + JSON.stringify(res));
         if (res.headerResponse.responseCode !== '000') {
           this.alertService.showErrorMsg(res.headerResponse.responseMessage);
           return;
         }
-        if (res.propertyLedgers.length <= 0) {
-          this.alertService.showInfoMsgGeneral("No payments found");
-          this.logger.info("No payments found");
+        if (res.demandNotices.length <= 0) {
+          this.alertService.showInfoMsgGeneral("No demand notice found");
+          this.logger.info("No demand notice found");
           return;
         }
-        this.billPayments = res.propertyLedgers;
-        this.totalCredit = res.totalCredit;
-        this.totalDebit = res.totalDebit;
-        this.balance = res.currentBalance;
+        this.demandNotices = res.demandNotices;
+
+        this.totalCurrentCharge = res.totalCurrentCharge;
+        this.totalArrears = res.totalArrears;
+        this.totalAmountDue = res.totalAmountDue;
       },
       error: error => {
         this.logger.error(error);
@@ -178,7 +180,14 @@ export class DemandNoticeComponent implements OnInit, OnDestroy {
   }
 
   printDemandNotice(): void {
-    this.billPaymentService.generateJasperReport(this.currentUser);
+    const request = new DemandNoticeRequest();
+    request.searchParameter = this.searchParameter;
+    request.searchValue = this.searchValue;
+    request.chargeYear = this.chargeYear;
+    if (this.searchParameter == "BAB") {
+      request.searchValue = this.block;
+    }
+    this.billPaymentService.generateJasperReport(this.currentUser, request);
   }
 
   fetchEstates(): void {

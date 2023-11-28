@@ -63,7 +63,7 @@ export class AddZoneComponent implements OnInit {
       this.title.setTitle(this.zoneHeaderMsg);
       this.zoneFormGroup.patchValue(this.zone);
     }
-    this.addZoneBsModalRef.setClass("gray modal-sm modal-dialog-top");
+    this.addZoneBsModalRef.setClass("gray modal-lg modal-dialog-top");
 
   }
 
@@ -73,7 +73,13 @@ export class AddZoneComponent implements OnInit {
     this.zoneFormGroup = this.fb.group({
       zoneName: [ '', { updateOn: 'blur', validators: [ Validators.required, Validators.minLength(3) ] } ],
       contactNo: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      otherContactNo: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       address: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      accountNo: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      bankName: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      bankBranch: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      website: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
+      email: [ '', { updateOn: 'blur', validators: [ Validators.required ,Validators.email] } ],
       remarks: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       recordId: [ '', ],
       saveAndNew: [ false, ]

@@ -67,8 +67,13 @@ export class PropertyChargeListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.logAction("Viewed property charges page", PortalMenus.ESTATE_BILLING);
-    this.regionId = this.currentUser.regionId;
-    this.chargeYear = new Date().getFullYear();
+
+    this.regionId = localStorage.getItem("region") ?? this.currentUser.regionId;
+    this.chargeYear = Number(localStorage.getItem("year") ?? new Date().getFullYear()) ;
+
+    // this.regionId = this.currentUser.regionId;
+    // this.chargeYear = new Date().getFullYear();
+
     this.listOfChargeYears = this.utilsService.getChargeYears();
     this.fetchRegions();
     this.refreshButton();

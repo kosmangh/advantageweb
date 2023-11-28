@@ -11,6 +11,8 @@ import { UtilsService } from './utils.service';
 import { PayBillRequest } from '../@restmodels/bill-payment/pay-bill.request';
 import { PropertyLedgerEntriesRequest } from '../@restmodels/bill-payment/property-ledger-entries.request';
 import { GeneralRequest } from '../@restmodels/general.request';
+import { DemandNoticeRequest } from '../@restmodels/bill-payment/demand-notice.request';
+import { DemandNoticeResponse } from '../@restmodels/bill-payment/demand-notice.response';
 
 @Injectable({
   providedIn: 'root'
@@ -73,13 +75,17 @@ export class BillPaymentService {
       );
   }
 
-  generateJasperReport(currentUser: User) {
-    const request = new GeneralRequest();
-    request.headerRequest = this.utilsService.getRequestHeader(currentUser.zoneId, currentUser.regionId, 'PRINT_SUMMARY_REPORT');
-    // request.startDate = startDate;
-    // request.endDate = endDate;
-    // request.searchBy = searchBy;
-    // request.searchValue = searchValue;
+  generateDemandNotice(currentUser: User, request: DemandNoticeRequest): Observable<DemandNoticeResponse> {
+    request.headerRequest = this.utilsService.getRequestHeader(currentUser.zoneId, currentUser.regionId, 'GENERATE_DEMAND_NOTICE');
+    this.logger.info('DemandNoticeRequest request ' + JSON.stringify(request));
+    return this.http.post<DemandNoticeResponse>(`${environment.url + PortalMenus.API_BILL_PAYMENT}demandnotice`, request)
+      .pipe(
+        timeout(environment.timeout),
+      );
+  }
+
+  generateJasperReport(currentUser: User,request: DemandNoticeRequest) {
+    request.headerRequest = this.utilsService.getRequestHeader(currentUser.zoneId, currentUser.regionId, 'PRINT_DEMAND_NOTICE_REPORT');
     this.http.post(`${environment.url}/reports/generatedemandnoticereport`, request, { responseType: 'blob' })
       .subscribe(response => {
         // Open the PDF response in a new browser tab
