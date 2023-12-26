@@ -2,9 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageTitleComponent } from "../@shared/components/page-title.component";
 import { User } from '../@models/user';
-import { NGXLogger } from 'ngx-logger';
 import { AlertService } from '../@services/alert.service';
-import { UtilsService } from '../@services/utils.service';
 import { AuthService } from '../@services/auth.service';
 import { AvatarBgPipe } from "../@shared/pipes/avatar-bg.pipe";
 import { AvatarNamePipe } from "../@shared/pipes/avatar-name.pipe";
@@ -37,7 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.findDay();
-    // this.fetchDashboardSummary();
+    this.fetchDashboardSummary();
   }
   ngOnDestroy(): void {
   }
