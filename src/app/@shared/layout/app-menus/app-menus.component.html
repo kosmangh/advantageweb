@@ -26,7 +26,27 @@
                                             <span class="nk-menu-text">Dashboard</span>
                                         </a>
                                     </li>
-                                    
+
+                                    <li class="nk-menu-item has-sub active" *ngIf="false">
+                                        <a routerLinkActive="active current-page" class="nk-menu-link nk-menu-toggle"
+                                            (click)="toggleMenu()">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                            <span class="nk-menu-text">Projects</span>
+                                        </a>
+                                        <ul class="nk-menu-sub" style="display: block;" *ngIf="isMenuOpen">
+                                            <li class="nk-menu-item">
+                                                <a href="html/project-card.html" class="nk-menu-link"><span
+                                                        class="nk-menu-text">Project Cards</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="html/project-list.html" class="nk-menu-link"><span
+                                                        class="nk-menu-text">Project List</span></a>
+                                            </li>
+                                        </ul><!-- .nk-menu-sub -->
+                                    </li>
+
+
+
 
                                     <li class="nk-menu-item" routerLinkActive="active current-page">
                                         <a routerLink="/settings" class="nk-menu-link" data-bs-original-title=""

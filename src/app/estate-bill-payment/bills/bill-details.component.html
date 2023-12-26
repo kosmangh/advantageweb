@@ -1,0 +1,88 @@
+<div class="modal-header">
+    <h6 class="modal-title">Property {{bills.property}} Details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close"
+        (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+        <div class="pricing-body">
+            <ul class="pricing-features">
+                <span class="preview-title-lg overline-title">occupant Details</span>
+                <li>
+                    <span class="w-50">occupant</span> -
+                    <span class="ms-auto fw-bolder">{{occupant.occupantName}}</span>
+                </li>
+
+                <li>
+                    <span class="w-50">Property</span> -
+                    <span class="ms-auto fw-bolder">{{occupant.propertyName}}</span>
+                </li>
+                <span class="preview-title-lg overline-title mt-3">Bill Details</span>
+                <li>
+                    <span class="w-50">Bill Amount</span> -
+                    <span class="ms-auto fw-bolder">{{bills.billAmount| number : '1.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Amount Paid</span> -
+                    <span class="ms-auto fw-bolder">{{bills.billAmountPaid| number : '1.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Arrears</span> -
+                    <span class="ms-auto fw-bolder">{{bills.arrears| number : '1.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Bill Status</span> -
+                    <span class="ms-auto fw-bolder">{{bills.billStatus}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Bill Type</span> -
+                    <span class="ms-auto fw-bolder">{{bills.billType}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Entry Type</span> -
+                    <span class="ms-auto fw-bolder">{{bills.entryType}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Bill Year</span> -
+                    <span class="ms-auto fw-bolder">{{bills.billYear}}</span>
+                </li>
+                <span class="preview-title-lg overline-title mt-3">Bill Activities</span>
+                <li>
+                    <span class="w-50">Bill Date</span> -
+                    <span class="ms-auto fw-bolder">
+                        <span class="d-block">
+                            {{bills.createdDate | date:'dd/MM/yyyy HH:MM a'}} {{bills.createdDate.toString() |
+                            timeAgo}}
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50">Billed By</span> -
+                    <span class="ms-auto fw-bolder">{{bills.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-50">Late Modified Date</span> -
+                    <span class="ms-auto fw-bolder">
+                        <span class="d-block">
+                            {{bills.lastModifiedDate | date:'dd/MM/yyyy HH:MM a'}} {{bills.lastModifiedDate.toString() |
+                            timeAgo}}
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-50">Last Modified By</span> -
+                    <span class="ms-auto fw-bolder">{{bills.createdBy}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a (click)="modalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

@@ -59,6 +59,16 @@ export class AlertService {
         });
     }
 
+    showSuccessMsgAndStay(msg: string): any {
+        Swal.fire({
+            text: msg,
+            title: 'Success',
+            position: 'top',
+            showConfirmButton: true,
+            icon: 'success',
+        });
+    }
+
     showErrorMsg(msg: string): any {
 
         Swal.fire({

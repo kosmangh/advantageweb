@@ -26,7 +26,7 @@ import { EstateBlockListResponse } from 'src/app/@restmodels/settings/estate-blo
 import { EstateListResponse } from 'src/app/@restmodels/settings/estate-list.response';
 import { GroupRentBillingService } from 'src/app/@services/ground-rent-billing.service';
 import { GroundRentalBillListResponse } from 'src/app/@restmodels/estate-billing/ground-rental-bill-list.response';
-import { PropertyLedger } from 'src/app/@models/estate-billing/property-ledger';
+import { PropertyLedger } from 'src/app/@models/bill-payment/property-ledger';
 import { RemoveHyphenPipe } from "../../@shared/pipes/remove-hyphen.pipe";
 import { AddGroundBillComponent } from './add-ground-bill.component';
 
@@ -34,7 +34,7 @@ import { AddGroundBillComponent } from './add-ground-bill.component';
     standalone: true,
     templateUrl: './ground-rent-billing.component.html',
     imports: [CommonModule, TableModule, FormsModule, NgSelectModule,
-        FullNameComponent, AddItemComponent, PageTitleComponent,
+      FullNameComponent, AddItemComponent, PageTitleComponent,
         ListFilterPipe, TimeAgoPipe, FormLabelComponent, RemoveHyphenPipe]
 })
 export class GroundRentBillingComponent implements OnInit, OnDestroy {

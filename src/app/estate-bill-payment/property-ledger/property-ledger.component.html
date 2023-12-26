@@ -1,1 +1,181 @@
-<p>property-ledger works!</p>
+<app-add-item [pageTitleName]="'Property ledger'" [description]="'View debit and credit entries of a property'" />
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card card-no-border">
+            <div class="card-title">
+                <div class="form-group mb-3">
+                    <app-form-label [labelForName]="'searchText'" [labelName]="'Search  occupant or property'" />
+                    <div class="form-control-wrap">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="searchTerm"
+                                placeholder="Enter occupant name,mobile no,property name,id">
+                            <div class="input-group-append select-cursor">
+                                <span class="input-group-text btn-dim btn-primary" id="searching"
+                                    (click)="searchOccupant()">
+                                    <em class="icon ni ni-search"></em><span>Search</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if(listOfOccupantProperties) {
+            <ul class="custom-control-group custom-control-vertical custom-control-stacked w-100">
+                <li *ngFor="let item of listOfOccupantProperties">
+                    <div class="custom-control custom-control-sm custom-radio custom-control-pro select-cursor"
+                        (click)="selectOccupant(item)">
+                        <input type="radio" class="custom-control-input" id="{{item.recordId}}" name="user-choose">
+                        <label class="custom-control-label" for="{{item.recordId}}">
+                            <span class="user-card">
+                                <span class="user-avatar {{ '' | avatarBg }}">
+                                    <span>{{item.occupantName | avatarName}}</span>
+                                </span>
+                                <span class="user-info">
+                                    <span class="lead-text">{{item.occupantName}}</span>
+                                    <span class="sub-text">{{item.mobileNo}}</span>
+                                    <span class="sub-text">{{item.propertyName}} ({{item.propertyId}}) </span>
+                                    <span class="sub-text">{{item.occupationType}}</span>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            }
+            <!-- @else {
+            <div class="text-center">
+                <img src="assets/images/icons/plan-s1.svg" alt="" class="w-40 h-25">
+                <h6 class="text-muted">No records found</h6>
+            </div>
+            } -->
+            <app-occupant-property-details [occupantDetails]="selectedOccupant" *ngIf="showOccupantDetails" />
+
+        </div>
+    </div>
+    <ng-container>
+        <div class="col-lg-8">
+
+            <div class="row gy-2 gx-2  mb-4 align-items-center">
+                <div class="col-auto">
+                    <div class="form-control-wrap">
+                        <div class="form-group">
+                            <label class="form-label pt-0" for="startDate">Start Date</label><br />
+                            <p-calendar [monthNavigator]="true" [yearNavigator]="true" dateFormat="yy-mm-dd"
+                                styleClass=”form-control” dateFormat="dd-mm-yy" [showIcon]="true"
+                                [(ngModel)]="startDate">
+                            </p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label pt-0" for="endDate">End Date</label><br />
+                    <p-calendar styleClass=”form-control” dateFormat="dd-mm-yy" [showIcon]="true" [(ngModel)]="endDate">
+                    </p-calendar>
+                </div>
+
+                <div class="col-auto">
+                    <button class="btn btn-dim btn-primary mt-4" type="button" title=""
+                        (click)="searchAllOccupantBills()">
+                        Search
+                    </button>
+                </div>
+                <div class="col-auto ">
+                    <div class="dropdown" tooltip="Data export">
+                        <a href="#" class="dropdown-toggle btn  btn-light mt-4" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span>Export ledger</span>
+                            <em class="icon ni ni-chevron-down"></em>
+                        </a>
+                        <div class="dropdown-menu" style="">
+                            <ul class="link-list-opt no-bdr">
+                                <li>
+                                    <a (click)="export()">
+                                        <em class="icon ni ni-file-xls text-primary"></em>
+                                        <span>Export to Excel</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a style="cursor: not-allowed;">
+                                        <em class="icon ni ni-file-pdf text-primary disabled"></em>
+                                        <span>Export to PDF</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row gy-2 gx-3 my-3">
+                <span class="preview-title-lg overline-title">Property ledger history</span>
+                <p-table [value]="listOfPropertyLedgers | filter:searchedKeyword" #dt1 responsiveLayout="scroll"
+                    sortMode="multiple" responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped"
+                    [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [resizableColumns]="true" [autoLayout]="true" scrollDirection="both">
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-end">Amount</th>
+                            <th>Debit/Credit</th>
+                            <th>Narration</th>
+                            <th>Bill Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-data>
+                        <tr>
+                            <td class="text-end ">{{data?.amountPaid | number: '.2-2'}}</td>
+                            <td>
+                                <span >
+                                    {{data?.debitCreditEntry | removeHyphen | titlecase}}
+                                </span>
+                            </td>
+                            <td>{{data?.paymentFor}}</td>
+                            <td>
+                                {{data?.createdBy}}
+                                <div class="fw-lighter">
+                                    <small class="d-block">{{data?.createdDate | date:'dd/MM/yyyy HH:mm a'}}</small>
+                                    <small> {{data?.createdDate | timeAgo}}</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="align-center select-cursor" tooltip="View ledger details">
+                                    <div class="user-avatar user-avatar-sm bg-light"
+                                        (click)="openViewLedgerComponent(data)">
+                                        <span><em class="icon ni ni-eye"></em></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    
+                </p-table>
+
+            </div>
+            <div class="row mt-3 justify-content-end">
+                <div class="col-6"></div>
+                <div class="col-6">
+                    <div class="row gy-2">
+                        <div class="col-sm-12 text-end">
+                            Currency:<span class="ff-mono fw-bolder "> GHS</span>
+                        </div>
+                        <div class="col-sm-12  text-end  ">
+                            Total Debit: <span class="ff-mono fw-bolder "> {{totalDebit | number :
+                                '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-12 text-end ">
+                            Total Credit: <span class="ff-mono fw-bolder "> {{totalCredit | number :
+                                '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-12 text-end">
+                            Outstanding Bal: <span class="ff-mono fw-bolder "> {{balance | number :
+                                '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>

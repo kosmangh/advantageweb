@@ -1,5 +1,5 @@
-import { BackRentalBillingComponent } from './back-rental-billing/back-rental-billing.component';
-import { RentalBillingComponent } from './rental-billing/rental-billing.component';
+import { HouseRentBackBillingComponent } from './house-rent-billing/house-rent-back-billing.component';
+import { HouseRentBillingComponent } from './house-rent-billing/house-rent-billing.component';
 import { Region } from './../@models/settings/region';
 import { Routes } from '@angular/router';
 
@@ -12,7 +12,7 @@ export const ESTATE_BILLING_ROUTES: Routes = [
       {
         path: 'charges',
         loadComponent: () =>
-          import('./property-charge/property-charge-list.component').then((c) => c.PropertyChargeListComponent),
+          import('./ground-property-charge/property-charge-list.component').then((c) => c.PropertyChargeListComponent),
       },
       {
         path: 'penalties',
@@ -27,12 +27,12 @@ export const ESTATE_BILLING_ROUTES: Routes = [
       {
         path: 'rental-billing',
         loadComponent: () =>
-          import('./rental-billing/rental-billing.component').then((c) => c.RentalBillingComponent),
+          import('./house-rent-billing/house-rent-billing.component').then((c) => c.HouseRentBillingComponent),
       },
       {
         path: 'back-rental-billing',
         loadComponent: () =>
-          import('./back-rental-billing/back-rental-billing.component').then((c) => c.BackRentalBillingComponent),
+          import('./house-rent-billing/house-rent-back-billing.component').then((c) => c.HouseRentBackBillingComponent),
       },
 
     ]

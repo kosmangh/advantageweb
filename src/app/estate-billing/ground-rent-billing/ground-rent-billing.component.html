@@ -3,7 +3,7 @@
     <span class="newItemName">
         <div class="dropdown">
             <a (click)="openGroundRentBillModalComponent()" class="btn btn-primary"><em class="icon ni ni-plus">
-                </em><span>Add / Edit ground rent</span>
+                </em><span>Bill ground rent</span>
             </a>
         </div>
     </span>
@@ -110,7 +110,7 @@
             <td class="text-capitalize">{{data.propertyUsage | titlecase | removeHyphen}}</td>
             <td>{{data.occupationType | titlecase}}</td>
             <td class="text-end">{{data.ledgerYear}}</td>
-            <td class="text-end">{{data.amountInvolved | number: '.2-2'}}</td>
+            <td class="text-end">{{data.amountPaid | number: '.2-2'}}</td>
             <td class="text-capitalize">{{data.paymentType | titlecase | removeHyphen}}</td>
             <td>
                 {{data.createdBy | lowercase}}

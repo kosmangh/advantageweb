@@ -1,0 +1,30 @@
+    <div>
+        <span class="preview-title-lg overline-title">Occupant Information</span>
+        <dl class="row">
+            <dd class="col-sm-6">Occupant</dd>
+            <dt class="col-sm-6">{{occupantDetails?.occupantName}}</dt>
+            <dd class="col-sm-6">Occupant Type</dd>
+            <dt class="col-sm-6">
+                {{occupantDetails?.institutional ==true ? 'Institution':'Individual' }}
+            </dt>
+            <dd class="col-sm-6">Mobile No.</dd>
+            <dt class="col-sm-6"> {{occupantDetails?.mobileNo}} </dt>
+            <dd class="col-sm-6">Email Address</dd>
+            <dt class="col-sm-6">{{occupantDetails?.emailAddress}}</dt>
+            <dd class="col-sm-6">Occupation Type</dd>
+            <dt class="col-sm-6">{{occupantDetails?.occupationType | titlecase}}</dt>
+        </dl>
+        <span class="preview-title-lg overline-title">Property Information</span>
+        <dl class="row">
+            <dd class="col-sm-6">Property Id</dd>
+            <dt class="col-sm-6">{{occupantDetails?.propertyId}}</dt>
+            <dd class="col-sm-6">Property Name</dd>
+            <dt class="col-sm-6">{{occupantDetails?.propertyName}}</dt>
+            <dd class="col-sm-6">Property No.</dd>
+            <dt class="col-sm-6"> {{occupantDetails?.propertyNo}} </dt>
+            <dd class="col-sm-6">Property Usage</dd>
+            <dt class="col-sm-6">{{occupantDetails?.propertyUsage | removeHyphen | titlecase}}</dt>
+            <dd class="col-sm-6">Occupant Category</dd>
+            <dt class="col-sm-6">{{occupantDetails?.propertyCategory | titlecase}}</dt>
+        </dl>
+    </div>

@@ -1,4 +1,4 @@
-import { PropertyLedger } from "src/app/@models/estate-billing/property-ledger";
+import { PropertyLedger } from "src/app/@models/bill-payment/property-ledger";
 import { HeaderResponse } from "../header.response";
 
 export class GroundRentalBillListResponse {

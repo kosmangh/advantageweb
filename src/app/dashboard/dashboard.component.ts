@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.findDay();
-    this.fetchDashboardSummary();
+    // this.fetchDashboardSummary();
   }
   ngOnDestroy(): void {
   }

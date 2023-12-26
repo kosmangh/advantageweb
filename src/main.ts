@@ -11,8 +11,6 @@ import { BnNgIdleService } from 'bn-ng-idle';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor } from './app/@services/error.interceptor';
-import { HttpCacheInterceptorModule } from '@ngneat/cashew';
-
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -25,17 +23,11 @@ bootstrapApplication(AppComponent, {
         serverLogLevel: environment.server_log_level,
         disableConsoleLogging: environment.disable_console_logging,
       }),
-      // TabsModule.forRoot(),
       ModalModule.forRoot(),
-      HttpCacheInterceptorModule.forRoot(),
       BrowserAnimationsModule,
-      
     ),
     BnNgIdleService,
     provideRouter(APP_ROUTES, withHashLocation(), withComponentInputBinding()),
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // { provide: HTTP_CACHE_CONFIG, useValue: cashewConfig(config) }
-   
-
   ],
 }).catch((err) => console.error(err));

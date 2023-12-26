@@ -1,0 +1,111 @@
+<app-add-item [pageTitleName]="'Ground Rent Billing'"
+    [description]="'Apply current month and year house rent for estates,properties and occupants'">
+    <span class="newItemName">
+        <a (click)="applyLastRentBilled2CurrentMonth()" class="btn btn-outline-primary">
+            <em class="icon ni ni-view-grid-fill"></em>
+            <span>Batch rental billing</span>
+        </a>
+    </span>
+    <span class="anotherItemName">
+        <a (click)="openGroundRentBillModalComponent()" class="btn btn-primary">
+            <em class="icon ni ni-plus">
+            </em><span>Add a rental bill</span>
+        </a>
+    </span>
+</app-add-item>
+
+
+<div class="row gy-2 gx-3 mb-4 align-items-center">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <app-form-label [labelForName]="'estate'" [labelName]="'Rent Month'" />
+            <div class="form-control-wrap">
+                <ng-select id="estate" [clearable]="false" [(ngModel)]="rentMonth">
+                    <ng-option value="A" class="fs-6" selected>Select Month</ng-option>
+                    <ng-option *ngFor="let data of listOfMonths" [value]="data">
+                        {{data}}
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <app-form-label [labelForName]="'chargeYear'" [labelName]="'Rent Year'" />
+            <div class="form-control-wrap">
+                <ng-select id="chargeYear" [clearable]="false" [(ngModel)]="chargeYear">
+                    <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
+                        {{data}}
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2" *ngIf="listOfPropertyCharges?.length>0">
+        <div class="form-control-wrap mt-4">
+            <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
+            <input type="text" class="form-control" id="default-04" placeholder=" Search property here"
+                [(ngModel)]="searchedKeyword">
+        </div>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-dim btn-primary mt-4" type="button" title="" (click)="fetchRentalBills()">
+            Search
+        </button>
+    </div>
+</div>
+
+<p-table [value]="listOfPropertyCharges | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
+    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
+    [autoLayout]="true" scrollDirection="both">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>SN</th>
+            <th>Occupant</th>
+            <th>Property</th>
+            <th class="text-end">Property No</th>
+            <th>Usage</th>
+            <th>Occupation Type</th>
+            <th class="text-end">Charge Year</th>
+            <th class="text-end">Amount</th>
+            <th>Bill Type</th>
+            <th>Bill Date</th>
+            <th>Last Updated</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td>
+                <app-full-name fullName="{{data?.occupantName}}" otherFieldName="{{data?.institutionalDisplayName}}" />
+            </td>
+            <td>
+                <app-full-name  [showAvatar]="false" fullName="{{data?.propertyName}}"
+                    otherFieldName="{{data?.propertyId | titlecase | removeHyphen }}" />
+            </td>
+            <td class="text-end">{{data.propertyNo}}</td>
+            <td class="text-capitalize">{{data.propertyUsage | titlecase | removeHyphen}}</td>
+            <td>{{data.occupationType | titlecase}}</td>
+            <td class="text-end">{{data.ledgerYear}}</td>
+            <td class="text-end font-monospace">{{data.amountPaid | number: '.2-2'}}</td>
+            <td class="text-capitalize">{{data.paymentType | titlecase | removeHyphen}}</td>
+            <td>
+                {{data.createdBy | lowercase}}
+                <div class="fw-lighter">
+                    <small class="d-block">{{data.createdDate | date:'medium'}}</small>
+                    <small class='text-primary'> {{data.createdDate | timeAgo}}</small>
+                </div>
+            </td>
+            <td>
+                {{data.lastModifiedBy | lowercase}}
+                <div class="fw-lighter">
+                    <small class="d-block">{{data.lastModifiedDate | date:'medium'}}</small>
+                    <small class='text-primary'> {{data.lastModifiedDate | timeAgo}}</small>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

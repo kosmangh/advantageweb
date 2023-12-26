@@ -20,7 +20,6 @@ import { EstatePropertyRequest } from '../@restmodels/settings/estate-property.r
 import { EstateRequest } from '../@restmodels/settings/estate.request';
 import { GeneralSearchRequest } from '../@restmodels/general-search.request';
 import { PortalMenus } from '../@models/portalMenus';
-import { withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +94,6 @@ export class SettingsService {
     request.headerRequest = this.utilsService.getRequestHeader('ALL', "ALL", 'REGION_LIST');
     this.logger.info('regions request ' + JSON.stringify(request));
     return this.http.post<RegionListResponse>(`${environment.url + PortalMenus.API_SETTINGS}regions`, request, {
-      context: withCache()
     })
       .pipe(
         timeout(environment.timeout),

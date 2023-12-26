@@ -10,7 +10,7 @@ export class OccupantProperty extends CommonFields {
     lastDateOfOccupancy: Date;
     occupationType: string;
 
-    institutional: boolean;
+    institutional: boolean=null;
     institutionalDisplayName: string;
 
     blockName: string;

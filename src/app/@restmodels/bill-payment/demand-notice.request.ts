@@ -3,5 +3,7 @@ export class DemandNoticeRequest {
     headerRequest: HeaderRequest;
     searchParameter: string;
     searchValue: string;
-    chargeYear: number;
+    billMonth: string;
+    billType: string;
+    billYear: number;
 }

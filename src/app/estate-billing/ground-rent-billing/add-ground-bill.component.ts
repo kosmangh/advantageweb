@@ -194,7 +194,7 @@ export class AddGroundBillComponent implements OnInit {
                 this.alertService.showErrorMsg(res.headerResponse.responseMessage);
                 return;
               }
-              this.alertService.showSuccessMsg(res.headerResponse.responseMessage);
+              this.alertService.showSuccessMsgAndStay(res.headerResponse.responseMessage);
               if (!saveAndShow) {
                 this.addGroundRentBillBsModalRef.hide();
                 this.accountService.reloadCurrentRoute();

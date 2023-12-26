@@ -14,11 +14,7 @@ export const GENERAL_REPORTS_ROUTES: Routes = [
         loadComponent: () =>
           import('./bills-report/bills-report.component').then((c) => c.BillsReportComponent),
       },
-      {
-        path: 'ground-rent-demand-notice',
-        loadComponent: () =>
-          import('./ground-rent-demand-notice/ground-rent-demand-notice.component').then((c) => c.GroundRentDemandNoticeComponent),
-      },
+     
       {
         path: 'ledger-reports',
         loadChildren: () =>

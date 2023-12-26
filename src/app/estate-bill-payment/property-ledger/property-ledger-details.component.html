@@ -1,0 +1,91 @@
+<div class="modal-header">
+    <h6 class="modal-title">{{propertyLedger?.occupantName}} payment details</h6>
+    <button type="button btn-xs" class="close btn-close pull-right" aria-label="Close" (click)="bsModalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="card card-no-border">
+        <div class="pricing-body">
+            <ul class="pricing-features">
+                <span class="preview-title-lg overline-title">Occupancy Details</span>
+                <li>
+                    <span class="w-40">Occupant</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.occupantName}}</span>
+                </li>
+                <li>
+                    <span class="w-40">Occupant Type</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.institutionalDisplayName}}</span>
+                </li>
+
+                <li>
+                    <span class="w-40">Property No.</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.propertyNo}}</span>
+                </li>
+                <li>
+                    <span class="w-40">Property Name</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.propertyName}}</span>
+                </li>
+
+                <li>
+                    <span class="w-40">Property Usage</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.propertyUsage | removeHyphen | titlecase}}</span>
+                </li>
+
+
+                <span class="preview-title-lg overline-title mt-3">Ledger Details</span>
+                <li>
+                    <span class="w-40">Amount Paid</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.amountPaid| number : '1.2-2'}}</span>
+                </li>
+                <li>
+                    <span class="w-40">Medium Of Payment</span> -
+                    <span class="ms-auto fw-bolder"> {{propertyLedger?.mediumOfPayment| removeHyphen | titlecase}}
+                    </span>
+                </li>
+                <li>
+                    <span class="w-40">Payment Ref. No. </span> -
+                    <span class="ms-auto fw-bolder"> {{propertyLedger?.mediumOfPaymentNumber}} </span>
+                </li>
+                <li>
+                    <span class="w-40">Receipt Number Issued</span> -
+                    <span class="ms-auto fw-bolder"> {{propertyLedger?.receiptNumberIssued}} </span>
+                </li>
+                <li>
+                    <span class="w-40">Narration</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.paymentFor}}</span>
+                </li>
+                <li>
+                    <span class="w-40">Payment Date</span> -
+                    <span class="ms-auto fw-bolder">
+                        <span>{{propertyLedger?.dateOfRecordEntry | date:'medium'}}
+                            {{propertyLedger?.dateOfRecordEntry.toString() | timeAgo}}</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-40">Recorded By</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.createdBy}}</span>
+                </li>
+                <li>
+                    <span class="w-40">Last modified Date</span> -
+                    <span class="ms-auto fw-bolder">
+                        <span>{{propertyLedger?.lastModifiedDate | date:'medium'}}
+                            {{propertyLedger?.lastModifiedDate.toString() |
+                            timeAgo}}</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="w-40">Last Modified By</span> -
+                    <span class="ms-auto fw-bolder">{{propertyLedger?.lastModifiedBy}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="col-auto">
+        <a (click)="bsModalRef?.hide()" class="btn btn-sm  btn-primary">
+            <span>Close</span>
+        </a>
+    </div>
+</div>

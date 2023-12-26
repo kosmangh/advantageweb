@@ -25,10 +25,11 @@ export class AppComponent {
     private accountService: AuthService,
 
   ) {
-
   }
 
   ngOnInit(): void {
+  
+
     this.bnIdle.startWatching(this.SESSION_TIMEOUT).subscribe((isTimedOut: boolean) => {
       if (isTimedOut) {
         console.log('session expired');

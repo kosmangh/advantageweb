@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     standalone: true,
     imports: [ CommonModule ],
     template: `
-   <div class="nk-block-head nk-block-head-sm mb-5">
+   <div class="nk-block-head nk-block-head-sm">
     <div class="nk-block-between">
         <div class="nk-block-head-content">
             <h6 class="nk-block-title">{{pageTitleName}}</h6>

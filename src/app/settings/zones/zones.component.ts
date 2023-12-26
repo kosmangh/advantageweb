@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { PageTitleComponent } from 'src/app/@shared/components/page-title.component';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Zone } from 'src/app/@models/settings/zone';
 import { User } from 'src/app/@models/user';
@@ -19,13 +19,14 @@ import { AddZoneComponent } from './add-zone.component';
 import { ListFilterPipe } from 'src/app/@shared/pipes/list-filter.pipe';
 import { TimeAgoPipe } from "../../@shared/pipes/time-ago.pipe";
 import { CleanDatePipe } from "../../@shared/pipes/clean-date.pipe";
+import { NgbAlertModule, NgbDateStruct, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-manage-customers',
     standalone: true,
     templateUrl: './zones.component.html',
-    imports: [CommonModule, TableModule, FormsModule,
-        FullNameComponent, AddItemComponent, PageTitleComponent,
+  imports: [ CommonModule, TableModule, FormsModule, NgbDatepickerModule, JsonPipe, NgbAlertModule,
+    FullNameComponent, AddItemComponent, PageTitleComponent, ReactiveFormsModule,
         ListFilterPipe, TimeAgoPipe, CleanDatePipe]
 })
 export class ZonesComponent implements OnInit, OnDestroy {
@@ -37,6 +38,9 @@ export class ZonesComponent implements OnInit, OnDestroy {
   isAddMode: boolean;
   addZoneBsModalRef?: BsModalRef;
 
+  model: NgbDateStruct;
+
+  formGroup = new FormGroup({});
   constructor(
     private accountService: AuthService,
     private alertService: AlertService,
@@ -48,6 +52,11 @@ export class ZonesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.formGroup.addControl("test", new FormControl({ day: 20, month: 4, year: 1969 })) //nice
+    this.formGroup.valueChanges.subscribe(val => {
+      console.log(val);
+    })
+    console.log('Date is ' + this.formGroup.value);
     this.refreshButton();
     this.logAction("Viewed zones page", PortalMenus.SETTINGS);
   }

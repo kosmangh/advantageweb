@@ -1,8 +1,29 @@
-<app-add-item [pageTitleName]="'Ground Rent Demand Notice'"
-    [description]="'Raise ground rent demand notice for block properties or a single property'" />
-<div class="row gy-2 gx-2 mt-5 mb-4 align-items-center">
+<app-add-item [pageTitleName]="'Demand notice'"
+    [description]="'Raise demand notice of ground and house rents for block properties or a single property'" />
 
-    <div class="col-sm-2">
+<div class="row  mt-5">
+    <div class="col-md-2 col-sm-6">
+        <div class="preview-block">
+            <div class="custom-control custom-radio" (click)="resetList()">
+                <input type="radio" id="rentType1" name="rentType" checked="" [(ngModel)]="billType" value="GROUND_RENT"
+                    class="custom-control-input">
+                <label class="custom-control-label" for="rentType1">Ground Rent</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6">
+        <div class="preview-block">
+            <div class="custom-control custom-radio" (click)="resetList()">
+                <input type="radio" id="rentType2" name="rentType" [(ngModel)]="billType" class="custom-control-input"
+                    value="HOUSE_RENT">
+                <label class="custom-control-label" for="rentType2">House Rent</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-auto">
         <div class="form-group">
             <label class="form-label pt-0" for="searchParameter">Search By</label><br />
             <div class="form-control-wrap">
@@ -19,47 +40,70 @@
             </div>
         </div>
     </div>
-    <ng-container *ngIf="searchParameter !=='BAB'">
-        <div class="col-sm-2" *ngIf="searchParameter">
-            <div class="form-control-wrap">
-                <label class="form-label pt-0" for="searchParameter">{{searchParameterLabel}}</label><br />
-                <input type="text" autocomplete="off" class="form-control" id="searchParameter"
-                    placeholder="Enter {{searchParameterLabel}}" [(ngModel)]="searchValue">
-            </div>
-        </div>
-    </ng-container>
 
-    <ng-container *ngIf="searchParameter=='BAB'">
-        <div class="col-sm-2">
-            <div class="form-group">
-                <app-form-label [labelForName]="'estate'" [labelName]="'Estates'" />
-                <div class="form-control-wrap">
-                    <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
-                        <ng-option value="A" class="fs-6" selected disabled>Select Estate</ng-option>
-                        <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
-                            {{data.estateName}}
-                        </ng-option>
-                    </ng-select>
-                </div>
+    @if (searchParameter !=='BAB') {
+
+    <div class="col-auto" *ngIf="searchParameter">
+        <div class="form-control-wrap">
+            <label class="form-label pt-0" for="searchParameter">{{searchParameterLabel}}</label><br />
+            <input type="text" autocomplete="off" class="form-control" id="searchParameter"
+                placeholder="Enter {{searchParameterLabel}}" [(ngModel)]="searchValue">
+        </div>
+    </div>
+
+    }@else {
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="form-label pt-0" for="estate">Estates</label><br />
+            <div class="form-control-wrap">
+                <ng-select id="estate" [clearable]="false" [(ngModel)]="estate" (change)="fetchEstateBlocks()">
+                    <ng-option value="A" class="fs-6" selected disabled>Select
+                        Estate</ng-option>
+                    <ng-option *ngFor="let data of listOfEstates" [value]="data.recordId">
+                        {{data.estateName}}
+                    </ng-option>
+                </ng-select>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <app-form-label [labelForName]="'block'" [labelName]="'Blocks'" />
-                <div class="form-control-wrap">
-                    <ng-select id="block" [clearable]="false" [(ngModel)]="block">
-                        <ng-option value="A" class="fs-6" disabled selected>Select Block</ng-option>
-                        <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
-                            {{data.block}}
-                        </ng-option>
-                    </ng-select>
-                </div>
-            </div>
-        </div>
-    </ng-container>
+    </div>
     <div class="col-sm-2">
         <div class="form-group">
-            <app-form-label [labelForName]="'chargeYear'" [labelName]="'Charge Year'" />
+            <label class="form-label pt-0" for="block">Blocks</label><br />
+            <div class="form-control-wrap">
+                <ng-select id="block" [clearable]="false" [(ngModel)]="block">
+                    <ng-option value="A" class="fs-6" disabled selected>Select Block</ng-option>
+                    <ng-option *ngFor="let data of listOfEstateBlocks" [value]="data.recordId">
+                        {{data.block}}
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    }
+
+
+    @if (billType === "HOUSE_RENT" ) {
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="form-label pt-0" for="billMonth">Bill Month</label><br />
+            <div class="form-control-wrap">
+                <ng-select id="billMonth" [clearable]="false" [(ngModel)]="billMonth">
+                    <ng-option *ngFor="let data of listOfMonths" [value]="data">
+                        {{data | titlecase}}
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    }
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="form-label pt-0" for="block">Bill Year</label><br />
             <div class="form-control-wrap">
                 <ng-select id="chargeYear" [clearable]="false" [(ngModel)]="chargeYear">
                     <ng-option *ngFor="let data of listOfChargeYears" [value]="data">
@@ -69,20 +113,15 @@
             </div>
         </div>
     </div>
-    <div class="col-auto">
-        <button class="btn btn-dim btn-primary mt-4" type="button" (click)="searchBillPayments()">
+
+    <div class="col-auto" style="margin-top: 30px;">
+        <button class="btn btn-dim btn-primary" type="button" (click)="searchBillPayments()">
             Generate
         </button>
     </div>
-    <div class="col-auto" *ngIf="demandNotices?.length >0">
-        <button class="btn btn-dim1 btn-light mt-4" type="button" (click)="printDemandNotice()">
-        <em class="icon ni ni-printer"></em>
-        <span>Print</span>
-        </button>
-    </div>
-
 </div>
-<div class="row gy-2 gx-3 my-3">
+
+<div class="row my-4">
     <div class="col-auto">
         <div class="form-control-wrap">
             <div class="form-icon form-icon-right"><em class="icon ni ni-search"></em></div>
@@ -90,10 +129,17 @@
                 [(ngModel)]="searchedKeyword">
         </div>
     </div>
-    
+    @if (demandNotices?.length>0) {
+    <div class="col-auto">
+        <button class="btn btn-light" type="button" (click)="printDemandNotice()">
+            <em class="icon ni ni-printer"></em>
+            <span>Print demand notice</span>
+        </button>
+    </div>
+    }
 </div>
-<p-table [value]="demandNotices | filter:searchedKeyword" #dt1 responsiveLayout="scroll" sortMode="multiple"
-    responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-striped" [paginator]="true" [rows]="10"
+<p-table styleClass="p-datatable-sm p-datatable-striped" [value]="demandNotices | filter:searchedKeyword" #dt1
+    responsiveLayout="scroll" sortMode="multiple" responsiveLayout="scroll" [paginator]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25,50]"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [resizableColumns]="true"
     [autoLayout]="true" scrollDirection="both">
@@ -114,17 +160,26 @@
     <ng-template pTemplate="body" let-data>
         <tr>
             <td>
-                <app-full-name [showAvatar]="false" fullName="{{data?.lessee }}"
-                    otherFieldName="" />
+                <app-full-name [showAvatar]="false" fullName="{{data?.lessee }}" otherFieldName="" />
             </td>
             <td>{{data?.streetName}}</td>
             <td>{{data?.fileNo}}</td>
             <td>{{data?.propertyNo}}</td>
             <td>{{data?.propertyClass | titlecase}}</td>
             <td>{{data?.location}}</td>
-            <td class="text-end font-monospace"><span class="fs-15px">{{data?.currentCharge | number: '.2-2'}}</span></td>
-            <td class="text-end font-monospace"><span class="fs-15px">{{data?.arrears | number: '.2-2'}}</span></td>
-            <td class="text-end font-monospace"><span class="fs-15px">{{ (data?.currentCharge + data?.arrears)| number: '.2-2'}}</span></td>
+            <td class="text-end">
+                @if (data?.currentCharge <0) { <small>({{ data?.entryType | removeHyphen |
+                    titlecase}})</small>
+                    }
+                    <span class="fs-15px font-monospace">
+                        {{(data?.currentCharge <0 ? (data?.currentCharge *-1) : (data?.currentCharge) ) | number: '.2-2'
+                            }} </span>
+            </td>
+            <td class="text-end font-monospace"><span class="fs-15px">{{data?.arrears | number:
+                    '.2-2'}}</span></td>
+            <td class="text-end font-monospace"><span class="fs-15px">{{ (data?.totalAmountDue)|
+                    number: '.2-2'}}</span>
+            </td>
         </tr>
     </ng-template>
 </p-table>
@@ -137,13 +192,17 @@
                 Currency:<span class="ff-mono fw-bolder "> GHS</span>
             </div>
             <div class="col-sm-12 text-end ">
-                Total Current Charge: <span class="ff-mono fw-bolder fs-19px"> {{totalCurrentCharge | number : '1.2-2'}}</span>
+                Total Current Charge: <span class="ff-mono fw-bolder fs-19px"> {{totalCurrentCharge
+                    | number :
+                    '1.2-2'}}</span>
             </div>
             <div class="col-sm-12  text-end  ">
-                Total Arrears: <span class="ff-mono fw-bolder fs-19px"> {{totalArrears | number : '1.2-2'}}</span>
+                Total Arrears: <span class="ff-mono fw-bolder fs-19px"> {{totalArrears | number :
+                    '1.2-2'}}</span>
             </div>
             <div class="col-sm-12 text-end">
-                Total Amount Due: <span class="ff-mono fw-bolder fs-19px"> {{totalAmountDue | number : '1.2-2'}}</span>
+                Total Amount Due: <span class="ff-mono fw-bolder fs-19px"> {{totalAmountDue | number
+                    : '1.2-2'}}</span>
             </div>
         </div>
     </div>

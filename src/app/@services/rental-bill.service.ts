@@ -31,7 +31,7 @@ export class RentalBillService {
     request.estateId = "ALL";
     request.headerRequest = this.utilsService.getRequestHeader(currentUser.zoneId, currentUser.regionId, 'SAVE_RENTAL_BILL');
     this.logger.info('saveRentalBill request ' + JSON.stringify(request));
-    return this.http.post<GeneralResponse>(`${environment.url + PortalMenus.API_ESTATE_BILLING}applyrentalbill`, request)
+    return this.http.post<GeneralResponse>(`${environment.url + PortalMenus.API_ESTATE_BILLING}apply-rental-bill`, request)
       .pipe(
         timeout(environment.timeout),
       );

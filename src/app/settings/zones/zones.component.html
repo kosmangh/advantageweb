@@ -7,6 +7,26 @@
 </app-add-item>
 
 
+<div class="row mb-5">
+    <div class="col-md-2">
+        <div class="form-control-wrap">
+            <div class="input-group">
+                <input type="text" class="form-control select-cursor" placeholder="Recipient's username" required=""
+                    #licenseExpiration="ngbDatepicker" ngbDatepicker [formControlName]="'test'"
+                    (click)="licenseExpiration.toggle()">
+                <div class="input-group-append select-cursor" (click)="licenseExpiration.toggle()">
+                    <span class="input-group-text" id="basic-addon2"><em class="icon ni ni-calendar"></em></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        Column 2 content
+    </div>
+</div>
+
+
+
 
 <div class="row gy-2 gx-3 mb-4 align-items-center">
     <div class="col-auto">

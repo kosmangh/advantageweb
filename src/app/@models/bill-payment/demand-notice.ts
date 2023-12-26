@@ -9,6 +9,7 @@ export class DemandNotice {
   propertyClass: string;
   propertyNo: string;
   streetName: string;
+  entryType: string;
   totalAmountDue: number;
 
   constructor() { }

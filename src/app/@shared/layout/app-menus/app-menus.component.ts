@@ -14,6 +14,11 @@ export class AppMenusComponent implements OnInit {
 
   currentUser: User;
 
+  isMenuOpen: boolean = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   constructor(
     private accountService: AuthService

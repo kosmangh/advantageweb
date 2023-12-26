@@ -6,17 +6,25 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusStylePipe implements PipeTransform {
 
+  /**
+   * Transforms a given text into a CSS class name based on certain conditions.
+   * @param text - The text to be transformed into a CSS class name.
+   * @returns The CSS class name corresponding to the given text.
+   */
   transform(text: string): string {
-    if (text === 'ACTIVE' || text === 'Active' || text === "000") {
-      return 'bg-success';
-    } else if (text === 'NEW') {
-      return 'bg-primary';
-    } else if (text === 'RESET' || text === 'Reset') {
-      return 'bg-warning';
-    } else if (text === 'INACTIVE' || text=== 'inactive' || text !== "000") {
-      return 'bg-danger';
+    switch (text.toUpperCase()) {
+      case 'ACTIVE':
+      case '000':
+        return 'badge badge-dim  bg-outline-success';
+      case 'NEW':
+      case 'PART_PAYMENT':
+        return 'badge badge-dim  bg-outline-primary';
+      case 'RESET':
+        return 'badge badge-dim  bg-outline-warning';
+      default:
+        return 'badge badge-dim  bg-outline-danger';
+
     }
-    return 'bg-gray';
   }
 
 }

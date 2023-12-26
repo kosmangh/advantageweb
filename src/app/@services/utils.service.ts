@@ -72,7 +72,7 @@ export class UtilsService {
   getCurrentMonthName() {
     const currentDate = new Date();
     const monthName = currentDate.toLocaleString('default', { month: 'long' });
-    return monthName;
+    return monthName.toUpperCase();
   }
 
   getLastMonthName() {
@@ -128,22 +128,23 @@ export class UtilsService {
     return otp;
   }
 
+  
 
 
   getMonthsOfYear() {
     return [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER"
     ];
   }
 
