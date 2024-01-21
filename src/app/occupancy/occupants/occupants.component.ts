@@ -56,17 +56,15 @@ export class OccupantsComponent implements OnInit, OnDestroy {
     private individualOccupantModalService: BsModalService,
     private institutionOccupantModalService: BsModalService,
     private viewOccupantModalService: BsModalService,
-    private spinner: SpinnerVisibilityService
   ) {
     this.accountService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit(): void {
-    this.spinner.hide();
     this.occupantType = "ALL";
     this.startDate = this.utilsService.getFirstDayOfCurrentYear();
     this.endDate = new Date();
-    this.fetchOccupants();
+    // this.fetchOccupants();
   }
   
   ngOnDestroy(): void {
