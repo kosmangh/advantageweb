@@ -64,7 +64,7 @@ export class OccupantsComponent implements OnInit, OnDestroy {
     this.occupantType = "ALL";
     this.startDate = this.utilsService.getFirstDayOfCurrentYear();
     this.endDate = new Date();
-    // this.fetchOccupants();
+    this.prefetchOccupants();
   }
   
   ngOnDestroy(): void {
@@ -72,6 +72,36 @@ export class OccupantsComponent implements OnInit, OnDestroy {
     this.institutionOccupantModalService.hide();
     this.viewOccupantModalService.hide();
     Swal.close();
+  }
+
+  prefetchOccupants(): void {
+
+    let request = new OccupantListRequest();
+    request.dateRange = false;
+    request.startDate = this.startDate;
+    request.endDate = this.endDate;
+    request.occupantType = 'ALL';
+
+    this.listOfOccupants = [];
+    this.occupantsService.searchOccupants(this.currentUser, request).subscribe({
+      next: (res: OccupantListResponse) => {
+        this.logger.info(`searchOccupants response ` + JSON.stringify(res));
+        if (res.headerResponse.responseCode !== '000') {
+          this.alertService.error(res.headerResponse.responseMessage);
+          return;
+        }
+        if (res.occupants.length <= 0) {
+          this.alertService.showInfoMsgGeneral("No occupants found");
+          this.logger.info("No occupants found");
+          return;
+        }
+        this.listOfOccupants = res.occupants;
+      },
+      error: error => {
+        this.logger.error(error);
+        this.alertService.showInfoMsg(error);
+      }
+    });
   }
 
   fetchOccupants(): void {

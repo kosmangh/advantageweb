@@ -1,4 +1,3 @@
-import { SettingsService } from '../../@services/settings.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -10,11 +9,8 @@ import { EstateBlock } from 'src/app/@models/settings/estate-block';
 import { Region } from 'src/app/@models/settings/region';
 import { User } from 'src/app/@models/user';
 import { GroundRentalBillListResponse } from 'src/app/@restmodels/estate-billing/ground-rental-bill-list.response';
-import { EstateBlockListResponse } from 'src/app/@restmodels/settings/estate-block-list.response';
-import { EstateListResponse } from 'src/app/@restmodels/settings/estate-list.response';
 import { AlertService } from 'src/app/@services/alert.service';
 import { AuthService } from 'src/app/@services/auth.service';
-import { GroupRentBillingService } from 'src/app/@services/ground-rent-billing.service';
 import { UtilsService } from 'src/app/@services/utils.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +24,6 @@ import { ListFilterPipe } from 'src/app/@shared/pipes/list-filter.pipe';
 import { RemoveHyphenPipe } from 'src/app/@shared/pipes/remove-hyphen.pipe';
 import { TimeAgoPipe } from 'src/app/@shared/pipes/time-ago.pipe';
 import { AddRentalBillComponent } from './add-rental-bill.component';
-import { PropertyCharge } from 'src/app/@models/estate-billing/property-charge';
 import { GeneralResponse } from 'src/app/@restmodels/general.response';
 import { RentalBillService } from 'src/app/@services/rental-bill.service';
 

@@ -53,6 +53,18 @@ export class UtilsService {
     return lastDay;
   }
 
+  // Function to get the first day of the current month, adjusted by the specified number of days
+ getDateBasedOnNumberOfDays(days) {
+  // Get the current date
+  const date = new Date();
+  // Set the day of the month to 1
+  date.setDate(1);
+  // Add the specified number of days to the date
+  date.setDate(date.getDate() + days);
+  // Return the first day of the month, adjusted by the specified number of days
+  return date;
+}
+
   getLastDayOfPreviousMonth():Date {
     var currentDate = new Date();
     var currentMonth = currentDate.getMonth();

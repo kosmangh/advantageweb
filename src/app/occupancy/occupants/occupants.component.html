@@ -1,5 +1,5 @@
 <app-add-item [pageTitleName]="'Occupants'" [description]="'State Housing occupants(individuals & institutions)'">
-    <span class="newItemName">
+    <!-- <span class="newItemName">
         <div class="dropdown">
 
             <a  class="btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,6 +15,20 @@
                 </ul>
             </div>
         </div>
+    </span> -->
+
+
+    <span class="newItemName">
+        <a (click)="openIndividualModalComponent(null,true)" class="btn btn-outline-primary">
+            <em class="icon ni ni-user"></em>
+            <span>Add individual occupant</span>
+        </a>
+    </span>
+    <span class="anotherItemName">
+        <a (click)="openInstitutionModalComponent(null,true)" class="btn btn-primary">
+            <em class="icon ni ni-home">
+            </em><span>Add institution occupant</span>
+        </a>
     </span>
 </app-add-item>
 <div class="row gy-2 gx-3 mt-5 mb-4 align-items-center">
