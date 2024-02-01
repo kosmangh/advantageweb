@@ -107,7 +107,7 @@ export class OccupantsComponent implements OnInit, OnDestroy {
   fetchOccupants(): void {
 
     let request = new OccupantListRequest();
-    request.dateRange = true;
+    request.dateRange = false;
     request.startDate = this.startDate;
     request.endDate = this.endDate;
     request.occupantType = this.occupantType;

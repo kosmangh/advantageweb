@@ -1,0 +1,1 @@
+import{oa as n}from"./chunk-QRSQYA3Q.js";var o=(()=>{let t=class t{transform(a){if(!a)return"NF";let e=a.split(" "),i=e[0],s=e[1];return s?(i.charAt(0)+""+s.charAt(0)).toUpperCase():i.slice(0,2).toUpperCase()}};t.\u0275fac=function(e){return new(e||t)},t.\u0275pipe=n({name:"avatarName",type:t,pure:!0,standalone:!0});let r=t;return r})();export{o as a};

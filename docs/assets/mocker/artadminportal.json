@@ -1,0 +1,1707 @@
+{
+  "uuid": "134de492-a63e-48b2-bdce-1f3ed762ddbe",
+  "lastMigration": 28,
+  "name": "ART Services",
+  "endpointPrefix": "advantageservices",
+  "latency": 0,
+  "port": 3004,
+  "hostname": "127.0.0.1",
+  "routes": [
+    {
+      "uuid": "e891c964-743c-4ccc-a29f-b7cfed66d427",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/login",
+      "responses": [
+        {
+          "uuid": "f63351a0-8a88-4934-83c0-defb6e2901e3",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"EML\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  },\n  \n    \"company\": \"123456\",\n    \"companyName\": \"Lottek Stores\",\n    \"logo\": \"\",\n    \"branchCode\": \"{{faker 'random.alphaNumeric'}}\",\n    \"branchName\": \"{{faker 'company.bsBuzz'}}\",\n    \"emailAddress\": \"{{faker 'internet.email'}}\",\n    \"fullName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n    \"language\": \"FR\",\n    \"lastLoginDate\": \"{{faker 'datatype.datetime'}}\",\n    \"status\": \"ACTIVE\",\n    \"contactNo\":\"0245293945\",\n    \"location\":\"Teshie Rasta,telephone pole\",\n    \"userRole\": \"GROUP_INTERNAL_CONTROL\",\n    \"userRoleName\": \"Group Internal Control\",\n    \"username\": \"sabonay\",\n    \"verified\": \"Y\"\n  \n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": true,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "110de37d-8ffb-440e-a634-62edc08c2a6e",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/logaudit",
+      "responses": [
+        {
+          "uuid": "f17b4687-45ea-4c7e-ade3-f95a47ea37fd",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "701ff2be-0d5f-455a-83c9-7681fa5907d0",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/deletezone",
+      "responses": [
+        {
+          "uuid": "8c19e0c3-c844-46ed-9309-7d3dca43268a",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'none'"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "adbf3e13-c03f-4758-ae48-1f23f303dd71",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/updatezone",
+      "responses": [
+        {
+          "uuid": "367483ac-9758-4e2f-bd6e-bf82b47411e6",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "content-security-policy",
+              "value": "default-src 'none'"
+            },
+            {
+              "key": "content-type",
+              "value": "text/html; charset=utf-8"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "6ebcdb3e-6cd3-4fa0-8c0b-a1aa09d76347",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/zones",
+      "responses": [
+        {
+          "uuid": "f5c3eb58-fa6b-4350-8d81-ba05e0e2b590",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"zones\": [\n     \n    {\n      \"recordId\": \"KSIZONE\",\n       \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"WSTZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Western Zone\",\n      \"remarks\": \"This is zone remarks\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"Southern Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n      ,\n     {\n      \"recordId\": \"SOUTHZONE\",\n      \"zoneId\": \"{{faker \"random.numeric\" 5}}\",\n      \"zoneName\": \"TEST Zone\",\n      \"contactNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"remarks\": \"This is zone remarks\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "de734fee-8578-4722-97db-7f6d3fc98670",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/createzone",
+      "responses": [
+        {
+          "uuid": "38a6cacb-8f4f-4262-a47b-e39d4d910306",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "7d5d06ab-6019-417d-8025-2e8679fd3fef",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/updateregion",
+      "responses": [
+        {
+          "uuid": "ce1b78f0-6568-4ec4-9953-62fcaa2255a0",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "d10dcf34-b2f0-4b4b-af0f-8fbe138472e2",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/deleteregion",
+      "responses": [
+        {
+          "uuid": "a58a3e20-d423-418b-bea4-fccd6f5fa798",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "04ba4110-0bf6-49cc-9d78-f09a9968e160",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/regions",
+      "responses": [
+        {
+          "uuid": "d190f546-ec3d-4e77-9747-f59c6f1f3194",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker \"internet.ip\"}}\"\n  },\n  \"regions\": [\n    {\n      \"recordId\": \"AH\",\n      \"regionName\": \"Ahafo Region\",\n      \"zone\": \"KSIZONE\",\n      \"zoneId\": \"KSIZONE\",\n      \"zoneName\": \"Kumasi Zone\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"AR\",\n      \"regionName\": \"Ashanti Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"BE\",\n      \"regionName\": \"Bono East Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    },\n     {\n      \"recordId\": \"BO\",\n      \"regionName\": \"Bono Region\",\n      \"zone\": \"{{oneOf (array 'KSIZONE' 'SOUTHZONE' 'WSTZONE')}}\",\n      \"zoneName\": \"{{oneOf (array 'Kumasi Zone' 'Western Zone' 'Southern Zone')}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": true,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "68f920b7-35b9-4220-98d3-66de84a117a8",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/createoccupant",
+      "responses": [
+        {
+          "uuid": "36143afa-84ce-4717-b882-14d2db8ff978",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "42e97e2c-d463-4e9a-ac8c-17049b0f8eb3",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/updateoccupant",
+      "responses": [
+        {
+          "uuid": "b36e5dd7-5a76-446a-86e8-bbfcdf8f0f11",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "1ac7c433-1473-4dfe-ae34-98634673736d",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/deleteoccupant",
+      "responses": [
+        {
+          "uuid": "395e128c-6a7b-4a69-8132-21c808b882f3",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "7223fc19-8302-4254-8a38-f8a0f3f280da",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/occupants",
+      "responses": [
+        {
+          "uuid": "82290a46-fc62-4dc1-8cc0-ff1be06abe39",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupants\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"datatype.datetime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"name.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"address.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'random.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'name.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"properties\":{{faker \"random.numeric\" 1}}\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "d7ab8daf-c98d-4029-a7c5-597a4a06ae18",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/signup",
+      "responses": [
+        {
+          "uuid": "1154c376-b472-48e4-96c1-99fa9251a09c",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOT\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Sign up successful\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": true,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "1ba33110-299f-416e-a50a-df2a776c48a9",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/createregion",
+      "responses": [
+        {
+          "uuid": "772429b3-363a-44b0-b139-aa6b11a81506",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "0ae54af4-3cd7-497c-b675-366a8ac7c09d",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/estates",
+      "responses": [
+        {
+          "uuid": "10733fe3-9f4a-47a5-ace8-9cca7b727fd2",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estates\": [\n    {{#repeat 10}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estateClass\": \"{{oneOf (array 'First Class' 'Second Class' 'Third Class')}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Bono Region' 'Western Region' 'Central Region')}}\",\n      \"landSize\":{{faker \"random.numeric\" 3}},\n      \"landSizeLeft\":{{faker \"random.numeric\" 2}},\n      \"blocks\":{{faker \"random.numeric\" 3}},\n      \"properties\":{{faker \"random.numeric\" 4}},\n      \"location\": \"{{faker \"lorem.paragraph\" 1}}\",\n      \"leasedStartDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"leasedEndDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "5492f327-569f-4259-9788-b717c4175164",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/createestate",
+      "responses": [
+        {
+          "uuid": "bcc98b3d-a6bc-47d2-a55b-309344e4e9c8",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "65720992-8835-496d-9660-077de3e78fa6",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/updateestate",
+      "responses": [
+        {
+          "uuid": "6daa956b-e65d-4721-b4ed-05c84ce45f28",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "a7164dd1-e7bc-42b0-b414-d8af6eacd9b8",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/deleteestate",
+      "responses": [
+        {
+          "uuid": "e7c447f5-e481-4f7b-8ae2-aeeb71152522",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "04acb277-e747-4338-83bd-e6b2ba1048a2",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/estateblocks",
+      "responses": [
+        {
+          "uuid": "f1c535dc-4ac8-43fd-8044-2cbf1283359a",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"estateBlocks\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estate\": \"{{faker \"company.bsBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"blockSize\":{{faker \"random.numeric\" 3}},\n      \"blockSizeLeft\":{{faker \"random.numeric\" 2}},\n      \"properties\":{{faker \"random.numeric\" 4}},\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "d6b9e024-dac9-4d89-8107-6d832bef7318",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/createblock",
+      "responses": [
+        {
+          "uuid": "d225452f-b077-4a78-a190-185fb48038ab",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "0ab5446a-6967-4c25-8a79-513087c99610",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/updateblock",
+      "responses": [
+        {
+          "uuid": "1f368d27-7fa6-4064-809c-38543d511267",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "1fec86f0-2e29-4dac-abff-85325cc3ebda",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/deleteblock",
+      "responses": [
+        {
+          "uuid": "896c4c22-21cd-466e-a4c0-ce0d1a6d67c4",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "56ead1de-26ff-4588-aa13-39aa75fd71c0",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/estateproperties",
+      "responses": [
+        {
+          "uuid": "7e145f0a-1f6e-4720-a59f-049ed5f3a190",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\",\n    \"IpAddress\": \"{{$randomIP}}\"\n  },\n  \"properties\": [\n    {{#repeat 20}}\n    {\n      \"recordId\": \"{{faker \"random.numeric\" 5}}\",\n      \"estateName\": \"{{faker \"company.bsBuzz\"}}\",\n      \"estate\": \"{{faker \"company.bsBuzz\"}}\",\n      \"block\": \"{{oneOf (array 'A' 'AB' 'B' 'BC' 'BB')}}\",\n      \"usage\": \"{{oneOf (array 'RESIDENTIAL' 'COMMERCIAL' 'INSTITUTIONAL' 'MIXED_USE' 'ALL')}}\",\n      \"category\": \"{{oneOf (array 'LAND' 'HOUSE')}}\",\n      \"occupancy\": \"{{oneOf (array 'Occupied' 'Unoccupied')}}\",\n      \"propertyNo\":\"{{faker \"random.numeric\" 4}}\",\n      \"propertySize\":{{faker \"random.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.bsBuzz\"}}\",\n      \"additionalInfo\": \"{{faker \"lorem.paragraph\" 2}}\",\n      \"createdBy\": \"{{faker \"name.firstName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"name.firstName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\" }}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "72139cbb-3dfc-4732-908a-bb1748f0cf8b",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/createproperty",
+      "responses": [
+        {
+          "uuid": "4ab5ed2c-f206-4606-ae16-d7ff277ff36f",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "2764e902-df58-4222-afb9-723baa8ebd9d",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/updateproperty",
+      "responses": [
+        {
+          "uuid": "7514fdc7-7af3-450e-9b96-5b8e3b2859ad",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "c2204162-bb32-4c17-8b37-e9d539dead7e",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "settings/deleteproperty",
+      "responses": [
+        {
+          "uuid": "c9c691fa-6be3-4bd2-a90a-66535145cbf2",
+          "body": "{\n  \"headerResponse\": {\n    \"username\": \"LOTTEK\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"ADVANTAGE\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "93914eb6-aa87-4fa9-9eeb-827503dc48c0",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/createoccupantproperty",
+      "responses": [
+        {
+          "uuid": "0df8bdf0-0e65-4623-a075-5dd2a9172d2a",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "f0164351-99b1-4359-8284-ea8dfa85823d",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/updateoccupantproperty",
+      "responses": [
+        {
+          "uuid": "84a043de-0fff-4ed8-b1b1-0a9125190831",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "95f9f575-1b80-4a1a-a979-79af1df835d9",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/deleteoccupantproperty",
+      "responses": [
+        {
+          "uuid": "fde33f70-e5ce-4e0f-9673-8436d5e22e7e",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "f85db587-3d99-4cba-b39f-f3e7af3e7f6e",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/occupantproperties",
+      "responses": [
+        {
+          "uuid": "627a67c1-b692-4b60-81e9-8b346169dfbd",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"occupantProperties\": [\n     {{#repeat 1000}}\n    {\n      \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"propertyOccupantType\":\"{{oneOf (array 'Leasehold' 'Rental')}}\",\n      \"propertySize\":{{faker \"random.numeric\" 4}},\n      \"propertyName\":\"{{faker \"company.bsBuzz\"}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"firstDateOfOccupancy\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastDateOfOccupancy\": \"{{faker \"datatype.datetime\"}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "c77aaa24-c395-476c-bf94-d00e7f0d2d00",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "occupancy/findoccupant",
+      "responses": [
+        {
+          "uuid": "c0c24eb6-5f73-44b8-b43d-2289c852e4e0",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"THEMART_PORTAL\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n     \"recordId\": \"{{@index}}\",\n      \"occupantName\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"institution\":\"{{oneOf (array 'true' 'false')}}\",\n      \"occupantType\":\"{{oneOf (array 'INDIVIDUAL' 'INSTITUTION')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"dateOfBirth\": \"{{faker \"datatype.datetime\"}}\",\n      \"maritalStatus\":\"{{oneOf (array 'MARRIED' 'SINGLE' 'DIVORCE')}}\",\n      \"nextOfKin\": \"{{faker \"name.fullName\"}}\",\n      \"relationship\":\"{{oneOf (array 'SPOUSE' 'FATHER' 'MOTHER')}}\",\n      \"nokEmail\": \"{{faker 'internet.email'}}\",\n      \"nokPhone\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"nokAddress\": \"{{faker \"address.city\"}}\",\n      \"telephoneNumber\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"emailAddress\": \"{{faker 'internet.email'}}\",\n      \"nationality\":\"{{oneOf (array 'GHANAIAN' 'NIGERIAN' 'BENIN')}}\",\n      \"localAddress\": \"{{faker \"address.city\"}}\",\n      \"nationalIdType\":\"{{oneOf (array 'DRIVERS LICENCE'  'PASSPORT' 'NATIONAL_ID')}}\",\n      \"occupation\": \"{{oneOf (array 'Teacher'  'Nurse' 'Banker' 'Doctor' 'Engineer')}}\",\n      \"nationalId\": \"{{faker 'random.numeric' 8}}\",\n      \"mobileNum\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdName\": \"{{faker 'name.fullName'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdEmail\": \"{{faker 'internet.email'}}\",\n      \"mdTel\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"mdAddress\": \"{{faker \"address.city\"}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"modifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"modifiedDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"properties\":{{faker \"random.numeric\" 1}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "a8340ca7-8677-47bb-a107-64c5c9a15e60",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/users",
+      "responses": [
+        {
+          "uuid": "415fcc32-2a59-4672-b675-ae08a327bfd5",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"staffs\": [\n     {{#repeat 1000}}\n    {\n      \n      \"recordId\": \"{{faker 'random.numeric' 8}}\",\n      \"firstName\": \"{{faker 'name.firstName'}}\",\n      \"lastName\": \"{{faker 'name.lastName'}}\",\n      \"otherNames\": \"{{faker 'name.lastName'}}\",\n      \"gender\":\"{{oneOf (array 'MALE' 'FEMALE')}}\",\n      \"title\":\"{{oneOf (array 'MR' 'MRS' 'MISS' 'MASTER')}}\",\n      \"dob\": \"{{faker \"datatype.datetime\"}}\",\n      \"email\": \"{{faker 'internet.email'}}\",\n      \"mobileNo\": \"{{faker \"phone.phoneNumberFormat\"}}\",\n      \"address\": \"{{faker \"address.city\"}}\",\n      \"username\": \"{{faker 'name.firstName'}}\",\n      \"regionId\": \"{{faker 'random.numeric' 8}}\",\n      \"regionName\": \"{{oneOf (array 'Ashanti Region' 'Greater Accra' 'Eastern Region')}}\",\n      \"userRole\":\"{{oneOf (array 'Administrator' 'Director' 'Estate Officer')}}\",\n      \"officeContactNo\": \"{{faker 'phone.phoneNumberFormat'}}\",\n      \"status\":\"{{oneOf (array 'Active' 'Inactive')}}\",\n      \"department\":\"{{oneOf (array 'Finance' 'Evaluation' 'Administration')}}\",\n      \"departmentId\": \"{{faker 'random.numeric' 8}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "f032bc16-e3fe-445b-9847-b682a413df80",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/createuser",
+      "responses": [
+        {
+          "uuid": "02191068-fe5c-4f6d-a59e-117685286f61",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "8eb2e101-5ed2-4c30-85a7-74a6bf0b4778",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/updateuser",
+      "responses": [
+        {
+          "uuid": "170b95f7-a6c8-4466-83d7-e48e417d6439",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "3bcc46d6-d8d8-4afc-884f-dfa7aa86d32e",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/deleteuser",
+      "responses": [
+        {
+          "uuid": "9c57c68d-b1ab-4f24-ae4e-c7c126f531dc",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "30e47c64-8b2e-4266-bc2f-32f25f898f16",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/departments",
+      "responses": [
+        {
+          "uuid": "94525894-e42f-45bf-9988-d8be850df914",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"LOTTEK\",\n    \"requestId\": \"012332325\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\",\n    \"IpAddress\": \"{{faker 'internet.ip'}}\"\n  },\n  \"departments\": [\n     {{#repeat 10}}\n    {\n      \n      \"recordId\": \"{{faker 'random.numeric' 8}}\",\n      \"departmentName\": \"{{faker 'commerce.department'}}\",\n      \"remarks\": \"{{faker 'company.bs'}}\",\n      \"createdBy\": \"{{faker \"internet.userName\"}}\",\n      \"createdDate\": \"{{faker \"datatype.datetime\"}}\",\n      \"lastModifiedBy\": \"{{faker \"internet.userName\"}}\",\n      \"lastModifiedDate\": \"{{faker \"datatype.datetime\"}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "8e06f75b-71a5-4d24-9d6e-ebaa13ec3fc4",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/createdepartment",
+      "responses": [
+        {
+          "uuid": "61d80763-8e3c-46aa-8cdd-0d5fd08ddfc0",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "742fa0b0-3848-4941-bd29-6c48e9a1f8fa",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/updatedepartment",
+      "responses": [
+        {
+          "uuid": "b66b9bcd-fe2c-4b7b-a9ce-364c054e0313",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "17c90aaf-a73f-4889-9131-a4d2a285800a",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "useraccounts/deletedepartment",
+      "responses": [
+        {
+          "uuid": "e6baee5d-5d6b-4224-8011-0f897ca86e15",
+          "body": "{\n  \"headerResponse\": {\n    \"company\": \"SHC\",\n    \"requestId\": \"bbb7d3a48aa4f7f5\",\n    \"responseCode\": \"000\",\n    \"responseMessage\": \"Success\",\n    \"sourceCode\": \"WEB\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE",
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [
+    {
+      "uuid": "ff54345b-93c5-4f06-8a53-f83ebfcf4f93",
+      "name": "settings",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "df056e7e-2273-4d7b-8be4-1f3faf3244bf"
+        },
+        {
+          "type": "folder",
+          "uuid": "b595aba5-0643-404f-943e-699326c760df"
+        },
+        {
+          "type": "folder",
+          "uuid": "73a275a1-671a-480b-81af-862680d680e2"
+        },
+        {
+          "type": "folder",
+          "uuid": "b361dba0-fa39-44a6-8cc3-77b8019048a2"
+        },
+        {
+          "type": "folder",
+          "uuid": "7054a01e-17b2-4b62-a856-633894e91186"
+        }
+      ]
+    },
+    {
+      "uuid": "ec594a2e-fd90-4da8-a99e-615e9b083211",
+      "name": "occupancy",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "f037229b-2a3a-4d5c-a03f-a2eb825df149"
+        },
+        {
+          "type": "folder",
+          "uuid": "f67955b8-7e06-464b-b57d-7b51d29c44b8"
+        }
+      ]
+    },
+    {
+      "uuid": "c3c11fe2-5d50-42a2-8c03-839909aa2a7f",
+      "name": "auth",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "110de37d-8ffb-440e-a634-62edc08c2a6e"
+        },
+        {
+          "type": "route",
+          "uuid": "d7ab8daf-c98d-4029-a7c5-597a4a06ae18"
+        },
+        {
+          "type": "route",
+          "uuid": "e891c964-743c-4ccc-a29f-b7cfed66d427"
+        }
+      ]
+    },
+    {
+      "uuid": "b595aba5-0643-404f-943e-699326c760df",
+      "name": "zones",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "6ebcdb3e-6cd3-4fa0-8c0b-a1aa09d76347"
+        },
+        {
+          "type": "route",
+          "uuid": "de734fee-8578-4722-97db-7f6d3fc98670"
+        },
+        {
+          "type": "route",
+          "uuid": "adbf3e13-c03f-4758-ae48-1f23f303dd71"
+        },
+        {
+          "type": "route",
+          "uuid": "701ff2be-0d5f-455a-83c9-7681fa5907d0"
+        }
+      ]
+    },
+    {
+      "uuid": "df056e7e-2273-4d7b-8be4-1f3faf3244bf",
+      "name": "regions",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "1ba33110-299f-416e-a50a-df2a776c48a9"
+        },
+        {
+          "type": "route",
+          "uuid": "04ba4110-0bf6-49cc-9d78-f09a9968e160"
+        },
+        {
+          "type": "route",
+          "uuid": "d10dcf34-b2f0-4b4b-af0f-8fbe138472e2"
+        },
+        {
+          "type": "route",
+          "uuid": "7d5d06ab-6019-417d-8025-2e8679fd3fef"
+        }
+      ]
+    },
+    {
+      "uuid": "73a275a1-671a-480b-81af-862680d680e2",
+      "name": "estates",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "0ae54af4-3cd7-497c-b675-366a8ac7c09d"
+        },
+        {
+          "type": "route",
+          "uuid": "5492f327-569f-4259-9788-b717c4175164"
+        },
+        {
+          "type": "route",
+          "uuid": "65720992-8835-496d-9660-077de3e78fa6"
+        },
+        {
+          "type": "route",
+          "uuid": "a7164dd1-e7bc-42b0-b414-d8af6eacd9b8"
+        }
+      ]
+    },
+    {
+      "uuid": "b361dba0-fa39-44a6-8cc3-77b8019048a2",
+      "name": "estate blocks",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "04acb277-e747-4338-83bd-e6b2ba1048a2"
+        },
+        {
+          "type": "route",
+          "uuid": "d6b9e024-dac9-4d89-8107-6d832bef7318"
+        },
+        {
+          "type": "route",
+          "uuid": "0ab5446a-6967-4c25-8a79-513087c99610"
+        },
+        {
+          "type": "route",
+          "uuid": "1fec86f0-2e29-4dac-abff-85325cc3ebda"
+        }
+      ]
+    },
+    {
+      "uuid": "7054a01e-17b2-4b62-a856-633894e91186",
+      "name": "estate properties",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "56ead1de-26ff-4588-aa13-39aa75fd71c0"
+        },
+        {
+          "type": "route",
+          "uuid": "72139cbb-3dfc-4732-908a-bb1748f0cf8b"
+        },
+        {
+          "type": "route",
+          "uuid": "2764e902-df58-4222-afb9-723baa8ebd9d"
+        },
+        {
+          "type": "route",
+          "uuid": "c2204162-bb32-4c17-8b37-e9d539dead7e"
+        }
+      ]
+    },
+    {
+      "uuid": "f037229b-2a3a-4d5c-a03f-a2eb825df149",
+      "name": "occupants",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "7223fc19-8302-4254-8a38-f8a0f3f280da"
+        },
+        {
+          "type": "route",
+          "uuid": "1ac7c433-1473-4dfe-ae34-98634673736d"
+        },
+        {
+          "type": "route",
+          "uuid": "68f920b7-35b9-4220-98d3-66de84a117a8"
+        },
+        {
+          "type": "route",
+          "uuid": "42e97e2c-d463-4e9a-ac8c-17049b0f8eb3"
+        },
+        {
+          "type": "route",
+          "uuid": "c77aaa24-c395-476c-bf94-d00e7f0d2d00"
+        }
+      ]
+    },
+    {
+      "uuid": "f67955b8-7e06-464b-b57d-7b51d29c44b8",
+      "name": "occupant properties",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "93914eb6-aa87-4fa9-9eeb-827503dc48c0"
+        },
+        {
+          "type": "route",
+          "uuid": "f0164351-99b1-4359-8284-ea8dfa85823d"
+        },
+        {
+          "type": "route",
+          "uuid": "95f9f575-1b80-4a1a-a979-79af1df835d9"
+        },
+        {
+          "type": "route",
+          "uuid": "f85db587-3d99-4cba-b39f-f3e7af3e7f6e"
+        }
+      ]
+    },
+    {
+      "uuid": "b946cb47-7a89-4d09-9c6a-b65f17354cdc",
+      "name": "useraccounts",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a8340ca7-8677-47bb-a107-64c5c9a15e60"
+        },
+        {
+          "type": "route",
+          "uuid": "f032bc16-e3fe-445b-9847-b682a413df80"
+        },
+        {
+          "type": "route",
+          "uuid": "8eb2e101-5ed2-4c30-85a7-74a6bf0b4778"
+        },
+        {
+          "type": "route",
+          "uuid": "3bcc46d6-d8d8-4afc-884f-dfa7aa86d32e"
+        }
+      ]
+    },
+    {
+      "uuid": "0b63294c-47e6-4395-aae0-3e237c62f9a8",
+      "name": "departments",
+      "collapsed": true,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "8e06f75b-71a5-4d24-9d6e-ebaa13ec3fc4"
+        },
+        {
+          "type": "route",
+          "uuid": "30e47c64-8b2e-4266-bc2f-32f25f898f16"
+        },
+        {
+          "type": "route",
+          "uuid": "742fa0b0-3848-4941-bd29-6c48e9a1f8fa"
+        },
+        {
+          "type": "route",
+          "uuid": "17c90aaf-a73f-4889-9131-a4d2a285800a"
+        }
+      ]
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "c3c11fe2-5d50-42a2-8c03-839909aa2a7f"
+    },
+    {
+      "type": "folder",
+      "uuid": "ff54345b-93c5-4f06-8a53-f83ebfcf4f93"
+    },
+    {
+      "type": "folder",
+      "uuid": "ec594a2e-fd90-4da8-a99e-615e9b083211"
+    },
+    {
+      "type": "folder",
+      "uuid": "b946cb47-7a89-4d09-9c6a-b65f17354cdc"
+    },
+    {
+      "type": "folder",
+      "uuid": "0b63294c-47e6-4395-aae0-3e237c62f9a8"
+    }
+  ]
+}

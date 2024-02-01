@@ -1,0 +1,2 @@
+import{Eb as o,Mb as s,Uc as l,la as i,nb as r,ob as a}from"./chunk-QRSQYA3Q.js";import"./chunk-5FZOKLP6.js";var f=(()=>{let e=class e{ngOnInit(){}};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=i({type:e,selectors:[["app-bill-arrears"]],standalone:!0,features:[s],decls:3,vars:0,template:function(n,m){n&1&&(r(0,"p"),o(1,"bill-arrears works!"),a(),o(2,`,
+`))},dependencies:[l],encapsulation:2});let t=e;return t})();export{f as BillArrearsComponent};

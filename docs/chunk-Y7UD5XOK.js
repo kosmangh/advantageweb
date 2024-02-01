@@ -1,0 +1,1 @@
+import"./chunk-5FZOKLP6.js";var o=[{path:"",loadComponent:()=>import("./chunk-KXIEJP2G.js").then(t=>t.NotificationsComponent),children:[{path:"sms-blast",loadComponent:()=>import("./chunk-LQ2C6AHN.js").then(t=>t.SmsBlastComponent)},{path:"bill-sms-blast",loadComponent:()=>import("./chunk-FPIN6Q6F.js").then(t=>t.BillsSmsBlastComponent)}]}];export{o as NOTIFICATIONS_SETUP_ROUTES};
