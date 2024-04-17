@@ -24,12 +24,18 @@
             "es2020",
             "dom"
         ],
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        // "paths": {
+        //     "@demo/shell": [
+        //         "src/app/shell/index.ts"
+        //     ]
+        // }
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
         "strictTemplates": true
-    }
+    },
+    
 }
