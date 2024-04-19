@@ -48,7 +48,7 @@ export class AddInstitutionOccupantComponent implements OnInit {
 
   settingsService = inject(SettingsService);
   occupantsService = inject(OccupancyService);
-  router=inject(Router);
+  router = inject(Router);
   listOfOccupantTypes: any;
 
   constructor(
@@ -178,7 +178,7 @@ export class AddInstitutionOccupantComponent implements OnInit {
               }
               this.institutionFormGroup.reset();
               this.supervisorFormGroup.reset();
-              
+              this.institutionForm.institutional.setValue(true);
               this.currentStep = 1;
               this.logAction(`created institution occupant ${occupantName}`, PortalMenus.OCCUPANCY);
             },
@@ -209,7 +209,7 @@ export class AddInstitutionOccupantComponent implements OnInit {
         let institutionData = Object.assign(this.institutionFormGroup.value, this.supervisorFormGroup.value);
 
 
-        this.occupantsService.updateOccupant(this.currentUser,institutionData)
+        this.occupantsService.updateOccupant(this.currentUser, institutionData)
           .subscribe({
             next: (res: GeneralResponse) => {
               this.logger.info('updateOccupant response:' + JSON.stringify(res));

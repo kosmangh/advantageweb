@@ -193,6 +193,7 @@ export class AddIndividualOccupantComponent implements OnInit {
               this.personalInformGroup.reset();
               this.contactAddressFormGroup.reset();
               this.nokFormGroup.reset();
+              this.nokForm.institutional.setValue(false);
               this.currentStep = 1;
               this.logAction(`created individual occupant ${occupantName}`, PortalMenus.SETTINGS);
             },

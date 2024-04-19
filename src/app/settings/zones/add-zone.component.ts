@@ -15,13 +15,14 @@ import { Title } from '@angular/platform-browser';
 import { PortalMenus } from 'src/app/@models/portalMenus';
 import { GeneralResponse } from 'src/app/@restmodels/general.response';
 import Swal from 'sweetalert2';
+import { ModalFooterSlotComponent } from "../../@shared/components/modal-footer-slot.component";
 
 @Component({
   selector: 'app-add-customer',
   standalone: true,
   templateUrl: './add-zone.component.html',
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, RequiredFieldsNoticeComponent,
-    FormLabelComponent, RequiredFieldComponent ]
+    FormLabelComponent, RequiredFieldComponent, ModalFooterSlotComponent ]
 })
 export class AddZoneComponent implements OnInit {
 
@@ -79,7 +80,7 @@ export class AddZoneComponent implements OnInit {
       bankName: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       bankBranch: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       website: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
-      email: [ '', { updateOn: 'blur', validators: [ Validators.required ,Validators.email] } ],
+      email: [ '', { updateOn: 'blur', validators: [ Validators.required, Validators.email ] } ],
       remarks: [ '', { updateOn: 'blur', validators: [ Validators.required ] } ],
       recordId: [ '', ],
       saveAndNew: [ false, ]
@@ -119,7 +120,7 @@ export class AddZoneComponent implements OnInit {
                 this.accountService.reloadCurrentRoute();
               }
               this.zoneFormGroup.reset();
-              this.submitted=false;
+              this.submitted = false;
               this.logAction(`created zone ${zoneName}`, PortalMenus.SETTINGS);
             },
             error: error => {
@@ -151,7 +152,7 @@ export class AddZoneComponent implements OnInit {
       if (result.value) {
         // reset alerts on submit
         this.alertService.clear();
-       
+
         this.settingsService.updateZone(this.currentUser, this.zoneFormGroup.value)
           .subscribe({
             next: (res: GeneralResponse) => {

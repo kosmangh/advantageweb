@@ -28,12 +28,13 @@ import { EstateProperty } from 'src/app/@models/settings/estate-property';
 import { Occupant } from 'src/app/@models/occupancy/occupant';
 import { OccupantListResponse } from 'src/app/@restmodels/occupancy/occupant-list.response';
 import { OccupantListRequest } from 'src/app/@restmodels/occupancy/occupant-list.request';
+import { ModalFooterSlotComponent } from "../../@shared/components/modal-footer-slot.component";
 
 @Component({
   standalone: true,
+  templateUrl: './add-occupant-property.component.html',
   imports: [ CommonModule, ReactiveFormsModule, RequiredFieldsNoticeComponent, FormsModule,
-    FormLabelComponent, RequiredFieldComponent, CalendarModule, NgSelectModule ],
-  templateUrl: './add-occupant-property.component.html'
+    FormLabelComponent, RequiredFieldComponent, CalendarModule, NgSelectModule, ModalFooterSlotComponent ]
 })
 export class AddOccupantPropertyComponent implements OnInit {
 
@@ -179,7 +180,7 @@ export class AddOccupantPropertyComponent implements OnInit {
 
   fetchEstateProperties(): void {
     this.listOfEstateProperties = [];
-    this.settingsService.getEstateProperties(this.currentUser, this.occupantPropertyForm.blockId.value,false,"").subscribe({
+    this.settingsService.getEstateProperties(this.currentUser, this.occupantPropertyForm.blockId.value, false, "").subscribe({
       next: (res: EstatePropertyListResponse) => {
         this.logger.info(`getEstateProperties response ` + JSON.stringify(res))
         if (res.headerResponse.responseCode !== '000') {

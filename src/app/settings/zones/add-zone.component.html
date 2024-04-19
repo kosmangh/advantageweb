@@ -26,7 +26,7 @@
                             [ngClass]="{'is-invalid': (  zoneForm.zoneName ?.touched ||  zoneForm.zoneName ?.dirty || submitted) && zoneForm.zoneName ?.errors  }" />
                         <span class="invalid-feedback">
                             <div *ngIf=" zoneForm.zoneName ?.errors?.required">
-                                <app-required-field/>
+                                <app-required-field />
                             </div>
                             <div *ngIf=" zoneForm.zoneName ?.errors?.minlength">
                                 * zone name must be longer than 3 characters.
@@ -180,18 +180,12 @@
             </div>
             <ng-container *ngIf="isAddMode">
                 <div class="col-sm-6">
-                    <div class="custom-control custom-control-sm custom-checkbox checked">
-                        <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
-                            id="saveAndNew">
-                        <label class="custom-control-label fw-bolder" for="saveAndNew">
-                            Save & create new zone
-                        </label>
-                    </div>
+
                 </div>
             </ng-container>
         </div>
     </div>
-    <div class="row my-3 mx-2 mb-3 justify-content-end">
+    <div class="row my-3 mx-2 mb-3 justify-content-end" *ngIf="false">
         <div class="col-auto">
             <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addZoneBsModalRef?.hide()">
                 Close
@@ -216,4 +210,37 @@
             </button>
         </div>
     </div>
+    <app-modal-footer-slot>
+        <div class="saveAndNew">
+            <div class="custom-control custom-control-sm custom-checkbox checked" *ngIf="isAddMode">
+                <input type="checkbox" formControlName="saveAndNew" id="saveAndNew" class="custom-control-input"
+                    id="saveAndNew">
+                <label class="custom-control-label fw-bolder" for="saveAndNew">
+                    Save & create new zone
+                </label>
+            </div>
+        </div>
+        <div class="closeButton">
+            <button class="btn btn-outline-light btn-sm" data-bs-dismiss="modal" (click)="addZoneBsModalRef?.hide()">
+                Close
+            </button>
+        </div>
+        <div class="delete">
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteZone()" *ngIf="!isAddMode"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Delete
+            </button>
+        </div>
+        <div class="createAndUpdate">
+            <button class="btn btn-primary btn-sm" (click)="updateZone()" *ngIf="!isAddMode"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Update zone
+            </button>
+
+            <button class="btn btn-primary btn-sm" (click)="saveZone()" *ngIf="isAddMode"
+                [title]="zoneFormGroup.invalid ? 'There must be errors on the form':''">
+                Create zone
+            </button>
+        </div>
+    </app-modal-footer-slot>
 </form>
